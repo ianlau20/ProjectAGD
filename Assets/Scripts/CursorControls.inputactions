@@ -1,0 +1,74 @@
+{
+    "name": "CursorControls",
+    "maps": [
+        {
+            "name": "Mouse",
+            "id": "8c2e8421-9d30-467a-afd5-9a9423116d79",
+            "actions": [
+                {
+                    "name": "Click",
+                    "type": "Button",
+                    "id": "c143f2ca-758b-44f2-936c-dee40dbdffa7",
+                    "expectedControlType": "Button",
+                    "processors": "",
+                    "interactions": "",
+                    "initialStateCheck": false
+                },
+                {
+                    "name": "Alt Click",
+                    "type": "Button",
+                    "id": "9334c891-ac88-43e2-8a85-8c82554fbf78",
+                    "expectedControlType": "Button",
+                    "processors": "",
+                    "interactions": "",
+                    "initialStateCheck": false
+                },
+                {
+                    "name": "Position",
+                    "type": "PassThrough",
+                    "id": "6540e95c-6051-42db-9e7f-fbe6820cd131",
+                    "expectedControlType": "Vector2",
+                    "processors": "",
+                    "interactions": "",
+                    "initialStateCheck": false
+                }
+            ],
+            "bindings": [
+                {
+                    "name": "",
+                    "id": "5ba4b85a-12e0-4001-b029-bb55c3b59cbf",
+                    "path": "<Mouse>/leftButton",
+                    "interactions": "Press(behavior=1)",
+                    "processors": "",
+                    "groups": "",
+                    "action": "Click",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                },
+                {
+                    "name": "",
+                    "id": "51abe63b-1fe7-48c9-9460-791f81ba39b0",
+                    "path": "<Mouse>/rightButton",
+                    "interactions": "Press(behavior=1)",
+                    "processors": "",
+                    "groups": "",
+                    "action": "Alt Click",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                },
+                {
+                    "name": "",
+                    "id": "e8b2f584-768e-4464-b818-fc388a54b134",
+                    "path": "<Mouse>/position",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "",
+                    "action": "Position",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                }
+            ]
+        }
+    ],
+    "controlSchemes": []
+}
