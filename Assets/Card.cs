@@ -22,7 +22,7 @@ public class Card : MonoBehaviour
     }
 
     void MoveToPlayedPile(){
-        gm.playedPile.Add(this);
+        gm.PlayCard(this);
         gameObject.SetActive(false);
     }
 }
