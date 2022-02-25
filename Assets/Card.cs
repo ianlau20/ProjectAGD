@@ -12,7 +12,7 @@ public class Card : MonoBehaviour
         gm = FindObjectOfType<GameManager>();
     }
 
-    public void OnMouseDown(){
+    public void UseCard(){
         if(hasBeenPlayed == false){
             //play the card
             MoveToPlayedPile();

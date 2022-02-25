@@ -9,13 +9,16 @@ public class GameManager : MonoBehaviour
     public List<Card> playedPile = new List<Card>();
 
     public PhysicalPile pileObj;
+    public GameObject TopOfPile;
     public Deck deckObj;
-    public Renderer deckRend;
     public Transform[] cardSlots;
     public bool[] freeCardSlots;
+    public MaoHand[] hands;
+    private int TurnIndex = -1;
+    private Renderer deckRend;
     private Vector3 scaleChange = new Vector3(0.00f, +0.01f, 0.00f);
     private Vector3 resetHeight = new Vector3(0.10f, 0.00f, 0.15f);
-    private Vector3 resetPos = new Vector3(2f, 0.63f, -0.5f);
+    private Vector3 resetPos = new Vector3(2f, 0.59f, -0.5f);
 
     void Start(){
         deckRend = deckObj.GetComponent<Renderer>();
@@ -31,11 +34,12 @@ public class GameManager : MonoBehaviour
             deckObj.transform.position -= scaleChange/2;
 
             for (int i = 0; i < freeCardSlots.Length; i++){
+                // This is a double-check that can prob be removed
                 if(freeCardSlots[i] == true){
                     randCard.gameObject.SetActive(true);
                     randCard.handIndex = i;
 
-                    randCard.transform.position = cardSlots[i].position;
+                    randCard.transform.transform.position = cardSlots[i].position;
                     randCard.hasBeenPlayed = false;
 
                     freeCardSlots[i] = false;
@@ -43,17 +47,64 @@ public class GameManager : MonoBehaviour
                     if (deck.Count == 0){
                         deckRend.enabled = false;
                     }
+                    NextTurn();
                     return;
                 }
             }
         }
     }
 
+    public void DrawCardAI(){
+        Debug.Log("DrawCardAI Called");
+        if(deck.Count >= 1 && hands[TurnIndex].currHand.Count <= 7){
+            Card randCard = deck[Random.Range(0, deck.Count)];
+            randCard.gameObject.SetActive(true);
+            // Dont show AI cards on screen
+            randCard.gameObject.transform.position = new Vector3(1000f, 10000f, 0f);
+
+            // Physical Deck Change
+            deckObj.transform.localScale -= scaleChange;
+            deckObj.transform.position -= scaleChange/2;
+
+            randCard.hasBeenPlayed = false;
+            hands[TurnIndex].currHand.Add(randCard);
+            deck.Remove(randCard);
+            if (deck.Count == 0){
+                deckRend.enabled = false;
+            }
+            NextTurn();
+            return;
+        }
+    }
+
     public void PlayCard(Card playedCard){
+        // Show the pile and top card
         pileObj.gameObject.SetActive(true);
+        TopOfPile.SetActive(true);
+        TopOfPile.GetComponent<SpriteRenderer>().sprite = playedCard.GetComponent<Image>().sprite;
+
+        // Make physical adjustments
         playedPile.Add(playedCard);
         pileObj.transform.localScale += scaleChange;
         pileObj.transform.position += scaleChange/2;
+        TopOfPile.transform.position = pileObj.transform.position + new Vector3(0f, (0.001f + pileObj.transform.localScale.y/2), 0f);
+
+        // End turn
+        NextTurn();
+    }
+
+    private void NextTurn(){
+        TurnIndex++;
+        // If not player turn, play AI
+        Debug.Log("hands.Length = " + hands.Length);
+        if (TurnIndex < hands.Length){
+            Debug.Log("TurnIndex = " + TurnIndex);
+            hands[TurnIndex].Play();
+        }
+        // Else reset index and let player play
+        else {
+            TurnIndex = -1;
+        }
     }
 
     public void Shuffle(){
@@ -61,6 +112,7 @@ public class GameManager : MonoBehaviour
             pileObj.transform.localScale = resetHeight;
             pileObj.transform.position = resetPos;
             pileObj.gameObject.SetActive(false);
+            TopOfPile.SetActive(false);
             foreach(Card card in playedPile){
                 deck.Add(card);
                 card.hasBeenPlayed = false;
