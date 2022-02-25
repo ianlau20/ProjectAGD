@@ -2,6 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
+using System.Threading.Tasks;
 
 public class GameManager : MonoBehaviour
 {
@@ -16,7 +17,7 @@ public class GameManager : MonoBehaviour
     public MaoHand[] hands;
     private int TurnIndex = -1;
     private Renderer deckRend;
-    private Vector3 scaleChange = new Vector3(0.00f, +0.01f, 0.00f);
+    private Vector3 scaleChange = new Vector3(0.00f, 0.0025f, 0.00f);
     private Vector3 resetHeight = new Vector3(0.10f, 0.00f, 0.15f);
     private Vector3 resetPos = new Vector3(2f, 0.59f, -0.5f);
 
@@ -44,9 +45,7 @@ public class GameManager : MonoBehaviour
 
                     freeCardSlots[i] = false;
                     deck.Remove(randCard);
-                    if (deck.Count == 0){
-                        deckRend.enabled = false;
-                    }
+
                     NextTurn();
                     return;
                 }
@@ -67,17 +66,19 @@ public class GameManager : MonoBehaviour
             deckObj.transform.position -= scaleChange/2;
 
             randCard.hasBeenPlayed = false;
-            hands[TurnIndex].currHand.Add(randCard);
+            hands[TurnIndex].AddToHand(randCard);
             deck.Remove(randCard);
-            if (deck.Count == 0){
-                deckRend.enabled = false;
-            }
+            
             NextTurn();
             return;
         }
     }
 
     public void PlayCard(Card playedCard){
+        if (TurnIndex == -1){
+            freeCardSlots[playedCard.handIndex] = true;
+        }
+
         // Show the pile and top card
         pileObj.gameObject.SetActive(true);
         TopOfPile.SetActive(true);
@@ -95,11 +96,15 @@ public class GameManager : MonoBehaviour
 
     private void NextTurn(){
         TurnIndex++;
+        if (deck.Count == 0){
+            deckRend.enabled = false;
+            Shuffle();
+        }
         // If not player turn, play AI
         Debug.Log("hands.Length = " + hands.Length);
         if (TurnIndex < hands.Length){
             Debug.Log("TurnIndex = " + TurnIndex);
-            hands[TurnIndex].Play();
+            DelayedPlay();
         }
         // Else reset index and let player play
         else {
@@ -126,4 +131,9 @@ public class GameManager : MonoBehaviour
         }
     }
 
+    private async Task DelayedPlay()
+    {
+        await Task.Delay(500);
+        hands[TurnIndex].Play();
+    }
 }

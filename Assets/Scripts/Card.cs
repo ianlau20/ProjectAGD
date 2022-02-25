@@ -17,7 +17,7 @@ public class Card : MonoBehaviour
             //play the card
             MoveToPlayedPile();
             hasBeenPlayed = true;
-            gm.freeCardSlots[handIndex] = true;
+            
         }
     }
 
