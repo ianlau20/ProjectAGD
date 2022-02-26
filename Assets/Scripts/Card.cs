@@ -17,14 +17,12 @@ public class Card : MonoBehaviour
     public void UseCard(){
         if(hasBeenPlayed == false){
             //play the card
-            MoveToPlayedPile();
-            hasBeenPlayed = true;
-            
+            gm.PlayCard(this);   
         }
     }
 
-    void MoveToPlayedPile(){
-        gm.PlayCard(this);
+    public void MoveToPlayedPile(){
+        hasBeenPlayed = true;
         gameObject.SetActive(false);
     }
 }

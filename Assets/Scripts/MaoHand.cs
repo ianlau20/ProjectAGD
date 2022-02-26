@@ -15,17 +15,17 @@ public class MaoHand : MonoBehaviour
     }
 
     public void Play(){
+        if (gm.GetLatestCard() == null){
+            UpdateAndPlay(currHand[0]);
+            return;
+        }
         char lastSuit = gm.GetLatestCard().suit;
         int lastVal = gm.GetLatestCard().value;
 
         // If has playable card, play it
         foreach(Card c in currHand){
             if (c.suit == lastSuit || c.value == lastVal){
-                c.UseCard();
-                currHand.Remove(c);
-                Destroy(cardBacks[cardBacks.Count-1]);
-                cardBacks.RemoveAt(cardBacks.Count-1);
-                nextCardPos -= new Vector3(0.1f, 0f, 0f);
+                UpdateAndPlay(c);
                 return;
             }
         }
@@ -40,5 +40,13 @@ public class MaoHand : MonoBehaviour
         cardBacks.Add(cb);
         cardBacks[cardBacks.Count-1].transform.position = nextCardPos;
         nextCardPos += new Vector3(0.1f, 0f, 0f);
+    }
+
+    private void UpdateAndPlay(Card c){
+        c.UseCard();
+        currHand.Remove(c);
+        Destroy(cardBacks[cardBacks.Count-1]);
+        cardBacks.RemoveAt(cardBacks.Count-1);
+        nextCardPos -= new Vector3(0.1f, 0f, 0f);
     }
 }
