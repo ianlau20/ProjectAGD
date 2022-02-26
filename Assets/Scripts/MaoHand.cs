@@ -15,19 +15,23 @@ public class MaoHand : MonoBehaviour
     }
 
     public void Play(){
-        // Fake AI
-        if (currHand.Count < 2) {
-            gm.DrawCardAI();
-            return;
-        }
-        currHand[0].UseCard();
-        currHand.RemoveAt(0);
+        char lastSuit = gm.GetLatestCard().suit;
+        int lastVal = gm.GetLatestCard().value;
 
-        Destroy(cardBacks[cardBacks.Count-1]);
-        cardBacks.RemoveAt(cardBacks.Count-1);
-        nextCardPos -= new Vector3(0.1f, 0f, 0f);
-        
-        return;
+        // If has playable card, play it
+        foreach(Card c in currHand){
+            if (c.suit == lastSuit || c.value == lastVal){
+                c.UseCard();
+                currHand.Remove(c);
+                Destroy(cardBacks[cardBacks.Count-1]);
+                cardBacks.RemoveAt(cardBacks.Count-1);
+                nextCardPos -= new Vector3(0.1f, 0f, 0f);
+                return;
+            }
+        }
+
+        // Else draw card
+        gm.DrawCardAI();        
     }
 
     public void AddToHand(Card c){

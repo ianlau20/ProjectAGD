@@ -155,6 +155,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 94d95bf0badacb2499122678de092e1f, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  suit: 100
+  value: 8
   hasBeenPlayed: 0
   handIndex: 0
 --- !u!114 &5379291
@@ -302,6 +304,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 94d95bf0badacb2499122678de092e1f, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  suit: 104
+  value: 8
   hasBeenPlayed: 0
   handIndex: 0
 --- !u!114 &15475914
@@ -449,6 +453,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 94d95bf0badacb2499122678de092e1f, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  suit: 99
+  value: 12
   hasBeenPlayed: 0
   handIndex: 0
 --- !u!114 &22590145
@@ -596,6 +602,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 94d95bf0badacb2499122678de092e1f, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  suit: 115
+  value: 11
   hasBeenPlayed: 0
   handIndex: 0
 --- !u!114 &51530774
@@ -743,6 +751,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 94d95bf0badacb2499122678de092e1f, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  suit: 115
+  value: 12
   hasBeenPlayed: 0
   handIndex: 0
 --- !u!114 &89466109
@@ -1020,6 +1030,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 94d95bf0badacb2499122678de092e1f, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  suit: 100
+  value: 4
   hasBeenPlayed: 0
   handIndex: 0
 --- !u!114 &177241780
@@ -1167,6 +1179,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 94d95bf0badacb2499122678de092e1f, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  suit: 104
+  value: 11
   hasBeenPlayed: 0
   handIndex: 0
 --- !u!114 &184830658
@@ -1378,6 +1392,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 94d95bf0badacb2499122678de092e1f, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  suit: 99
+  value: 11
   hasBeenPlayed: 0
   handIndex: 0
 --- !u!114 &232107639
@@ -1525,6 +1541,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 94d95bf0badacb2499122678de092e1f, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  suit: 115
+  value: 10
   hasBeenPlayed: 0
   handIndex: 0
 --- !u!114 &235597171
@@ -1672,6 +1690,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 94d95bf0badacb2499122678de092e1f, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  suit: 100
+  value: 6
   hasBeenPlayed: 0
   handIndex: 0
 --- !u!114 &266066934
@@ -1961,6 +1981,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 94d95bf0badacb2499122678de092e1f, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  suit: 99
+  value: 6
   hasBeenPlayed: 0
   handIndex: 0
 --- !u!114 &322725167
@@ -2183,6 +2205,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 94d95bf0badacb2499122678de092e1f, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  suit: 99
+  value: 2
   hasBeenPlayed: 0
   handIndex: 0
 --- !u!114 &446262913
@@ -2311,6 +2335,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 94d95bf0badacb2499122678de092e1f, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  suit: 115
+  value: 2
   hasBeenPlayed: 0
   handIndex: 0
 --- !u!114 &483880239
@@ -2458,6 +2484,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 94d95bf0badacb2499122678de092e1f, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  suit: 100
+  value: 10
   hasBeenPlayed: 0
   handIndex: 0
 --- !u!114 &504696941
@@ -2605,6 +2633,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 94d95bf0badacb2499122678de092e1f, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  suit: 100
+  value: 12
   hasBeenPlayed: 0
   handIndex: 0
 --- !u!114 &570569481
@@ -3286,6 +3316,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 94d95bf0badacb2499122678de092e1f, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  suit: 115
+  value: 1
   hasBeenPlayed: 0
   handIndex: 0
 --- !u!114 &673042981
@@ -3549,6 +3581,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 94d95bf0badacb2499122678de092e1f, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  suit: 104
+  value: 6
   hasBeenPlayed: 0
   handIndex: 0
 --- !u!114 &740980372
@@ -3696,6 +3730,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 94d95bf0badacb2499122678de092e1f, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  suit: 104
+  value: 9
   hasBeenPlayed: 0
   handIndex: 0
 --- !u!114 &799567069
@@ -3843,6 +3879,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 94d95bf0badacb2499122678de092e1f, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  suit: 115
+  value: 9
   hasBeenPlayed: 0
   handIndex: 0
 --- !u!114 &829129728
@@ -3990,6 +4028,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 94d95bf0badacb2499122678de092e1f, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  suit: 104
+  value: 12
   hasBeenPlayed: 0
   handIndex: 0
 --- !u!114 &869899155
@@ -4156,6 +4196,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 94d95bf0badacb2499122678de092e1f, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  suit: 99
+  value: 8
   hasBeenPlayed: 0
   handIndex: 0
 --- !u!114 &870145117
@@ -4366,6 +4408,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 94d95bf0badacb2499122678de092e1f, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  suit: 115
+  value: 13
   hasBeenPlayed: 0
   handIndex: 0
 --- !u!114 &877691430
@@ -4616,6 +4660,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 94d95bf0badacb2499122678de092e1f, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  suit: 99
+  value: 13
   hasBeenPlayed: 0
   handIndex: 0
 --- !u!114 &937516013
@@ -4842,6 +4888,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 94d95bf0badacb2499122678de092e1f, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  suit: 104
+  value: 3
   hasBeenPlayed: 0
   handIndex: 0
 --- !u!114 &972614658
@@ -5122,6 +5170,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 94d95bf0badacb2499122678de092e1f, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  suit: 100
+  value: 2
   hasBeenPlayed: 0
   handIndex: 0
 --- !u!114 &978224958
@@ -5269,6 +5319,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 94d95bf0badacb2499122678de092e1f, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  suit: 100
+  value: 5
   hasBeenPlayed: 0
   handIndex: 0
 --- !u!114 &999973490
@@ -5514,6 +5566,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 94d95bf0badacb2499122678de092e1f, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  suit: 99
+  value: 4
   hasBeenPlayed: 0
   handIndex: 0
 --- !u!114 &1024995280
@@ -5642,6 +5696,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 94d95bf0badacb2499122678de092e1f, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  suit: 100
+  value: 7
   hasBeenPlayed: 0
   handIndex: 0
 --- !u!114 &1057757233
@@ -5789,6 +5845,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 94d95bf0badacb2499122678de092e1f, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  suit: 100
+  value: 3
   hasBeenPlayed: 0
   handIndex: 0
 --- !u!114 &1078376317
@@ -5955,6 +6013,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 94d95bf0badacb2499122678de092e1f, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  suit: 99
+  value: 3
   hasBeenPlayed: 0
   handIndex: 0
 --- !u!114 &1114176223
@@ -6147,6 +6207,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 94d95bf0badacb2499122678de092e1f, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  suit: 104
+  value: 1
   hasBeenPlayed: 0
   handIndex: 0
 --- !u!114 &1163627987
@@ -6294,6 +6356,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 94d95bf0badacb2499122678de092e1f, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  suit: 104
+  value: 13
   hasBeenPlayed: 0
   handIndex: 0
 --- !u!114 &1217590549
@@ -6553,6 +6617,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 94d95bf0badacb2499122678de092e1f, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  suit: 104
+  value: 2
   hasBeenPlayed: 0
   handIndex: 0
 --- !u!114 &1304355189
@@ -6719,6 +6785,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 94d95bf0badacb2499122678de092e1f, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  suit: 99
+  value: 5
   hasBeenPlayed: 0
   handIndex: 0
 --- !u!114 &1363565592
@@ -6847,6 +6915,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 94d95bf0badacb2499122678de092e1f, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  suit: 104
+  value: 5
   hasBeenPlayed: 0
   handIndex: 0
 --- !u!114 &1404673672
@@ -7250,6 +7320,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 94d95bf0badacb2499122678de092e1f, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  suit: 115
+  value: 5
   hasBeenPlayed: 0
   handIndex: 0
 --- !u!114 &1480513649
@@ -7397,6 +7469,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 94d95bf0badacb2499122678de092e1f, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  suit: 115
+  value: 4
   hasBeenPlayed: 0
   handIndex: 0
 --- !u!114 &1482464868
@@ -7544,6 +7618,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 94d95bf0badacb2499122678de092e1f, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  suit: 100
+  value: 1
   hasBeenPlayed: 0
   handIndex: 0
 --- !u!114 &1496895165
@@ -7773,6 +7849,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 94d95bf0badacb2499122678de092e1f, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  suit: 104
+  value: 10
   hasBeenPlayed: 0
   handIndex: 0
 --- !u!114 &1524080870
@@ -7999,6 +8077,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 94d95bf0badacb2499122678de092e1f, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  suit: 99
+  value: 9
   hasBeenPlayed: 0
   handIndex: 0
 --- !u!114 &1620161325
@@ -8127,6 +8207,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 94d95bf0badacb2499122678de092e1f, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  suit: 115
+  value: 7
   hasBeenPlayed: 0
   handIndex: 0
 --- !u!114 &1686509509
@@ -8433,6 +8515,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 94d95bf0badacb2499122678de092e1f, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  suit: 100
+  value: 11
   hasBeenPlayed: 0
   handIndex: 0
 --- !u!114 &1719449375
@@ -8580,6 +8664,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 94d95bf0badacb2499122678de092e1f, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  suit: 115
+  value: 8
   hasBeenPlayed: 0
   handIndex: 0
 --- !u!114 &1765801342
@@ -8757,6 +8843,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 94d95bf0badacb2499122678de092e1f, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  suit: 115
+  value: 3
   hasBeenPlayed: 0
   handIndex: 0
 --- !u!114 &1832375751
@@ -8923,6 +9011,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 94d95bf0badacb2499122678de092e1f, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  suit: 99
+  value: 7
   hasBeenPlayed: 0
   handIndex: 0
 --- !u!114 &1858542215
@@ -9051,6 +9141,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 94d95bf0badacb2499122678de092e1f, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  suit: 104
+  value: 4
   hasBeenPlayed: 0
   handIndex: 0
 --- !u!114 &1863729846
@@ -9198,6 +9290,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 94d95bf0badacb2499122678de092e1f, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  suit: 100
+  value: 13
   hasBeenPlayed: 0
   handIndex: 0
 --- !u!114 &1874163894
@@ -9364,6 +9458,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 94d95bf0badacb2499122678de092e1f, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  suit: 99
+  value: 10
   hasBeenPlayed: 0
   handIndex: 0
 --- !u!114 &1894348642
@@ -9556,6 +9652,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 94d95bf0badacb2499122678de092e1f, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  suit: 104
+  value: 7
   hasBeenPlayed: 0
   handIndex: 0
 --- !u!114 &1906579135
@@ -9803,6 +9901,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 94d95bf0badacb2499122678de092e1f, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  suit: 99
+  value: 1
   hasBeenPlayed: 0
   handIndex: 0
 --- !u!114 &1966241468
@@ -9948,6 +10048,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 94d95bf0badacb2499122678de092e1f, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  suit: 115
+  value: 6
   hasBeenPlayed: 0
   handIndex: 0
 --- !u!114 &2100796429
@@ -10095,6 +10197,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 94d95bf0badacb2499122678de092e1f, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  suit: 100
+  value: 9
   hasBeenPlayed: 0
   handIndex: 0
 --- !u!114 &2132888966

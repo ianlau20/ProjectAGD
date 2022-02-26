@@ -14,20 +14,31 @@ public class GameManager : MonoBehaviour
     public Deck deckObj;
     public Transform[] cardSlots;
     public bool[] freeCardSlots;
-    public MaoHand[] hands;
+    public List<MaoHand> hands;
     private int TurnIndex = -1;
     private Renderer deckRend;
+    private bool dealing = true;
+    private Card latestCard;
     private Vector3 scaleChange = new Vector3(0.00f, 0.0025f, 0.00f);
     private Vector3 resetHeight = new Vector3(0.10f, 0.00f, 0.15f);
     private Vector3 resetPos = new Vector3(2f, 0.59f, -0.5f);
 
     void Start(){
         deckRend = deckObj.GetComponent<Renderer>();
+        for (int i = 0; i < 5; i++){
+            DrawCard();
+            TurnIndex++;
+            foreach(MaoHand h in hands){
+                DrawCardAI();
+                TurnIndex++;
+            }
+            TurnIndex = -1;
+        }
+        dealing = false;
     }
 
     public void DrawCard(){
-        Debug.Log("Draw Card Func Called");
-        if(deck.Count >= 1 && freeCardSlots[freeCardSlots.Length-1] == true){
+        if(freeCardSlots[freeCardSlots.Length-1] == true){
             Card randCard = deck[Random.Range(0, deck.Count)];
 
             // Physical Deck Change
@@ -46,7 +57,8 @@ public class GameManager : MonoBehaviour
                     freeCardSlots[i] = false;
                     deck.Remove(randCard);
 
-                    NextTurn();
+                    if(!dealing)
+                        NextTurn();
                     return;
                 }
             }
@@ -55,7 +67,7 @@ public class GameManager : MonoBehaviour
 
     public void DrawCardAI(){
         Debug.Log("DrawCardAI Called");
-        if(deck.Count >= 1 && hands[TurnIndex].currHand.Count <= 7){
+        if(hands[TurnIndex].currHand.Count < 7){
             Card randCard = deck[Random.Range(0, deck.Count)];
             randCard.gameObject.SetActive(true);
             // Dont show AI cards on screen
@@ -68,10 +80,11 @@ public class GameManager : MonoBehaviour
             randCard.hasBeenPlayed = false;
             hands[TurnIndex].AddToHand(randCard);
             deck.Remove(randCard);
-            
-            NextTurn();
-            return;
+
         }
+        if(!dealing)
+            NextTurn();
+        return;
     }
 
     public void PlayCard(Card playedCard){
@@ -90,6 +103,8 @@ public class GameManager : MonoBehaviour
         pileObj.transform.position += scaleChange/2;
         TopOfPile.transform.position = pileObj.transform.position + new Vector3(0f, (0.001f + pileObj.transform.localScale.y/2), 0f);
 
+        latestCard = playedCard;
+
         // End turn
         NextTurn();
     }
@@ -101,8 +116,8 @@ public class GameManager : MonoBehaviour
             Shuffle();
         }
         // If not player turn, play AI
-        Debug.Log("hands.Length = " + hands.Length);
-        if (TurnIndex < hands.Length){
+        Debug.Log("hands.Count = " + hands.Count);
+        if (TurnIndex < hands.Count){
             Debug.Log("TurnIndex = " + TurnIndex);
             DelayedPlay();
         }
@@ -135,5 +150,9 @@ public class GameManager : MonoBehaviour
     {
         await Task.Delay(500);
         hands[TurnIndex].Play();
+    }
+
+    public Card GetLatestCard(){
+        return latestCard;
     }
 }
