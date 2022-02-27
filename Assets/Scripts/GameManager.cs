@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
 using System.Threading.Tasks;
+using System;
 
 public class GameManager : MonoBehaviour
 {
@@ -30,7 +31,10 @@ public class GameManager : MonoBehaviour
     private Renderer deckRend;
     private bool dealing = true;
     private Card latestCard;
+    private Card currentCard;
     private List<Card> playerHand = new List<Card>();
+    List<Func<bool>> limitRules = new List<Func<bool>>();
+    List<Action> abilityRules = new List<Action>();
     private Vector3 scaleChange = new Vector3(0.00f, 0.0025f, 0.00f);
     private Vector3 resetHeight = new Vector3(0.10f, 0.00f, 0.15f);
     private Vector3 resetPos = new Vector3(2f, 0.59f, -0.5f);
@@ -38,6 +42,13 @@ public class GameManager : MonoBehaviour
     void Start(){
         deckRend = deckObj.GetComponent<Renderer>();
         Deal();
+
+        // Create Rule Lists
+        Func<bool> rule;
+        rule = SameSuitOrVal;
+        limitRules.Add(rule);
+        abilityRules.Add(() => AceSkip(currentCard));
+        abilityRules.Add(() => SevenPlusOne(currentCard));
     }
 
     public void DrawCard(){
@@ -45,7 +56,7 @@ public class GameManager : MonoBehaviour
             UI_Feedback2.clip = SFX_draw;
             UI_Feedback2.Play();
 
-            Card randCard = deck[Random.Range(0, deck.Count)];
+            Card randCard = deck[UnityEngine.Random.Range(0, deck.Count)];
 
             // Physical Deck Change
             deckObj.transform.localScale -= scaleChange;
@@ -66,19 +77,15 @@ public class GameManager : MonoBehaviour
                     break;
                 }
             }
-            if(!dealing)
-                NextTurn();
-            return;
         }
     }
 
     public void DrawCardAI(){
-        Debug.Log("DrawCardAI Called");
         if(enemyHands[TurnIndex].currHand.Count < 14){
             UI_Feedback2.clip = SFX_draw;
             UI_Feedback2.Play();
 
-            Card randCard = deck[Random.Range(0, deck.Count)];
+            Card randCard = deck[UnityEngine.Random.Range(0, deck.Count)];
             randCard.gameObject.SetActive(true);
             // Dont show AI cards on screen
             randCard.gameObject.transform.position = new Vector3(1000f, 10000f, 0f);
@@ -92,9 +99,6 @@ public class GameManager : MonoBehaviour
             deck.Remove(randCard);
 
         }
-        if(!dealing)
-            NextTurn();
-        return;
     }
 
     public void PlayCard(Card playedCard){
@@ -103,6 +107,7 @@ public class GameManager : MonoBehaviour
             UI_Feedback.clip = SFX_cant_draw;
             UI_Feedback.Play();
             DrawCorrect();
+            NextTurn();
             return;
         }
 
@@ -126,30 +131,27 @@ public class GameManager : MonoBehaviour
         pileObj.transform.position += scaleChange/2;
         TopOfPile.transform.position = pileObj.transform.position + new Vector3(0f, (0.001f + pileObj.transform.localScale.y/2), 0f);
 
+        // Apply all card abilities
+        CardAbilities(playedCard);
+
         // Turn off card
         playedCard.MoveToPlayedPile();
-        latestCard = playedCard;
-        
-        // End turn
+        latestCard = playedCard;  
+
         NextTurn();
     }
 
-    private void NextTurn(){
+    public void NextTurn(){
         CheckForWinner();
-        TurnIndex++;
+        IncTurnIndex();
         if (deck.Count == 0){
             deckRend.enabled = false;
             Shuffle();
         }
         // If not player turn, play AI
-        Debug.Log("hands.Count = " + enemyHands.Count);
-        if (TurnIndex < enemyHands.Count){
+        if (TurnIndex != -1){
             Debug.Log("TurnIndex = " + TurnIndex);
             DelayedPlay();
-        }
-        // Else reset index and let player play
-        else {
-            TurnIndex = -1;
         }
     }
 
@@ -191,10 +193,10 @@ public class GameManager : MonoBehaviour
     private void Deal(){
         for (int i = 0; i < 5; i++){
             DrawCorrect();
-            TurnIndex++;
+            IncTurnIndex();
             foreach(MaoHand h in enemyHands){
                 DrawCorrect();
-                TurnIndex++;
+                IncTurnIndex();
             }
             TurnIndex = -1;
         }
@@ -206,11 +208,48 @@ public class GameManager : MonoBehaviour
         if (latestCard == null){
             return true;
         }
-        if (c.suit == latestCard.suit || c.value == latestCard.value){
+
+        currentCard = c;
+        // Rules that check if card is valid
+        foreach (Func<bool> lRule in limitRules){
+            if(!lRule()){
+                return false;
+            }
+        }
+        
+        // No rules returned false so the card is valid
+        return true;
+    }
+
+    private void CardAbilities(Card c){
+        currentCard = c;
+        foreach (Action aRule in abilityRules){
+            aRule();
+        }
+    }
+
+    // LIMIT RULES
+    private bool SameSuitOrVal(){
+        if (currentCard.suit == latestCard.suit || currentCard.value == latestCard.value){
             return true;
         }
         else{
             return false;
+        }
+    }
+
+    // ABILITY RULES
+    private void AceSkip(Card c){
+        if (c.value == 1){
+            IncTurnIndex();
+        }
+    }
+    private void SevenPlusOne(Card c){
+        if (c.value == 7){
+            Debug.Log("Played a seven!");
+            IncTurnIndex();
+            DrawCorrect();
+            DecTurnIndex();
         }
     }
 
@@ -223,6 +262,25 @@ public class GameManager : MonoBehaviour
             DrawCardAI();
         }
     }
+
+    private void IncTurnIndex(){
+        if (TurnIndex < enemyHands.Count-1){
+            TurnIndex++;
+        }
+        else{
+            TurnIndex = -1;
+        }
+    }
+
+    private void DecTurnIndex(){
+        if (TurnIndex != -1){
+            TurnIndex--;
+        }
+        else{
+            TurnIndex = enemyHands.Count-1;
+        }
+    }
+
     private async Task DelayedPlay()
     {
         await Task.Delay(500);

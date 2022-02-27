@@ -17,7 +17,7 @@ public class Card : MonoBehaviour
     public void UseCard(){
         if(hasBeenPlayed == false){
             //play the card
-            gm.PlayCard(this);   
+            gm.PlayCard(this);
         }
     }
 

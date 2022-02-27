@@ -9,7 +9,7 @@ public class Deck : MonoBehaviour, IClick
         gm = FindObjectOfType<GameManager>();
     }
     public void onClickAction() {
-        Debug.Log("Clicking Deck");
         gm.DrawCard();
+        gm.NextTurn();
     }
 }

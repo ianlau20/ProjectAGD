@@ -31,7 +31,8 @@ public class MaoHand : MonoBehaviour
         }
 
         // Else draw card
-        gm.DrawCardAI();        
+        gm.DrawCardAI();
+        gm.NextTurn();     
     }
 
     public void AddToHand(Card c){
