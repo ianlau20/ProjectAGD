@@ -95,6 +95,7 @@ namespace UnityTemplateProjects
             verticalMovementAction = map.AddAction("Vertical Movement");
             boostFactorAction = map.AddAction("Boost Factor", binding: "<Mouse>/scroll");
 
+/*
             lookAction.AddBinding("<Gamepad>/rightStick").WithProcessor("scaleVector2(x=15, y=15)");
             movementAction.AddCompositeBinding("Dpad")
                 .With("Up", "<Keyboard>/w")
@@ -113,7 +114,7 @@ namespace UnityTemplateProjects
                 .With("Up", "<Gamepad>/rightshoulder")
                 .With("Down", "<Gamepad>/leftshoulder");
             boostFactorAction.AddBinding("<Gamepad>/Dpad").WithProcessor("scaleVector2(x=1, y=4)");
-
+*/
             movementAction.Enable();
             lookAction.Enable();
             verticalMovementAction.Enable();
@@ -138,27 +139,27 @@ namespace UnityTemplateProjects
 #else
             if (Input.GetKey(KeyCode.W))
             {
-                direction += Vector3.forward;
+                //direction += Vector3.forward;
             }
             if (Input.GetKey(KeyCode.S))
             {
-                direction += Vector3.back;
+                //direction += Vector3.back;
             }
             if (Input.GetKey(KeyCode.A))
             {
-                direction += Vector3.left;
+                //direction += Vector3.left;
             }
             if (Input.GetKey(KeyCode.D))
             {
-                direction += Vector3.right;
+                //direction += Vector3.right;
             }
             if (Input.GetKey(KeyCode.Q))
             {
-                direction += Vector3.down;
+                //direction += Vector3.down;
             }
             if (Input.GetKey(KeyCode.E))
             {
-                direction += Vector3.up;
+                //direction += Vector3.up;
             }
 #endif
             return direction;
