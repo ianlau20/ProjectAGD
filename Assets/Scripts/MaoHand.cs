@@ -15,14 +15,24 @@ public class MaoHand : MonoBehaviour
     }
 
     public void Play(){
+        // If no previous card, play anything
         if (gm.GetLatestCard() == null){
             UpdateAndPlay(currHand[0]);
             return;
         }
+
         char lastSuit = gm.GetLatestCard().suit;
         int lastVal = gm.GetLatestCard().value;
 
-        // If has playable card, play it
+        // If hand has valid ace, play it
+        foreach(Card c in currHand){
+            if ((c.suit == lastSuit || c.value == lastVal) && c.value == 1){
+                UpdateAndPlay(c);
+                return;
+            }
+        }
+
+        // If hand has playable card, play it
         foreach(Card c in currHand){
             if (c.suit == lastSuit || c.value == lastVal){
                 UpdateAndPlay(c);
@@ -45,7 +55,6 @@ public class MaoHand : MonoBehaviour
 
     private void UpdateAndPlay(Card c){
         c.UseCard();
-        currHand.Remove(c);
         Destroy(cardBacks[cardBacks.Count-1]);
         cardBacks.RemoveAt(cardBacks.Count-1);
         nextCardPos -= new Vector3(0.1f, 0f, 0f);

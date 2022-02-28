@@ -2,6 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
+using UnityEngine.SceneManagement;
 using System.Threading.Tasks;
 using System;
 
@@ -13,6 +14,8 @@ public class GameManager : MonoBehaviour
     public PhysicalPile pileObj;
     public GameObject TopOfPile;
     public GameObject latestCardUI;
+    public GameObject WinUI;
+    public GameObject LoseUI;
     public Deck deckObj;
     public Transform[] cardSlots;
     public bool[] freeCardSlots;
@@ -29,7 +32,6 @@ public class GameManager : MonoBehaviour
     public AudioClip SFX_lose;
     private int TurnIndex = -1;
     private Renderer deckRend;
-    private bool dealing = true;
     private Card latestCard;
     private Card currentCard;
     private List<Card> playerHand = new List<Card>();
@@ -114,9 +116,13 @@ public class GameManager : MonoBehaviour
         UI_Feedback.clip = SFX_play_card;
         UI_Feedback.Play();
 
+        //Remove card from corresponding hand
         if (TurnIndex == -1){
             freeCardSlots[playedCard.handIndex] = true;
             playerHand.Remove(playedCard);
+        }
+        else{
+            enemyHands[TurnIndex].currHand.Remove(playedCard);
         }
 
         // Show the pile and top card
@@ -180,11 +186,13 @@ public class GameManager : MonoBehaviour
         if (playerHand.Count == 0){
             UI_Feedback.clip = SFX_win;
             UI_Feedback.Play();
+            WinUI.SetActive(true);
         }
         foreach(MaoHand mh in enemyHands){
             if (mh.currHand.Count == 0){
                 UI_Feedback.clip = SFX_lose;
                 UI_Feedback.Play();
+                LoseUI.SetActive(true);
             }
         }
     }
@@ -200,7 +208,6 @@ public class GameManager : MonoBehaviour
             }
             TurnIndex = -1;
         }
-        dealing = false;
     }
 
     // Check if card shares suit or value
@@ -289,5 +296,10 @@ public class GameManager : MonoBehaviour
 
     public Card GetLatestCard(){
         return latestCard;
+    }
+
+    // Reload current scene
+    public void RestartGame() {
+        SceneManager.LoadScene(SceneManager.GetActiveScene().name);
     }
 }
