@@ -290,7 +290,7 @@ public class GameManager : MonoBehaviour
 
     private async Task DelayedPlay()
     {
-        await Task.Delay(500);
+        await Task.Delay(750);
         enemyHands[TurnIndex].Play();
     }
 
