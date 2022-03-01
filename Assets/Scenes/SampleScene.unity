@@ -6541,10 +6541,10 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 1114176221}
+  - component: {fileID: 1114176222}
   - component: {fileID: 1114176225}
   - component: {fileID: 1114176224}
   - component: {fileID: 1114176223}
-  - component: {fileID: 1114176222}
   m_Layer: 5
   m_Name: Card C (3)
   m_TagString: Untagged

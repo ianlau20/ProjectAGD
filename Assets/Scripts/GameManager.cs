@@ -54,7 +54,7 @@ public class GameManager : MonoBehaviour
     }
 
     public void DrawCard(){
-        if(freeCardSlots[freeCardSlots.Length-1] == true){
+        if(playerHand.Count < 10){
             UI_Feedback2.clip = SFX_draw;
             UI_Feedback2.Play();
 
@@ -104,6 +104,12 @@ public class GameManager : MonoBehaviour
     }
 
     public void PlayCard(Card playedCard){
+        // Start UI Cooldown
+        foreach(Card c in playerHand){
+            c.gameObject.GetComponent<Button>().interactable = false;
+        }
+        DelayedEndUICooldown();
+
         // If not a valid card, draw & end turn
         if(!IsValidCard(playedCard)){
             UI_Feedback.clip = SFX_cant_draw;
@@ -270,6 +276,12 @@ public class GameManager : MonoBehaviour
         }
     }
 
+    private void EndUICoolDown(){
+        foreach(Card c in playerHand){
+            c.gameObject.GetComponent<Button>().interactable = true;
+        }
+    }
+
     private void IncTurnIndex(){
         if (TurnIndex < enemyHands.Count-1){
             TurnIndex++;
@@ -292,6 +304,11 @@ public class GameManager : MonoBehaviour
     {
         await Task.Delay(750);
         enemyHands[TurnIndex].Play();
+    }
+
+    private async Task DelayedEndUICooldown(){
+        await Task.Delay(750);
+        EndUICoolDown();
     }
 
     public Card GetLatestCard(){
