@@ -8,6 +8,8 @@ public class MaoHand : MonoBehaviour
     public List<GameObject> cardBacks;
     public GameObject cardBack;
     public Vector3 nextCardPos;
+    public Vector3 cardShift;
+    public int cardRotation;
     private GameManager gm;
 
     private void Start(){
@@ -50,13 +52,14 @@ public class MaoHand : MonoBehaviour
         GameObject cb = GameObject.Instantiate(cardBack);
         cardBacks.Add(cb);
         cardBacks[cardBacks.Count-1].transform.position = nextCardPos;
-        nextCardPos += new Vector3(0.1f, 0f, 0f);
+        cardBacks[cardBacks.Count-1].transform.Rotate(0, cardRotation, 0);
+        nextCardPos += cardShift;
     }
 
     private void UpdateAndPlay(Card c){
         c.UseCard();
         Destroy(cardBacks[cardBacks.Count-1]);
         cardBacks.RemoveAt(cardBacks.Count-1);
-        nextCardPos -= new Vector3(0.1f, 0f, 0f);
+        nextCardPos -= cardShift;
     }
 }

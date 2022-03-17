@@ -1770,7 +1770,9 @@ MonoBehaviour:
   currHand: []
   cardBacks: []
   cardBack: {fileID: 873039240}
-  nextCardPos: {x: 1.849, y: 0.728, z: -1.377}
+  nextCardPos: {x: 1.472, y: 0.728, z: -1.615}
+  cardShift: {x: 0.07222222, y: 0, z: -0.02777778}
+  cardRotation: 25
 --- !u!1 &266066932
 GameObject:
   m_ObjectHideFlags: 0
@@ -3719,7 +3721,9 @@ MonoBehaviour:
   currHand: []
   cardBacks: []
   cardBack: {fileID: 873039240}
-  nextCardPos: {x: 1.849, y: 0.728, z: -1.377}
+  nextCardPos: {x: 2.245, y: 0.728, z: -1.852}
+  cardShift: {x: 0.07222222, y: 0, z: 0.02777778}
+  cardRotation: -25
 --- !u!4 &740412579
 Transform:
   m_ObjectHideFlags: 0
@@ -4660,7 +4664,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 873039240}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: -2.841, y: 0.728, z: -1.377}
+  m_LocalPosition: {x: 2.245, y: -4.469, z: -1.852}
   m_LocalScale: {x: 0.2, y: 0.2, z: 0.15}
   m_Children: []
   m_Father: {fileID: 0}
