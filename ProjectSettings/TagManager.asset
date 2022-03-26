@@ -6,6 +6,7 @@ TagManager:
   tags:
   - Deck
   - Card
+  - Character
   layers:
   - Default
   - TransparentFX

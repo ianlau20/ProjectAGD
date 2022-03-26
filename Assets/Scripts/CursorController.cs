@@ -75,6 +75,8 @@ public class CursorController : MonoBehaviour
         // 2D
         RaycastHit2D hits2D = Physics2D.GetRayIntersection(ray);
         if (hits2D.collider != null){
+            IClick click2D = hits2D.collider.GetComponent<IClick>();
+            if (click2D != null) click2D.onClickAction();
             Debug.Log("2D Hit " + hits2D.collider.tag);
         }
     }
