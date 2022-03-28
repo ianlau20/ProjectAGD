@@ -2,23 +2,15 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class Character : MonoBehaviour, IClick
+public abstract class Character : MonoBehaviour
 {
-    private ModeManager mm;
+    public GameObject textUI;
+    public GameObject textBackground;
+    protected List<string> lines;
+    protected List<List<string>> responses;
+    protected int curLine;
 
-    // Start is called before the first frame update
-    void Start()
-    {
-        mm = FindObjectOfType<ModeManager>();
-    }
-
-    // Update is called once per frame
-    void Update()
-    {
-        
-    }
-
-    public void onClickAction() {
-        mm.StartRound();
-    }
+    public abstract void Response1();
+    public abstract void Response2();
+    public abstract void Response3();
 }
