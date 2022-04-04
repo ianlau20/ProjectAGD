@@ -13,9 +13,9 @@ public class CharCatman : Character, IClick
     {
         mm = FindObjectOfType<ModeManager>();
         curLine = 0;
-        lines = new List<string>();
+        sequence1 = new List<string>();
         responses = new List<List<string>>();
-        lines.Add("Would you like to start?");
+        sequence1.Add("Would you like to start?");
         responses.Add(new List<string> {"Yes", "No"});
     }
 
@@ -30,7 +30,7 @@ public class CharCatman : Character, IClick
         mm.cameras[1].gameObject.SetActive(true);
         textUI.SetActive(true);
         textBackground.SetActive(true);
-        textUI.GetComponent<TMPro.TextMeshProUGUI>().text = lines[curLine];
+        textUI.GetComponent<TMPro.TextMeshProUGUI>().text = sequence1[curLine];
         mm.responseButtonTexts[0].GetComponent<Text>().text = responses[curLine][0];
         mm.responseButtonTexts[1].GetComponent<Text>().text = responses[curLine][1]; 
         mm.responseButtons[0].SetActive(true);

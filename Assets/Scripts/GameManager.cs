@@ -13,12 +13,16 @@ public class GameManager : MonoBehaviour
 
     public PhysicalPile pileObj;
     public GameObject TopOfPile;
+
+    // UI
     public GameObject latestCardUI;
     public GameObject WinUI;
     public GameObject LoseUI;
+
     public Deck deckObj;
     public Transform[] cardSlots;
     public bool[] freeCardSlots;
+    private List<Card> playerHand = new List<Card>();
     public List<MaoHand> enemyHands;
 
     // Sounds
@@ -30,13 +34,20 @@ public class GameManager : MonoBehaviour
     public AudioClip SFX_shuffle;
     public AudioClip SFX_win;
     public AudioClip SFX_lose;
+    public AudioClip SFX_effect;
     private int TurnIndex = -1;
+    private int pageCount = 1;
+    private int curPage = 0;
     private Renderer deckRend;
     private Card latestCard;
     private Card currentCard;
-    private List<Card> playerHand = new List<Card>();
+    private bool fillEnabled = false;
+    private bool reverseEnabled = false;
+    private bool successionEnabled = false;
+    
     List<Func<bool>> limitRules = new List<Func<bool>>();
     List<Action> abilityRules = new List<Action>();
+    List<Action> enableRules = new List<Action>();
     private Vector3 scaleChange = new Vector3(0.00f, 0.0025f, 0.00f);
     private Vector3 resetHeight = new Vector3(0.10f, 0.00f, 0.15f);
     private Vector3 resetPos = new Vector3(2f, 0.59f, -0.5f);
@@ -49,36 +60,169 @@ public class GameManager : MonoBehaviour
         Func<bool> rule;
         rule = SameSuitOrVal;
         limitRules.Add(rule);
-        abilityRules.Add(() => AceSkip(currentCard));
-        abilityRules.Add(() => SevenPlusOne(currentCard));
+
+        System.Random r = new System.Random();
+        int ruleSet = r.Next(1, 4);
+        Debug.Log("Rule set: " + ruleSet);
+
+        if (ruleSet == 1){
+            abilityRules.Add(() => RatSkip(currentCard));
+            abilityRules.Add(() => TigerPlusTwo(currentCard));
+            enableRules.Add(() => WildDragon(currentCard));
+        }
+        if (ruleSet == 2){
+            abilityRules.Add(() => OxPlusFour(currentCard));
+            enableRules.Add(() => ReverseSnake(currentCard));
+        }
+        if (ruleSet == 3){
+            abilityRules.Add(() => MonkeyAllDrawTwo(currentCard));
+            enableRules.Add(() => FillDog(currentCard));
+            enableRules.Add(() => SuccessionRooster(currentCard));
+        }
     }
 
     public void DrawCard(){
-        if(playerHand.Count < 10){
-            UI_Feedback2.clip = SFX_draw;
-            UI_Feedback2.Play();
+        if (freeCardSlots[9] == false){
+            NewPage();
+        }
+        UI_Feedback2.clip = SFX_draw;
+        UI_Feedback2.Play();
 
-            Card randCard = deck[UnityEngine.Random.Range(0, deck.Count)];
+        Card randCard = deck[UnityEngine.Random.Range(0, deck.Count)];
 
-            // Physical Deck Change
-            deckObj.transform.localScale -= scaleChange;
-            deckObj.transform.position -= scaleChange/2;
+        // Physical Deck Change
+        deckObj.transform.localScale -= scaleChange;
+        deckObj.transform.position -= scaleChange/2;
 
-            for (int i = 0; i < freeCardSlots.Length; i++){
-                // This is a double-check that can prob be removed
-                if(freeCardSlots[i] == true){
-                    randCard.gameObject.SetActive(true);
-                    randCard.handIndex = i;
-                    playerHand.Add(randCard);
+        for (int i = 0; i < freeCardSlots.Length; i++){
+            // This is a double-check that can prob be removed
+            if(freeCardSlots[i] == true){
+                randCard.gameObject.SetActive(true);
+                randCard.handIndex = i;
+                playerHand.Add(randCard);
 
-                    randCard.transform.transform.position = cardSlots[i].position;
-                    randCard.hasBeenPlayed = false;
+                randCard.transform.transform.position = cardSlots[i].position;
+                randCard.hasBeenPlayed = false;
 
-                    freeCardSlots[i] = false;
-                    deck.Remove(randCard);
+                freeCardSlots[i] = false;
+                deck.Remove(randCard);
+                break;
+            }
+        }
+    }
+
+    public void NewPage(){
+        for (int i = 0; i < freeCardSlots.Length; i++){
+            playerHand[i+(10*(pageCount-1))].gameObject.SetActive(false);
+            freeCardSlots[i] = true;
+        }
+        pageCount++;
+        curPage = pageCount-1;
+    }
+
+    public void RemovePage(){
+        pageCount--;
+        curPage = pageCount-1;
+        for (int i = 0; i < freeCardSlots.Length; i++){
+            playerHand[i+(10*(pageCount-1))].gameObject.SetActive(true);
+            freeCardSlots[i] = false;
+        }
+    }
+
+    public void BackPage(){
+        // if no previous page do nothing
+        if (curPage == 0){
+            return;
+        }
+
+        // turn off current page
+        int startInd = 10*(curPage);
+        while (startInd < playerHand.Count){
+            playerHand[startInd].gameObject.SetActive(false);
+            startInd++;
+        }
+        curPage--;
+        //turn on previous
+        for (int i = 0; i < freeCardSlots.Length; i++){
+            playerHand[i+(10*curPage)].gameObject.SetActive(true);
+            freeCardSlots[i] = false;
+        }
+    }
+
+    public void NextPage(){
+        // if no next page do nothing
+        if (curPage >= pageCount-1){
+            return;
+        }
+
+        // turn off current page
+        int startInd = 10*(curPage);
+        while (startInd < playerHand.Count){
+            playerHand[startInd].gameObject.SetActive(false);
+            startInd++;
+        }
+        curPage++;
+
+        //turn on next
+        for (int i = 0; i < freeCardSlots.Length; i++){
+            if (i+(10*curPage) < playerHand.Count){
+                playerHand[i+(10*curPage)].gameObject.SetActive(true);
+            }
+            freeCardSlots[i] = false;
+        }
+    }
+
+    public void SlideCards(int removedCardInd){
+        Debug.Log("SLIDING DA CARDS");
+
+        // Check if removing page is neccesary
+        bool emptyPage = true;
+        for (int i = 0; i < freeCardSlots.Length; i++){
+            if(freeCardSlots[i] == false){
+                emptyPage = false;
+                break;
+            }
+        }
+
+        // If empty page no need to slide
+        if (emptyPage){
+            RemovePage();
+            return;
+        }
+
+        // Else Slide cards NOTE: might not have to mess with freeCardSlots so much
+        int checkedPage = curPage;
+        int checkedInd = removedCardInd;
+        int slotInd = removedCardInd % 10;
+        while (checkedInd < playerHand.Count){
+            for (int i = slotInd; i < freeCardSlots.Length; i++){
+                if (checkedInd > playerHand.Count-1){
                     break;
                 }
+
+                //change pos
+                playerHand[checkedInd].transform.transform.position = cardSlots[i].position;
+
+                //show slid card if necessary
+                if (checkedPage == curPage){
+                    playerHand[checkedInd].gameObject.SetActive(true);
+                }
+                
+                playerHand[checkedInd].handIndex--;
+                freeCardSlots[i] = false;
+
+                // open up slot where card was just moved from
+                if (i != freeCardSlots.Length-1){
+                    freeCardSlots[i+1] = true;
+                }
+                else if(checkedPage != pageCount-1){
+                    freeCardSlots[0] = true;
+                }
+
+                checkedInd++;
             }
+            checkedPage++;
+            slotInd = 0;
         }
     }
 
@@ -104,11 +248,15 @@ public class GameManager : MonoBehaviour
     }
 
     public void PlayCard(Card playedCard){
+
         // Start UI Cooldown
         foreach(Card c in playerHand){
             c.gameObject.GetComponent<Button>().interactable = false;
         }
         DelayedEndUICooldown();
+
+        // Test enabling rules
+        EnableRuleCheck(playedCard);
 
         // If not a valid card, draw & end turn
         if(!IsValidCard(playedCard)){
@@ -124,12 +272,17 @@ public class GameManager : MonoBehaviour
 
         //Remove card from corresponding hand
         if (TurnIndex == -1){
-            freeCardSlots[playedCard.handIndex] = true;
+            freeCardSlots[playedCard.handIndex%10] = true;
             playerHand.Remove(playedCard);
+            // Slide all cards left if didnt win
+            if (playerHand.Count != 0){
+                SlideCards(playedCard.handIndex);
+            }
         }
         else{
             enemyHands[TurnIndex].currHand.Remove(playedCard);
         }
+
 
         // Show the pile and top card
         pileObj.gameObject.SetActive(true);
@@ -156,6 +309,11 @@ public class GameManager : MonoBehaviour
     public void NextTurn(){
         CheckForWinner();
         IncTurnIndex();
+        if (successionEnabled){
+            DecTurnIndex();
+            successionEnabled = false;
+        }
+
         if (deck.Count == 0){
             deckRend.enabled = false;
             Shuffle();
@@ -218,7 +376,8 @@ public class GameManager : MonoBehaviour
 
     // Check if card shares suit or value
     private bool IsValidCard(Card c){
-        if (latestCard == null){
+        if (latestCard == null || fillEnabled){
+            fillEnabled = false;
             return true;
         }
 
@@ -241,6 +400,54 @@ public class GameManager : MonoBehaviour
         }
     }
 
+    private void EnableRuleCheck(Card c){
+        currentCard = c;
+        foreach (Action aRule in enableRules){
+            aRule();
+        }
+    }
+
+    // ENABLING RULES
+    private void WildDragon(Card c){
+        if (c.value == "dragon"){
+            fillEnabled = true;
+            UI_Feedback.clip = SFX_effect;
+            UI_Feedback.Play();
+        }
+    }
+
+    private void ReverseSnake(Card c){
+        if (c.value == "snake"){
+            reverseEnabled = !reverseEnabled;
+            UI_Feedback.clip = SFX_effect;
+            UI_Feedback.Play();
+        }
+    }
+
+    private void WildOx(Card c){
+        if (c.value == "ox"){
+            fillEnabled = true;
+            UI_Feedback.clip = SFX_effect;
+            UI_Feedback.Play();
+        }
+    }
+
+    private void FillDog(Card c){
+        if (c.value == "dog"){
+            fillEnabled = true;
+            UI_Feedback.clip = SFX_effect;
+            UI_Feedback.Play();
+        }
+    }
+
+    private void SuccessionRooster(Card c){
+        if (c.value == "rooster"){
+            successionEnabled = true;
+            UI_Feedback.clip = SFX_effect;
+            UI_Feedback.Play();
+        }
+    }
+
     // LIMIT RULES
     private bool SameSuitOrVal(){
         if (currentCard.suit == latestCard.suit || currentCard.value == latestCard.value){
@@ -252,17 +459,47 @@ public class GameManager : MonoBehaviour
     }
 
     // ABILITY RULES
-    private void AceSkip(Card c){
-        if (c.value == 1){
+    private void RatSkip(Card c){
+        if (c.value == "horse"){
             IncTurnIndex();
+            UI_Feedback.clip = SFX_effect;
+            UI_Feedback.Play();
         }
     }
-    private void SevenPlusOne(Card c){
-        if (c.value == 7){
-            Debug.Log("Played a seven!");
+    private void TigerPlusTwo(Card c){
+        if (c.value == "tiger"){
+            Debug.Log("Played a tiger!");
             IncTurnIndex();
             DrawCorrect();
+            DrawCorrect();
             DecTurnIndex();
+            UI_Feedback.clip = SFX_effect;
+            UI_Feedback.Play();
+        }
+    }
+
+    private void OxPlusFour(Card c){
+        if (c.value == "ox"){
+            IncTurnIndex();
+            DrawCorrect();
+            DrawCorrect();
+            DrawCorrect();
+            DrawCorrect();
+            DecTurnIndex();
+            UI_Feedback.clip = SFX_effect;
+            UI_Feedback.Play();
+        }
+    }
+
+    private void MonkeyAllDrawTwo(Card c){
+        if (c.value == "monkey"){
+            while (TurnIndex != -1){
+                IncTurnIndex();
+                DrawCorrect();
+                DrawCorrect();
+            }
+            UI_Feedback.clip = SFX_effect;
+            UI_Feedback.Play();
         }
     }
 
@@ -283,20 +520,46 @@ public class GameManager : MonoBehaviour
     }
 
     private void IncTurnIndex(){
-        if (TurnIndex < enemyHands.Count-1){
-            TurnIndex++;
+        // Not reversed
+        if (!reverseEnabled){
+            if (TurnIndex < enemyHands.Count-1){
+                TurnIndex++;
+            }
+            else{
+                TurnIndex = -1;
+            }
         }
+
+        // Reversed
         else{
-            TurnIndex = -1;
+            if (TurnIndex != -1){
+                TurnIndex--;
+            }
+            else{
+                TurnIndex = enemyHands.Count-1;
+            }
         }
     }
 
     private void DecTurnIndex(){
-        if (TurnIndex != -1){
-            TurnIndex--;
+        // Not reversed
+        if (!reverseEnabled){
+            if (TurnIndex != -1){
+                TurnIndex--;
+            }
+            else{
+                TurnIndex = enemyHands.Count-1;
+            }
         }
-        else{
-            TurnIndex = enemyHands.Count-1;
+
+        // Reversed
+        else {
+            if (TurnIndex < enemyHands.Count-1){
+                TurnIndex++;
+            }
+            else{
+                TurnIndex = -1;
+            }
         }
     }
 
@@ -307,7 +570,7 @@ public class GameManager : MonoBehaviour
     }
 
     private async Task DelayedEndUICooldown(){
-        await Task.Delay(750);
+        await Task.Delay(2250);
         EndUICoolDown();
     }
 

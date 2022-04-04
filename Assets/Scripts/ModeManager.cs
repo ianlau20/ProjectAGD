@@ -46,7 +46,7 @@ public class ModeManager : MonoBehaviour
         }
         gm.GetComponent<GameManager>().enabled = false;
 
-        // disable hitboxes
+        // disable hitboxes in startround()?
     }
 
     public void Response1(){

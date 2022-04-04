@@ -24,11 +24,11 @@ public class MaoHand : MonoBehaviour
         }
 
         char lastSuit = gm.GetLatestCard().suit;
-        int lastVal = gm.GetLatestCard().value;
+        string lastVal = gm.GetLatestCard().value;
 
         // If hand has valid ace, play it
         foreach(Card c in currHand){
-            if ((c.suit == lastSuit || c.value == lastVal) && c.value == 1){
+            if ((c.suit == lastSuit || c.value == lastVal) && c.value == "cat"){
                 UpdateAndPlay(c);
                 return;
             }

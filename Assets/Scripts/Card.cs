@@ -5,7 +5,7 @@ using UnityEngine;
 public class Card : MonoBehaviour
 {
     public char suit;
-    public int value;
+    public string value;
     public bool hasBeenPlayed;
     public int handIndex;
     private GameManager gm;
