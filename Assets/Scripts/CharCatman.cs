@@ -7,6 +7,8 @@ using UnityEngine.UI;
 public class CharCatman : Character, IClick
 {
     protected ModeManager mm;
+    public AudioSource UI_Feedback;
+    public AudioClip SFX_clicked;
 
     // Start is called before the first frame update
     void Start()
@@ -22,6 +24,8 @@ public class CharCatman : Character, IClick
     public void onClickAction() {
         // Open Dialogue
         StartTalk();
+        UI_Feedback.clip = SFX_clicked;
+        UI_Feedback.Play();
     }
 
     private void StartTalk(){
@@ -30,6 +34,8 @@ public class CharCatman : Character, IClick
         mm.cameras[1].gameObject.SetActive(true);
         textUI.SetActive(true);
         textBackground.SetActive(true);
+        nameUI.SetActive(true);
+        nameUI.GetComponent<Text>().text = "???";
         textUI.GetComponent<TMPro.TextMeshProUGUI>().text = sequence1[curLine];
         mm.responseButtonTexts[0].GetComponent<Text>().text = responses[curLine][0];
         mm.responseButtonTexts[1].GetComponent<Text>().text = responses[curLine][1]; 
@@ -41,6 +47,7 @@ public class CharCatman : Character, IClick
         mm.cameras[1].gameObject.SetActive(false);
         mm.cameras[0].gameObject.SetActive(true);
         textUI.SetActive(false);
+        nameUI.SetActive(false);
         textBackground.SetActive(false);
         mm.responseButtons[0].SetActive(false);
         mm.responseButtons[1].SetActive(false);

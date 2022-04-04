@@ -8,6 +8,11 @@ using UnityEngine.UI;
 public class CharHana : Character, IClick
 {
     protected ModeManager mm;
+    public Sprite sNormal;
+    public Sprite sCrying;
+    public SpriteRenderer self;
+    public AudioSource UI_Feedback;
+    public AudioClip SFX_clicked;
 
     // Start is called before the first frame update
     void Start()
@@ -20,6 +25,7 @@ public class CharHana : Character, IClick
         sequence1_1 = new List<string>();
         sequence1_2 = new List<string>();
         responses = new List<List<string>>();
+        SpriteChange(0, sCrying);
 
         // SEQUENCE 1
         sequence1.Add("Gosh, where did I put my phone, I just had it! I swear I’d lose my head if it wasn’t attached.");
@@ -81,6 +87,8 @@ public class CharHana : Character, IClick
     public void onClickAction() {
         // Open Dialogue
         StartTalk();
+        UI_Feedback.clip = SFX_clicked;
+        UI_Feedback.Play();
     }
 
     private void StartTalk(){
@@ -99,10 +107,12 @@ public class CharHana : Character, IClick
         curSeq = 1;
         curLine = -1;
         int totalDelay = 0;
-        SwitchName(totalDelay, "Hana");
+        SwitchName(totalDelay, "???");
         SwitchStyle(totalDelay, FontStyle.Normal);
         AdvanceTalk();
         totalDelay+=5000;
+        SwitchName(totalDelay, "Hana");
+        SpriteChange(totalDelay, sNormal);
         DelayedTalk(totalDelay); //greets herself
         totalDelay+=3000;
 
@@ -308,5 +318,10 @@ public class CharHana : Character, IClick
     private async Task DelayedEnd(int delay){
         await Task.Delay(delay);
         EndTalk();
+    }
+
+    private async Task SpriteChange(int delay, Sprite sprite){
+        await Task.Delay(delay);
+        self.sprite = sprite;
     }
 }

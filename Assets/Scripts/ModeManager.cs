@@ -8,7 +8,7 @@ public class ModeManager : MonoBehaviour
     private GameManager gm;
     public List<GameObject> gameUI;
     public List<GameObject> chatUI;
-    public List<Character> people;
+    public List<GameObject> people;
     public List<Camera> cameras;
     public List<GameObject> responseButtons;
     public List<GameObject> responseButtonTexts;
@@ -19,6 +19,8 @@ public class ModeManager : MonoBehaviour
     {
         gm = FindObjectOfType<GameManager>();
         StartChat();
+        responseButtons[0].SetActive(false);
+        responseButtons[1].SetActive(false);
     }
 
     public void StartRound(){
@@ -36,6 +38,10 @@ public class ModeManager : MonoBehaviour
         foreach(GameObject ui_element in gameUI){
             ui_element.SetActive(true);
         }
+        // Turn off hitboxes
+        foreach(GameObject person in people){
+            person.GetComponent<BoxCollider2D>().enabled = false;
+        }
         gm.GetComponent<GameManager>().enabled = true;
     }
 
@@ -45,8 +51,12 @@ public class ModeManager : MonoBehaviour
             ui_element.SetActive(false);
         }
         gm.GetComponent<GameManager>().enabled = false;
+        chatUI[4].SetActive(true); // click ppl text
 
-        // disable hitboxes in startround()?
+        // Turn on hitboxes
+        foreach(GameObject person in people){
+            person.GetComponent<BoxCollider2D>().enabled = true;
+        }
     }
 
     public void Response1(){

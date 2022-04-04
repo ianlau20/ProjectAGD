@@ -18,6 +18,7 @@ public class GameManager : MonoBehaviour
     public GameObject latestCardUI;
     public GameObject WinUI;
     public GameObject LoseUI;
+    public GameObject drawButton;
 
     public Deck deckObj;
     public Transform[] cardSlots;
@@ -41,6 +42,7 @@ public class GameManager : MonoBehaviour
     private Renderer deckRend;
     private Card latestCard;
     private Card currentCard;
+    public bool coolDown = false;
     private bool fillEnabled = false;
     private bool reverseEnabled = false;
     private bool successionEnabled = false;
@@ -49,7 +51,7 @@ public class GameManager : MonoBehaviour
     List<Action> abilityRules = new List<Action>();
     List<Action> enableRules = new List<Action>();
     private Vector3 scaleChange = new Vector3(0.00f, 0.0025f, 0.00f);
-    private Vector3 resetHeight = new Vector3(0.10f, 0.00f, 0.15f);
+    private Vector3 resetHeight = new Vector3(0.07f, 0.00f, 0.105f);
     private Vector3 resetPos = new Vector3(2f, 0.59f, -0.5f);
 
     void Start(){
@@ -79,6 +81,12 @@ public class GameManager : MonoBehaviour
             enableRules.Add(() => FillDog(currentCard));
             enableRules.Add(() => SuccessionRooster(currentCard));
         }
+
+        // Enable UI
+        foreach(Card c in playerHand){
+            c.gameObject.GetComponent<Button>().interactable = true;
+        }
+        drawButton.GetComponent<Button>().interactable = true;
     }
 
     public void DrawCard(){
@@ -98,6 +106,7 @@ public class GameManager : MonoBehaviour
             // This is a double-check that can prob be removed
             if(freeCardSlots[i] == true){
                 randCard.gameObject.SetActive(true);
+                randCard.gameObject.GetComponent<Button>().interactable = true;
                 randCard.handIndex = i;
                 playerHand.Add(randCard);
 
@@ -248,12 +257,21 @@ public class GameManager : MonoBehaviour
     }
 
     public void PlayCard(Card playedCard){
-
-        // Start UI Cooldown
-        foreach(Card c in playerHand){
-            c.gameObject.GetComponent<Button>().interactable = false;
+        if (coolDown && playerHand.Contains(playedCard)){
+            return;
         }
-        DelayedEndUICooldown();
+
+
+        if (TurnIndex == -1){
+            // Start UI Cooldown
+            coolDown = true;
+            foreach(Card c in playerHand){
+                c.gameObject.GetComponent<Button>().interactable = false;
+            }
+            drawButton.GetComponent<Button>().interactable = false;
+            DelayedEndUICooldown();
+        }
+        
 
         // Test enabling rules
         EnableRuleCheck(playedCard);
@@ -307,7 +325,11 @@ public class GameManager : MonoBehaviour
     }
 
     public void NextTurn(){
-        CheckForWinner();
+        // End game if winner
+        if(CheckForWinner()){
+            return;
+        }
+
         IncTurnIndex();
         if (successionEnabled){
             DecTurnIndex();
@@ -346,19 +368,22 @@ public class GameManager : MonoBehaviour
         }
     }
 
-    private void CheckForWinner(){
+    private bool CheckForWinner(){
         if (playerHand.Count == 0){
             UI_Feedback.clip = SFX_win;
             UI_Feedback.Play();
             WinUI.SetActive(true);
+            return true;
         }
         foreach(MaoHand mh in enemyHands){
             if (mh.currHand.Count == 0){
                 UI_Feedback.clip = SFX_lose;
                 UI_Feedback.Play();
                 LoseUI.SetActive(true);
+                return true;
             }
         }
+        return false;
     }
 
     // Deal Cards
@@ -460,7 +485,7 @@ public class GameManager : MonoBehaviour
 
     // ABILITY RULES
     private void RatSkip(Card c){
-        if (c.value == "horse"){
+        if (c.value == "rat"){
             IncTurnIndex();
             UI_Feedback.clip = SFX_effect;
             UI_Feedback.Play();
@@ -517,6 +542,8 @@ public class GameManager : MonoBehaviour
         foreach(Card c in playerHand){
             c.gameObject.GetComponent<Button>().interactable = true;
         }
+        drawButton.GetComponent<Button>().interactable = true;
+        coolDown = false;
     }
 
     private void IncTurnIndex(){
@@ -570,7 +597,7 @@ public class GameManager : MonoBehaviour
     }
 
     private async Task DelayedEndUICooldown(){
-        await Task.Delay(2250);
+        await Task.Delay(3000);
         EndUICoolDown();
     }
 
@@ -580,6 +607,6 @@ public class GameManager : MonoBehaviour
 
     // Reload current scene
     public void RestartGame() {
-        SceneManager.LoadScene(SceneManager.GetActiveScene().name);
+        SceneManager.LoadScene(0);
     }
 }

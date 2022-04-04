@@ -7,6 +7,8 @@ using UnityEngine.UI;
 public class CharCody : Character, IClick
 {
     protected ModeManager mm;
+    public AudioSource UI_Feedback;
+    public AudioClip SFX_clicked;
 
     // Start is called before the first frame update
     void Start()
@@ -15,15 +17,17 @@ public class CharCody : Character, IClick
         curLine = 0;
         sequence1 = new List<string>();
         responses = new List<List<string>>();
-        sequence1.Add("Hey!");
-        responses.Add(new List<string> {"Hi!", "..."});
-        sequence1.Add("You should leave me alone!");
+        sequence1.Add("What do you want?");
+        responses.Add(new List<string> {"Uhh.", "Nothing..."});
+        sequence1.Add("Beat it.");
         responses.Add(new List<string> {"Sorry.", "Whatever."});
     }
 
     public void onClickAction() {
         // Open Dialogue
         StartTalk();
+        UI_Feedback.clip = SFX_clicked;
+        UI_Feedback.Play();
     }
 
     private void StartTalk(){
@@ -32,6 +36,8 @@ public class CharCody : Character, IClick
         mm.cameras[3].gameObject.SetActive(true);
         textUI.SetActive(true);
         textBackground.SetActive(true);
+        nameUI.SetActive(true);
+        nameUI.GetComponent<Text>().text = "???";
         textUI.GetComponent<TMPro.TextMeshProUGUI>().text = sequence1[curLine];
         mm.responseButtonTexts[0].GetComponent<Text>().text = responses[curLine][0];
         mm.responseButtonTexts[1].GetComponent<Text>().text = responses[curLine][1]; 
@@ -48,6 +54,7 @@ public class CharCody : Character, IClick
 
     private void EndTalk(){
         curLine = 0;
+        nameUI.SetActive(false);
         mm.cameras[3].gameObject.SetActive(false);
         mm.cameras[0].gameObject.SetActive(true);
         textUI.SetActive(false);
