@@ -67,4 +67,9 @@ public class CharCatman : Character, IClick
     {
         
     }
+
+    public override void SkipText()
+    {
+        //AdvanceTalk();
+    }
 }

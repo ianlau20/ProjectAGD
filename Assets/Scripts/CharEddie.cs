@@ -87,4 +87,9 @@ public class CharEddie : Character, IClick
     {
         
     }
+
+    public override void SkipText()
+    {
+        //AdvanceTalk();
+    }
 }

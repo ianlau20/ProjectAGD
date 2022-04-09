@@ -13,9 +13,11 @@ public abstract class Character : MonoBehaviour
     protected List<string> sequence1_2;
     protected List<List<string>> responses;
     protected int curLine;
-    protected int curSeq;
+    protected string curSeq;
 
     public abstract void Response1();
     public abstract void Response2();
     public abstract void Response3();
+
+    public abstract void SkipText();
 }

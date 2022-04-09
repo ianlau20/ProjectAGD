@@ -7,7 +7,8 @@ public class ModeManager : MonoBehaviour
     public string mode;
     private GameManager gm;
     public List<GameObject> gameUI;
-    public List<GameObject> chatUI;
+    public List<GameObject> chatModeUI;
+    public List<GameObject> convoUI;
     public List<GameObject> people;
     public List<Camera> cameras;
     public List<GameObject> responseButtons;
@@ -18,7 +19,7 @@ public class ModeManager : MonoBehaviour
     void Start()
     {
         gm = FindObjectOfType<GameManager>();
-        StartChat();
+        StartChatMode();
         responseButtons[0].SetActive(false);
         responseButtons[1].SetActive(false);
     }
@@ -31,7 +32,7 @@ public class ModeManager : MonoBehaviour
         }
         cameras[0].gameObject.SetActive(true);
         // Turn off chat UI
-        foreach(GameObject ui_element in chatUI){
+        foreach(GameObject ui_element in chatModeUI){
             ui_element.SetActive(false);
         }
         // Turn on game UI
@@ -45,17 +46,28 @@ public class ModeManager : MonoBehaviour
         gm.GetComponent<GameManager>().enabled = true;
     }
 
-    public void StartChat(){
+    public void StartChatMode(){
         mode = "chat";
         foreach(GameObject ui_element in gameUI){
             ui_element.SetActive(false);
         }
         gm.GetComponent<GameManager>().enabled = false;
-        chatUI[4].SetActive(true); // click ppl text
+        chatModeUI[4].SetActive(true); // click ppl text
 
         // Turn on hitboxes
         foreach(GameObject person in people){
             person.GetComponent<BoxCollider2D>().enabled = true;
+        }
+    }
+
+    public void StartConversation(){
+        foreach(GameObject ui_element in convoUI){
+            ui_element.SetActive(true);
+        }
+    }
+    public void EndConversation(){
+        foreach(GameObject ui_element in convoUI){
+            ui_element.SetActive(false);
         }
     }
 
@@ -67,5 +79,9 @@ public class ModeManager : MonoBehaviour
     }
     public void Response3(){
         curPerson.Response3();
+    }
+
+    public void SkipDialogue(){
+        curPerson.SkipText();
     }
 }

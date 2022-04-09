@@ -1,8 +1,10 @@
 using System.Collections;
 using System.Collections.Generic;
-using System.Threading.Tasks;
 using UnityEngine;
 using UnityEngine.UI;
+using UnityEngine.SceneManagement;
+using System.Threading.Tasks;
+using System;
 
 
 public class CharHana : Character, IClick
@@ -14,18 +16,20 @@ public class CharHana : Character, IClick
     public AudioSource UI_Feedback;
     public AudioClip SFX_clicked;
 
+    private Action seqMethod;
+
     // Start is called before the first frame update
     void Start()
     {
         mm = FindObjectOfType<ModeManager>();
         curLine = -1;
-        curSeq = 0;
+        curSeq = "0";
         lines = new List<string>();
         sequence1 = new List<string>();
         sequence1_1 = new List<string>();
         sequence1_2 = new List<string>();
         responses = new List<List<string>>();
-        SpriteChange(0, sCrying);
+        SpriteChange(sCrying);
 
         // SEQUENCE 1
         sequence1.Add("Gosh, where did I put my phone, I just had it! I swear I’d lose my head if it wasn’t attached.");
@@ -95,180 +99,177 @@ public class CharHana : Character, IClick
         mm.curPerson = this;
         mm.cameras[0].gameObject.SetActive(false);
         mm.cameras[2].gameObject.SetActive(true);
-        textUI.SetActive(true);
-        nameUI.SetActive(true);
-        textBackground.SetActive(true);
+        mm.StartConversation();
 
-        play1();
+        curLine = -1;
+        seqMethod = () => play1();
+        AdvanceTalk();
     }
 
     private void play1(){
         lines = sequence1;
-        curSeq = 1;
-        curLine = -1;
-        int totalDelay = 0;
-        SwitchName(totalDelay, "???");
-        SwitchStyle(totalDelay, FontStyle.Normal);
-        AdvanceTalk();
-        totalDelay+=5000;
-        SwitchName(totalDelay, "Hana");
-        SpriteChange(totalDelay, sNormal);
-        DelayedTalk(totalDelay); //greets herself
-        totalDelay+=3000;
+        curSeq = "1";
 
-        SwitchName(totalDelay, "Me");
-        SwitchStyle(totalDelay, FontStyle.Italic);
-        DelayedTalk(totalDelay);
-        totalDelay+=3000;
-        SwitchStyle(totalDelay, FontStyle.Normal);
-        DelayedTalk(totalDelay); //greets myself
-        totalDelay+=4000;
+        switch(curLine){
+            case 0:
+                SwitchName("???");
+                SwitchStyle(FontStyle.Normal);
+                break;
+            
+            case 1:
+                SwitchName("Hana");
+                SpriteChange(sNormal);
+                break;
 
-        SwitchName(totalDelay, "Hana");
-        DelayedTalk(totalDelay);
-        totalDelay+=8000;
+            case 2:
+                SwitchName("Me");
+                SwitchStyle(FontStyle.Italic);
+                break;
 
-        SwitchName(totalDelay, "Me");
-        DelayedTalk(totalDelay);
-        totalDelay+=3000;
-        SwitchStyle(totalDelay, FontStyle.Italic);
-        DelayedTalk(totalDelay); //what an active..
-        totalDelay+=4000;
+            case 3:
+                SwitchStyle(FontStyle.Normal);
+                break;
+            
+            case 4:
+                SwitchName("Hana");
+                break;
+            
+            case 5:
+                SwitchName("Me");          
+                break;
 
-        SwitchName(totalDelay, "Hana");
-        SwitchStyle(totalDelay, FontStyle.Normal);
-        DelayedTalk(totalDelay);
-        totalDelay+=5000;
+            case 6:
+                SwitchStyle(FontStyle.Italic);//what an active..
+                break;
 
-        SwitchName(totalDelay, "Me");
-        DelayedTalk(totalDelay); //thats kinda the point
-        totalDelay+=4000;
+            case 7:
+                SwitchName("Hana");
+                SwitchStyle(FontStyle.Normal);
+                break;
 
-        SwitchName(totalDelay, "Hana");
-        DelayedTalk(totalDelay);
-        totalDelay+=4000;
+            case 8:
+                SwitchName("Me"); //thats kinda the point
+                break;
 
-        SwitchName(totalDelay, "Me");
-        DelayedTalk(totalDelay);
-        totalDelay+=4000;
+            case 9:
+                SwitchName("Hana");
+                break;
 
-        SwitchName(totalDelay, "Hana");
-        DelayedTalk(totalDelay);
-        totalDelay+=4000;
+            case 10:
+                SwitchName("Me");
+                break;
 
-        SwitchName(totalDelay, "Me");
-        SwitchStyle(totalDelay, FontStyle.Italic);
-        DelayedTalk(totalDelay); //does she know
-        DelayedButtons(totalDelay);
-        mm.responseButtonTexts[0].GetComponent<Text>().text = responses[0][0];
-        mm.responseButtonTexts[1].GetComponent<Text>().text = responses[0][1]; 
+            case 11:
+                SwitchName("Hana");
+                break;
+
+            case 12:
+                SwitchName("Me");
+                SwitchStyle(FontStyle.Italic);
+                ShowButtons();
+                mm.responseButtonTexts[0].GetComponent<Text>().text = responses[0][0];
+                mm.responseButtonTexts[1].GetComponent<Text>().text = responses[0][1]; 
+                break;
+        }
+
+
     }
 
     private void play1_1(){
-        mm.responseButtons[0].SetActive(false);
-        mm.responseButtons[1].SetActive(false);
         lines = sequence1_1;
-        curSeq = 1;
-        curLine = -1;
-        int totalDelay = 0;
-        SwitchName(totalDelay, "Me");
-        SwitchStyle(totalDelay, FontStyle.Normal);
-        DelayedTalk(totalDelay);
-        totalDelay+=6000;
+        curSeq = "1_1";
 
-        SwitchName(totalDelay, "Hana");
-        DelayedTalk(totalDelay);
-        totalDelay+=6000;
-
-        SwitchName(totalDelay, "Me");
-        SwitchStyle(totalDelay, FontStyle.Italic);
-        DelayedTalk(totalDelay);
-        totalDelay+=2000;
-        DelayedTalk(totalDelay);
-        totalDelay+=2000;
-        DelayedTalk(totalDelay); //STUPID!!!
-        totalDelay+=2000;
-        SwitchStyle(totalDelay, FontStyle.Normal);
-        DelayedTalk(totalDelay);
-        totalDelay+=3000;
-
-        SwitchName(totalDelay, "Hana");
-        DelayedTalk(totalDelay);
-        totalDelay+=3000;
-
-        SwitchName(totalDelay, "Me");
-        DelayedTalk(totalDelay);
-        totalDelay+=3000;
-
-        SwitchName(totalDelay, "Hana");
-        DelayedTalk(totalDelay);
-        totalDelay+=3000;
-
-        DelayedEnd(totalDelay);
+        switch(curLine){
+            case 0:
+                SwitchName("Me");
+                SwitchStyle(FontStyle.Normal);
+                break;
+            case 1:
+                SwitchName("Hana");
+                break;
+            case 2:
+            case 3:
+            case 4:
+                SwitchName("Me");
+                SwitchStyle(FontStyle.Italic);
+                break;
+            case 5:
+                SwitchStyle(FontStyle.Normal);
+                break;
+            case 6:
+                SwitchName("Hana");
+                break;
+            case 7:
+                SwitchName("Me");
+                break;
+            case 8:
+                SwitchName("Hana");
+                break;
+            case 9:
+                EndTalk();
+                break;
+            
+        }
+        
     }
 
     private void play1_2(){
-        mm.responseButtons[0].SetActive(false);
-        mm.responseButtons[1].SetActive(false);
         lines = sequence1_2;
-        curSeq = 1;
-        curLine = -1;
-        int totalDelay = 0;
-        SwitchName(totalDelay, "Me");
-        SwitchStyle(totalDelay, FontStyle.Normal);
-        DelayedTalk(totalDelay);
-        totalDelay+=5000;
+        curSeq = "1_2";
 
-        SwitchName(totalDelay, "Hana");
-        DelayedTalk(totalDelay);
-        totalDelay+=5000;
-
-        SwitchName(totalDelay, "Me");
-        DelayedTalk(totalDelay);
-        totalDelay+=4000;
-
-        SwitchName(totalDelay, "Hana");
-        DelayedTalk(totalDelay);
-        totalDelay+=5000;
-
-        SwitchName(totalDelay, "Me");
-        SwitchStyle(totalDelay, FontStyle.Italic);
-        DelayedTalk(totalDelay);
-        totalDelay+=4000;
-        SwitchStyle(totalDelay, FontStyle.Normal);
-        DelayedTalk(totalDelay); //ur right
-        totalDelay+=3000;
-        DelayedTalk(totalDelay);
-        totalDelay+=3000;
-
-        SwitchName(totalDelay, "Hana");
-        DelayedTalk(totalDelay);
-        totalDelay+=3000;
-
-        DelayedEnd(totalDelay);
+        switch(curLine){
+            case 0:
+                SwitchName("Me");
+                SwitchStyle(FontStyle.Normal);
+                break;
+            case 1:
+                SwitchName("Hana");
+                break;
+            case 2:
+                SwitchName("Me");
+                break;
+            case 3:
+                SwitchName("Hana");
+                break;
+            case 4:
+                SwitchName("Me");
+                SwitchStyle(FontStyle.Italic);
+                break;
+            case 5:
+            case 6:
+                SwitchStyle(FontStyle.Normal); //ur right
+                break;
+            case 7:
+                SwitchName("Hana");
+                break;
+            case 8:
+                EndTalk();
+                break;
+        }
     }
 
     private void AdvanceTalk(){
         curLine++;
+        seqMethod();
         textUI.GetComponent<TMPro.TextMeshProUGUI>().text = lines[curLine];
-        
     }
 
     private void EndTalk(){
-        curLine = 0;
+        curLine = -1;
         mm.cameras[2].gameObject.SetActive(false);
         mm.cameras[0].gameObject.SetActive(true);
-        textUI.SetActive(false);
-        textBackground.SetActive(false);
-        mm.responseButtons[0].SetActive(false);
-        mm.responseButtons[1].SetActive(false);
-        nameUI.SetActive(false);
+        mm.EndConversation();
     }
 
     public override void Response1()
     {
-        if(curSeq == 1){
-            play1_1();
+        mm.responseButtons[0].SetActive(false);
+        mm.responseButtons[1].SetActive(false);
+        curLine = -1;
+
+        if(curSeq == "1"){
+            seqMethod = () => play1_1();
+            AdvanceTalk();
         }
         else{
             EndTalk();
@@ -277,8 +278,13 @@ public class CharHana : Character, IClick
 
     public override void Response2()
     {
-        if(curSeq == 1){
-            play1_2();
+        mm.responseButtons[0].SetActive(false);
+        mm.responseButtons[1].SetActive(false);
+        curLine = -1;
+
+        if(curSeq == "1"){
+            seqMethod = () => play1_2();
+            AdvanceTalk();
         }
         else{
             EndTalk();
@@ -287,41 +293,34 @@ public class CharHana : Character, IClick
 
     public override void Response3()
     {
-        
+        mm.responseButtons[0].SetActive(false);
+        mm.responseButtons[1].SetActive(false);
+        mm.responseButtons[2].SetActive(false);
+        curLine = -1;
     }
 
-    private async Task DelayedTalk(int delay)
+    public override void SkipText()
     {
-        await Task.Delay(delay);
         AdvanceTalk();
     }
 
-    private async Task DelayedButtons(int delay)
+    private void ShowButtons()
     {
-        await Task.Delay(delay);
         mm.responseButtons[0].SetActive(true);
         mm.responseButtons[1].SetActive(true);
     }
 
-    private async Task SwitchName(int delay, string name)
+    private void SwitchName(string name)
     {
-        await Task.Delay(delay);
         nameUI.GetComponent<Text>().text = name;
     }
 
-    private async Task SwitchStyle(int delay, FontStyle style)
+    private void SwitchStyle(FontStyle style)
     {
-        await Task.Delay(delay);
         textUI.GetComponent<TMPro.TextMeshProUGUI>().fontStyle = (TMPro.FontStyles)style;
     }
 
-    private async Task DelayedEnd(int delay){
-        await Task.Delay(delay);
-        EndTalk();
-    }
-
-    private async Task SpriteChange(int delay, Sprite sprite){
-        await Task.Delay(delay);
+    private void SpriteChange(Sprite sprite){
         self.sprite = sprite;
     }
 }
