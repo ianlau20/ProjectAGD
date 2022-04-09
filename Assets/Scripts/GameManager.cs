@@ -19,6 +19,8 @@ public class GameManager : MonoBehaviour
     public GameObject WinUI;
     public GameObject LoseUI;
     public GameObject drawButton;
+    public GameObject nextPageUI;
+    public GameObject previousPageUI;
 
     public Deck deckObj;
     public Transform[] cardSlots;
@@ -126,15 +128,23 @@ public class GameManager : MonoBehaviour
             freeCardSlots[i] = true;
         }
         pageCount++;
+        nextPageUI.SetActive(true);
+        previousPageUI.SetActive(true);
         curPage = pageCount-1;
     }
 
     public void RemovePage(){
         pageCount--;
-        curPage = pageCount-1;
+        if (curPage == pageCount){
+            curPage = pageCount-1;
+        }
         for (int i = 0; i < freeCardSlots.Length; i++){
             playerHand[i+(10*(pageCount-1))].gameObject.SetActive(true);
             freeCardSlots[i] = false;
+        }
+        if (pageCount == 1){
+            nextPageUI.SetActive(false);
+            previousPageUI.SetActive(false);
         }
     }
 
@@ -182,20 +192,13 @@ public class GameManager : MonoBehaviour
     }
 
     public void SlideCards(int removedCardInd){
-        Debug.Log("SLIDING DA CARDS");
-
-        // Check if removing page is neccesary
-        bool emptyPage = true;
-        for (int i = 0; i < freeCardSlots.Length; i++){
-            if(freeCardSlots[i] == false){
-                emptyPage = false;
-                break;
-            }
+        bool wasOnLastPage = (curPage == pageCount-1 && pageCount > 1);
+        // If last page empty remove a page
+        if (playerHand.Count % 10 == 0){
+            RemovePage();
         }
 
-        // If empty page no need to slide
-        if (emptyPage){
-            RemovePage();
+        if (wasOnLastPage){
             return;
         }
 
@@ -592,12 +595,12 @@ public class GameManager : MonoBehaviour
 
     private async Task DelayedPlay()
     {
-        await Task.Delay(750);
+        await Task.Delay(1500);
         enemyHands[TurnIndex].Play();
     }
 
     private async Task DelayedEndUICooldown(){
-        await Task.Delay(3000);
+        await Task.Delay(4500);
         EndUICoolDown();
     }
 

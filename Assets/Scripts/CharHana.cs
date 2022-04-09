@@ -15,7 +15,6 @@ public class CharHana : Character, IClick
     public SpriteRenderer self;
     public AudioSource UI_Feedback;
     public AudioClip SFX_clicked;
-
     private Action seqMethod;
 
     // Start is called before the first frame update
@@ -117,12 +116,12 @@ public class CharHana : Character, IClick
                 break;
             
             case 1:
-                SwitchName("Hana");
+                SwitchName("<color=#ff69b4ff>Hana</color>");
                 SpriteChange(sNormal);
                 break;
 
             case 2:
-                SwitchName("Me");
+                SwitchName("You");
                 SwitchStyle(FontStyle.Italic);
                 break;
 
@@ -131,11 +130,11 @@ public class CharHana : Character, IClick
                 break;
             
             case 4:
-                SwitchName("Hana");
+                SwitchName("<color=#ff69b4ff>Hana</color>");
                 break;
             
             case 5:
-                SwitchName("Me");          
+                SwitchName("You");          
                 break;
 
             case 6:
@@ -143,28 +142,28 @@ public class CharHana : Character, IClick
                 break;
 
             case 7:
-                SwitchName("Hana");
+                SwitchName("<color=#ff69b4ff>Hana</color>");
                 SwitchStyle(FontStyle.Normal);
                 break;
 
             case 8:
-                SwitchName("Me"); //thats kinda the point
+                SwitchName("You"); //thats kinda the point
                 break;
 
             case 9:
-                SwitchName("Hana");
+                SwitchName("<color=#ff69b4ff>Hana</color>");
                 break;
 
             case 10:
-                SwitchName("Me");
+                SwitchName("You");
                 break;
 
             case 11:
-                SwitchName("Hana");
+                SwitchName("<color=#ff69b4ff>Hana</color>");
                 break;
 
             case 12:
-                SwitchName("Me");
+                SwitchName("You");
                 SwitchStyle(FontStyle.Italic);
                 ShowButtons();
                 mm.responseButtonTexts[0].GetComponent<Text>().text = responses[0][0];
@@ -181,29 +180,29 @@ public class CharHana : Character, IClick
 
         switch(curLine){
             case 0:
-                SwitchName("Me");
+                SwitchName("You");
                 SwitchStyle(FontStyle.Normal);
                 break;
             case 1:
-                SwitchName("Hana");
+                SwitchName("<color=#ff69b4ff>Hana</color>");
                 break;
             case 2:
             case 3:
             case 4:
-                SwitchName("Me");
+                SwitchName("You");
                 SwitchStyle(FontStyle.Italic);
                 break;
             case 5:
                 SwitchStyle(FontStyle.Normal);
                 break;
             case 6:
-                SwitchName("Hana");
+                SwitchName("<color=#ff69b4ff>Hana</color>");
                 break;
             case 7:
-                SwitchName("Me");
+                SwitchName("You");
                 break;
             case 8:
-                SwitchName("Hana");
+                SwitchName("<color=#ff69b4ff>Hana</color>");
                 break;
             case 9:
                 EndTalk();
@@ -219,20 +218,20 @@ public class CharHana : Character, IClick
 
         switch(curLine){
             case 0:
-                SwitchName("Me");
+                SwitchName("You");
                 SwitchStyle(FontStyle.Normal);
                 break;
             case 1:
-                SwitchName("Hana");
+                SwitchName("<color=#ff69b4ff>Hana</color>");
                 break;
             case 2:
-                SwitchName("Me");
+                SwitchName("You");
                 break;
             case 3:
-                SwitchName("Hana");
+                SwitchName("<color=#ff69b4ff>Hana</color>");
                 break;
             case 4:
-                SwitchName("Me");
+                SwitchName("You");
                 SwitchStyle(FontStyle.Italic);
                 break;
             case 5:
@@ -240,7 +239,7 @@ public class CharHana : Character, IClick
                 SwitchStyle(FontStyle.Normal); //ur right
                 break;
             case 7:
-                SwitchName("Hana");
+                SwitchName("<color=#ff69b4ff>Hana</color>");
                 break;
             case 8:
                 EndTalk();
@@ -323,4 +322,5 @@ public class CharHana : Character, IClick
     private void SpriteChange(Sprite sprite){
         self.sprite = sprite;
     }
+
 }

@@ -4848,6 +4848,8 @@ MonoBehaviour:
   WinUI: {fileID: 426960909}
   LoseUI: {fileID: 739319866}
   drawButton: {fileID: 1116888127}
+  nextPageUI: {fileID: 2120856574}
+  previousPageUI: {fileID: 1891744181}
   deckObj: {fileID: 913741182}
   cardSlots:
   - {fileID: 133516084}
@@ -12018,8 +12020,6 @@ MonoBehaviour:
   - {fileID: 1116888127}
   - {fileID: 1002040408}
   - {fileID: 1212381270}
-  - {fileID: 2120856574}
-  - {fileID: 1891744181}
   chatModeUI:
   - {fileID: 1910352665}
   - {fileID: 546966538}
