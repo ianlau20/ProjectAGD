@@ -8,11 +8,13 @@ using System;
 
 public class GameManager : MonoBehaviour
 {
+    private ModeManager mm;
     public List<Card> deck = new List<Card>();
     public List<Card> playedPile = new List<Card>();
 
     public PhysicalPile pileObj;
     public GameObject TopOfPile;
+    public Sprite cardBackSprite;
 
     // UI
     public GameObject latestCardUI;
@@ -57,7 +59,11 @@ public class GameManager : MonoBehaviour
     private Vector3 resetPos = new Vector3(2f, 0.59f, -0.5f);
 
     void Start(){
+        mm = FindObjectOfType<ModeManager>();
         deckRend = deckObj.GetComponent<Renderer>();
+    }
+
+    public void SetupMatch(){
         Deal();
 
         // Create Rule Lists
@@ -239,24 +245,21 @@ public class GameManager : MonoBehaviour
     }
 
     public void DrawCardAI(){
-        if(enemyHands[TurnIndex].currHand.Count < 14){
-            UI_Feedback2.clip = SFX_draw;
-            UI_Feedback2.Play();
+        UI_Feedback2.clip = SFX_draw;
+        UI_Feedback2.Play();
 
-            Card randCard = deck[UnityEngine.Random.Range(0, deck.Count)];
-            randCard.gameObject.SetActive(true);
-            // Dont show AI cards on screen
-            randCard.gameObject.transform.position = new Vector3(1000f, 10000f, 0f);
+        Card randCard = deck[UnityEngine.Random.Range(0, deck.Count)];
+        randCard.gameObject.SetActive(true);
+        // Dont show AI cards on screen
+        randCard.gameObject.transform.position = new Vector3(1000f, 10000f, 0f);
 
-            // Physical Deck Change
-            deckObj.transform.localScale -= scaleChange;
-            deckObj.transform.position -= scaleChange/2;
+        // Physical Deck Change
+        deckObj.transform.localScale -= scaleChange;
+        deckObj.transform.position -= scaleChange/2;
 
-            randCard.hasBeenPlayed = false;
-            enemyHands[TurnIndex].AddToHand(randCard);
-            deck.Remove(randCard);
-
-        }
+        randCard.hasBeenPlayed = false;
+        enemyHands[TurnIndex].AddToHand(randCard);
+        deck.Remove(randCard);
     }
 
     public void PlayCard(Card playedCard){
@@ -330,6 +333,7 @@ public class GameManager : MonoBehaviour
     public void NextTurn(){
         // End game if winner
         if(CheckForWinner()){
+            CleanMatch();
             return;
         }
 
@@ -350,32 +354,14 @@ public class GameManager : MonoBehaviour
         }
     }
 
-    public void Shuffle(){
-        if(playedPile.Count >= 1){
-            UI_Feedback.clip = SFX_shuffle;
-            UI_Feedback.Play();
-            pileObj.transform.localScale = resetHeight;
-            pileObj.transform.position = resetPos;
-            pileObj.gameObject.SetActive(false);
-            TopOfPile.SetActive(false);
-            foreach(Card card in playedPile){
-                deck.Add(card);
-                card.hasBeenPlayed = false;
-
-                // Physical Deck Change
-                deckRend.enabled = true;
-                deckObj.transform.localScale += scaleChange;
-                deckObj.transform.position += scaleChange/2;
-            }
-            playedPile.Clear();
-        }
-    }
+    
 
     private bool CheckForWinner(){
         if (playerHand.Count == 0){
             UI_Feedback.clip = SFX_win;
             UI_Feedback.Play();
             WinUI.SetActive(true);
+            DelayedHideWin();
             return true;
         }
         foreach(MaoHand mh in enemyHands){
@@ -383,10 +369,66 @@ public class GameManager : MonoBehaviour
                 UI_Feedback.clip = SFX_lose;
                 UI_Feedback.Play();
                 LoseUI.SetActive(true);
+                DelayedHideLose();
                 return true;
             }
         }
         return false;
+    }
+
+    // Perform game clean up
+    private void CleanMatch(){
+
+        // Move cards from hands/playedPile to deck
+        foreach (Card c in playerHand){
+            deck.Add(c);
+        }
+        playerHand.Clear();
+        foreach (MaoHand mh in enemyHands){
+            foreach(Card c in mh.currHand){
+                deck.Add(c);
+            }
+            mh.currHand.Clear();
+            mh.ClearCardBacks();
+        }
+        foreach(Card c in playedPile){
+            deck.Add(c);
+        }
+        playedPile.Clear();
+
+        // Reset Latest Card & Physical Deck/Play Pile
+        latestCard = null;
+        latestCardUI.GetComponent<Image>().sprite = cardBackSprite;
+        Shuffle();
+
+
+        // Hide all cards
+        foreach(Card c in deck){
+            c.hasBeenPlayed = false;
+            c.gameObject.SetActive(false);
+        }
+
+        // Have the next game start with the player
+        TurnIndex = -1;
+
+        // Clear match rules
+        limitRules.Clear();
+        abilityRules.Clear();
+        enableRules.Clear();
+
+        // <<HAVE SOMETHING THAT REMOVES THE LOSER>>
+        // <<LATER ADD SYSTEM THAT ALLOWS PLAYER TO CHOOSE NEW RULE>>
+
+        // Clean open slots & pages
+        for (int i = 0; i < freeCardSlots.Length; i++){
+            freeCardSlots[i] = true;
+        }
+        curPage = 0;
+        pageCount = 1;
+        nextPageUI.SetActive(false);
+        previousPageUI.SetActive(false);
+
+        mm.StartChatMode();
     }
 
     // Deal Cards
@@ -400,6 +442,25 @@ public class GameManager : MonoBehaviour
             }
             TurnIndex = -1;
         }
+    }
+
+    public void Shuffle(){
+        UI_Feedback.clip = SFX_shuffle;
+        UI_Feedback.Play();
+        pileObj.transform.localScale = resetHeight;
+        pileObj.transform.position = resetPos;
+        pileObj.gameObject.SetActive(false);
+        TopOfPile.SetActive(false);
+        foreach(Card card in playedPile){
+            deck.Add(card);
+            card.hasBeenPlayed = false;
+
+            // Physical Deck Change
+            deckRend.enabled = true;
+            deckObj.transform.localScale += scaleChange;
+            deckObj.transform.position += scaleChange/2;
+        }
+        playedPile.Clear();
     }
 
     // Check if card shares suit or value
@@ -595,13 +656,23 @@ public class GameManager : MonoBehaviour
 
     private async Task DelayedPlay()
     {
-        await Task.Delay(1500);
+        await Task.Delay(1250);
         enemyHands[TurnIndex].Play();
     }
 
     private async Task DelayedEndUICooldown(){
-        await Task.Delay(4500);
+        await Task.Delay(3750);
         EndUICoolDown();
+    }
+
+    private async Task DelayedHideWin(){
+        await Task.Delay(3000);
+        WinUI.SetActive(false);
+    }
+
+    private async Task DelayedHideLose(){
+        await Task.Delay(3000);
+        LoseUI.SetActive(false);
     }
 
     public Card GetLatestCard(){

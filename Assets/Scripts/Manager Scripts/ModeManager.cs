@@ -6,7 +6,8 @@ public class ModeManager : MonoBehaviour
 {
     public string mode;
     private GameManager gm;
-    public List<GameObject> gameUI;
+    public List<GameObject> gameOnUI;
+    public List<GameObject> gameOffUI;
     public List<GameObject> chatModeUI;
     public List<GameObject> convoUI;
     public List<GameObject> people;
@@ -36,7 +37,7 @@ public class ModeManager : MonoBehaviour
             ui_element.SetActive(false);
         }
         // Turn on game UI
-        foreach(GameObject ui_element in gameUI){
+        foreach(GameObject ui_element in gameOnUI){
             ui_element.SetActive(true);
         }
         // Turn off hitboxes
@@ -44,11 +45,12 @@ public class ModeManager : MonoBehaviour
             person.GetComponent<BoxCollider2D>().enabled = false;
         }
         gm.GetComponent<GameManager>().enabled = true;
+        gm.SetupMatch();
     }
 
     public void StartChatMode(){
         mode = "chat";
-        foreach(GameObject ui_element in gameUI){
+        foreach(GameObject ui_element in gameOffUI){
             ui_element.SetActive(false);
         }
         gm.GetComponent<GameManager>().enabled = false;
@@ -64,10 +66,16 @@ public class ModeManager : MonoBehaviour
         foreach(GameObject ui_element in convoUI){
             ui_element.SetActive(true);
         }
+        foreach(GameObject person in people){
+            person.GetComponent<BoxCollider2D>().enabled = false;
+        }
     }
     public void EndConversation(){
         foreach(GameObject ui_element in convoUI){
             ui_element.SetActive(false);
+        }
+        foreach(GameObject person in people){
+            person.GetComponent<BoxCollider2D>().enabled = true;
         }
     }
 

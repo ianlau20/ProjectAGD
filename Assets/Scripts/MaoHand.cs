@@ -62,4 +62,12 @@ public class MaoHand : MonoBehaviour
         cardBacks.RemoveAt(cardBacks.Count-1);
         nextCardPos -= cardShift;
     }
+
+    public void ClearCardBacks(){
+        for (int i = cardBacks.Count-1; i > -1; i--){
+            Destroy(cardBacks[i]);
+            cardBacks.RemoveAt(i);
+            nextCardPos -= cardShift;
+        }
+    }
 }
