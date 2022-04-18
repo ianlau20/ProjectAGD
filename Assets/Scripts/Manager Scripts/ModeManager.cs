@@ -9,7 +9,8 @@ public class ModeManager : MonoBehaviour
     public List<GameObject> gameOnUI;
     public List<GameObject> gameOffUI;
     public List<GameObject> chatModeUI;
-    public List<GameObject> convoUI;
+    public List<GameObject> convoOffUI;
+    public List<GameObject> convoOnUI;
     public List<GameObject> people;
     public List<Camera> cameras;
     public List<GameObject> responseButtons;
@@ -63,17 +64,21 @@ public class ModeManager : MonoBehaviour
     }
 
     public void StartConversation(){
-        foreach(GameObject ui_element in convoUI){
+        foreach(GameObject ui_element in convoOnUI){
             ui_element.SetActive(true);
         }
+
+        // Turn off hitboxes
         foreach(GameObject person in people){
             person.GetComponent<BoxCollider2D>().enabled = false;
         }
     }
     public void EndConversation(){
-        foreach(GameObject ui_element in convoUI){
+        foreach(GameObject ui_element in convoOffUI){
             ui_element.SetActive(false);
         }
+
+        // Turn on hitboxes
         foreach(GameObject person in people){
             person.GetComponent<BoxCollider2D>().enabled = true;
         }

@@ -34,9 +34,7 @@ public class CharEddie : Character, IClick
         mm.curPerson = this;
         mm.cameras[0].gameObject.SetActive(false);
         mm.cameras[4].gameObject.SetActive(true);
-        textUI.SetActive(true);
-        textBackground.SetActive(true);
-        nameUI.SetActive(true);
+        mm.StartConversation();
         nameUI.GetComponent<Text>().text = "???";
         textUI.GetComponent<TMPro.TextMeshProUGUI>().text = sequence1[curLine];
         mm.responseButtonTexts[0].GetComponent<Text>().text = responses[curLine][0];
@@ -54,13 +52,9 @@ public class CharEddie : Character, IClick
 
     private void EndTalk(){
         curLine = 0;
-        nameUI.SetActive(false);
         mm.cameras[4].gameObject.SetActive(false);
         mm.cameras[0].gameObject.SetActive(true);
-        textUI.SetActive(false);
-        textBackground.SetActive(false);
-        mm.responseButtons[0].SetActive(false);
-        mm.responseButtons[1].SetActive(false);
+        mm.EndConversation();
     }
 
     public override void Response1()

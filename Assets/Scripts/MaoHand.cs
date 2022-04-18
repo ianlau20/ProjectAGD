@@ -5,6 +5,7 @@ using UnityEngine;
 public class MaoHand : MonoBehaviour
 {
     public List<Card> currHand;
+    public Sprite ownerSprite;
     public List<GameObject> cardBacks;
     public GameObject cardBack;
     public Vector3 nextCardPos;

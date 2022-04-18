@@ -15,6 +15,7 @@ public class GameManager : MonoBehaviour
     public PhysicalPile pileObj;
     public GameObject TopOfPile;
     public Sprite cardBackSprite;
+    public Sprite playerSprite;
 
     // UI
     public GameObject latestCardUI;
@@ -23,6 +24,7 @@ public class GameManager : MonoBehaviour
     public GameObject drawButton;
     public GameObject nextPageUI;
     public GameObject previousPageUI;
+    public GameObject curTurnSprite;
 
     public Deck deckObj;
     public Transform[] cardSlots;
@@ -267,18 +269,6 @@ public class GameManager : MonoBehaviour
             return;
         }
 
-
-        if (TurnIndex == -1){
-            // Start UI Cooldown
-            coolDown = true;
-            foreach(Card c in playerHand){
-                c.gameObject.GetComponent<Button>().interactable = false;
-            }
-            drawButton.GetComponent<Button>().interactable = false;
-            DelayedEndUICooldown();
-        }
-        
-
         // Test enabling rules
         EnableRuleCheck(playedCard);
 
@@ -347,10 +337,17 @@ public class GameManager : MonoBehaviour
             deckRend.enabled = false;
             Shuffle();
         }
+
         // If not player turn, play AI
         if (TurnIndex != -1){
             Debug.Log("TurnIndex = " + TurnIndex);
+            curTurnSprite.GetComponent<Image>().sprite = enemyHands[TurnIndex].ownerSprite;
+            StartUICoolDown();
             DelayedPlay();
+        }
+        else{
+            curTurnSprite.GetComponent<Image>().sprite = playerSprite;
+            EndUICoolDown();
         }
     }
 
@@ -361,7 +358,6 @@ public class GameManager : MonoBehaviour
             UI_Feedback.clip = SFX_win;
             UI_Feedback.Play();
             WinUI.SetActive(true);
-            DelayedHideWin();
             return true;
         }
         foreach(MaoHand mh in enemyHands){
@@ -428,7 +424,7 @@ public class GameManager : MonoBehaviour
         nextPageUI.SetActive(false);
         previousPageUI.SetActive(false);
 
-        mm.StartChatMode();
+        DelayedStartChat();
     }
 
     // Deal Cards
@@ -445,8 +441,8 @@ public class GameManager : MonoBehaviour
     }
 
     public void Shuffle(){
-        UI_Feedback.clip = SFX_shuffle;
-        UI_Feedback.Play();
+        UI_Feedback2.clip = SFX_shuffle;
+        UI_Feedback2.Play();
         pileObj.transform.localScale = resetHeight;
         pileObj.transform.position = resetPos;
         pileObj.gameObject.SetActive(false);
@@ -602,6 +598,13 @@ public class GameManager : MonoBehaviour
         }
     }
 
+    private void StartUICoolDown(){
+        foreach(Card c in playerHand){
+            c.gameObject.GetComponent<Button>().interactable = false;
+        }
+        drawButton.GetComponent<Button>().interactable = false;
+        coolDown = true;
+    }
     private void EndUICoolDown(){
         foreach(Card c in playerHand){
             c.gameObject.GetComponent<Button>().interactable = true;
@@ -673,6 +676,11 @@ public class GameManager : MonoBehaviour
     private async Task DelayedHideLose(){
         await Task.Delay(3000);
         LoseUI.SetActive(false);
+    }
+
+    private async Task DelayedStartChat(){
+        await Task.Delay(3000);
+        mm.StartChatMode();
     }
 
     public Card GetLatestCard(){
