@@ -58,18 +58,16 @@ public class CharHana : Character, IClick
         // SEQUENCE 1_1
         sequence1_1.Add("Did you not notice that everyone goes missing after they lose? This game is life or death. If you don't win you die.");
 
-        sequence1_1.Add("pfft…. 	HAHAHA!!! DUDE THAT'S LIKE TOTALLY HILARIOUS! AHAHAAHA you totally had me scared for a second there too… that was hella funny dude. ");
+        sequence1_1.Add("pfft…. 	HAHAHA!!! DUDE THAT'S LIKE TOTALLY HILARIOUS! AHAHAAHA you totally had me scared for a second there too… that was hella funny dude.");
 
-        sequence1_1.Add("Oh no, she's"); //ITALIC
-        sequence1_1.Add("She's"); //ITALIC
-        sequence1_1.Add("STUPID!!!"); //ITALIC
-        sequence1_1.Add("Well it's a good thing you're cute.");
+        sequence1_1.Add("She is too pure for this world."); //ITALIC
+        sequence1_1.Add("You're too cute to know the truth.");
 
         sequence1_1.Add("What was that?");
 
         sequence1_1.Add("Nothing! See you later Hana!");
 
-        sequence1_1.Add("Deuces broski!");
+        sequence1_1.Add("Lators gators!");
 
         // SEQUENCE 1_2
         sequence1_2.Add("Yea, just for funsies, but winning is still pretty important to win.");
@@ -187,24 +185,22 @@ public class CharHana : Character, IClick
                 SwitchName("<color=#ff69b4ff>Hana</color>");
                 break;
             case 2:
-            case 3:
-            case 4:
                 SwitchName("You");
                 SwitchStyle(FontStyle.Italic);
                 break;
-            case 5:
+            case 3:
                 SwitchStyle(FontStyle.Normal);
+                break;
+            case 4:
+                SwitchName("<color=#ff69b4ff>Hana</color>");
+                break;
+            case 5:
+                SwitchName("You");
                 break;
             case 6:
                 SwitchName("<color=#ff69b4ff>Hana</color>");
                 break;
             case 7:
-                SwitchName("You");
-                break;
-            case 8:
-                SwitchName("<color=#ff69b4ff>Hana</color>");
-                break;
-            case 9:
                 EndTalk();
                 break;
             
