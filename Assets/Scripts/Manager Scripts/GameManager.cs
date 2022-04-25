@@ -93,10 +93,7 @@ public class GameManager : MonoBehaviour
         }
 
         // Enable UI
-        foreach(Card c in playerHand){
-            c.gameObject.GetComponent<Button>().interactable = true;
-        }
-        drawButton.GetComponent<Button>().interactable = true;
+        EndUICoolDown();
     }
 
     public void DrawCard(){
@@ -331,6 +328,8 @@ public class GameManager : MonoBehaviour
         if (successionEnabled){
             DecTurnIndex();
             successionEnabled = false;
+            UI_Feedback.clip = SFX_effect;
+            UI_Feedback.Play();
         }
 
         if (deck.Count == 0){
@@ -461,6 +460,12 @@ public class GameManager : MonoBehaviour
 
     // Check if card shares suit or value
     private bool IsValidCard(Card c){
+        if (fillEnabled){
+            UI_Feedback2.clip = SFX_effect;
+            UI_Feedback2.Play();
+        }
+
+        // Special ability so card is valid
         if (latestCard == null || fillEnabled){
             fillEnabled = false;
             return true;
@@ -470,6 +475,7 @@ public class GameManager : MonoBehaviour
         // Rules that check if card is valid
         foreach (Func<bool> lRule in limitRules){
             if(!lRule()){
+                successionEnabled = false;
                 return false;
             }
         }
@@ -496,40 +502,32 @@ public class GameManager : MonoBehaviour
     private void WildDragon(Card c){
         if (c.value == "dragon"){
             fillEnabled = true;
-            UI_Feedback.clip = SFX_effect;
-            UI_Feedback.Play();
         }
     }
 
     private void ReverseSnake(Card c){
         if (c.value == "snake"){
             reverseEnabled = !reverseEnabled;
-            UI_Feedback.clip = SFX_effect;
-            UI_Feedback.Play();
+            UI_Feedback2.clip = SFX_effect;
+            UI_Feedback2.Play();
         }
     }
 
     private void WildOx(Card c){
         if (c.value == "ox"){
             fillEnabled = true;
-            UI_Feedback.clip = SFX_effect;
-            UI_Feedback.Play();
         }
     }
 
     private void FillDog(Card c){
         if (c.value == "dog"){
             fillEnabled = true;
-            UI_Feedback.clip = SFX_effect;
-            UI_Feedback.Play();
         }
     }
 
     private void SuccessionRooster(Card c){
         if (c.value == "rooster"){
             successionEnabled = true;
-            UI_Feedback.clip = SFX_effect;
-            UI_Feedback.Play();
         }
     }
 
@@ -547,8 +545,8 @@ public class GameManager : MonoBehaviour
     private void RatSkip(Card c){
         if (c.value == "rat"){
             IncTurnIndex();
-            UI_Feedback.clip = SFX_effect;
-            UI_Feedback.Play();
+            UI_Feedback2.clip = SFX_effect;
+            UI_Feedback2.Play();
         }
     }
     private void TigerPlusTwo(Card c){
@@ -558,8 +556,8 @@ public class GameManager : MonoBehaviour
             DrawCorrect();
             DrawCorrect();
             DecTurnIndex();
-            UI_Feedback.clip = SFX_effect;
-            UI_Feedback.Play();
+            UI_Feedback2.clip = SFX_effect;
+            UI_Feedback2.Play();
         }
     }
 
@@ -571,20 +569,23 @@ public class GameManager : MonoBehaviour
             DrawCorrect();
             DrawCorrect();
             DecTurnIndex();
-            UI_Feedback.clip = SFX_effect;
-            UI_Feedback.Play();
+            UI_Feedback2.clip = SFX_effect;
+            UI_Feedback2.Play();
         }
     }
 
     private void MonkeyAllDrawTwo(Card c){
         if (c.value == "monkey"){
-            while (TurnIndex != -1){
+            int i = 0;
+            while (i < enemyHands.Count){
                 IncTurnIndex();
                 DrawCorrect();
                 DrawCorrect();
+                i++;
             }
-            UI_Feedback.clip = SFX_effect;
-            UI_Feedback.Play();
+            IncTurnIndex();
+            UI_Feedback2.clip = SFX_effect;
+            UI_Feedback2.Play();
         }
     }
 
