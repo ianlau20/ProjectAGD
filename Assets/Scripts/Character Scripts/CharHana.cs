@@ -15,74 +15,98 @@ public class CharHana : Character, IClick
     public SpriteRenderer self;
     public AudioSource UI_Feedback;
     public AudioClip SFX_clicked;
-    private Action seqMethod;
+    protected List<string> sequence1 = new List<string>();
+    protected List<string> sequence1_1 = new List<string>();
+    protected List<string> sequence1_2 = new List<string>();
+    protected List<string> sequence2 = new List<string>();
+    protected List<string> sequence2_1 = new List<string>();
+    protected List<string> sequence2_1a = new List<string>();
+    protected List<string> sequence2_1b = new List<string>();
+    protected List<string> sequence2_2 = new List<string>();
+    
 
     // Start is called before the first frame update
     void Start()
     {
         mm = FindObjectOfType<ModeManager>();
         curLine = -1;
+        session = 0;
         curSeq = "0";
         lines = new List<string>();
-        sequence1 = new List<string>();
-        sequence1_1 = new List<string>();
-        sequence1_2 = new List<string>();
-        responses = new List<List<string>>();
+        responses = new List<string>();
         SpriteChange(sCrying);
 
         // SEQUENCE 1
         sequence1.Add("Gosh, where did I put my phone, I just had it! I swear I’d lose my head if it wasn’t attached.");
         sequence1.Add("Oh, Hi hi! I’m Hana, what's up dude!");
-
         sequence1.Add("Looks like she is over losing her phone."); //ITALIC
         sequence1.Add("Hey I’m Jessie, just wanted to see what's up.");
-
         sequence1.Add("Hella! Did you see that cat guy aren’t they like sooooooooo cute! I wonder what is behind that mask. Maybe a little kitty piloting a robot body!");
-
         sequence1.Add("Yea I guess it’s pretty cute.");
         sequence1.Add("What an active imagination."); //ITALIC
-
         sequence1.Add("BTDubs do you like, understand this game we are playing? I have no idea what's going on, zero, nada.");
-
         sequence1.Add("Well that's kind of the point I think, you have to figure out the rules as you play. Everyone is kinda in the same boat.");
-
         sequence1.Add("Awwwwwwwwwwwwww, that's waaaaay too hard, no wonder everyone looks like they aren't having fun. >.>");
-
         sequence1.Add("Well there are probably other reasons they aren’t having fun, a lot is at stake here.");
-
         sequence1.Add("Hm? Watcha mean? We are just like playing for funsies right?");
-
         sequence1.Add("Wait does she not know what's going on here? Do I tell her?"); //ITALIC
-        responses.Add(new List<string> {"Yes", "No"});
+        
 
         // SEQUENCE 1_1
         sequence1_1.Add("Did you not notice that everyone goes missing after they lose? This game is life or death. If you don't win you die.");
-
         sequence1_1.Add("pfft…. 	HAHAHA!!! DUDE THAT'S LIKE TOTALLY HILARIOUS! AHAHAAHA you totally had me scared for a second there too… that was hella funny dude.");
-
         sequence1_1.Add("She is too pure for this world."); //ITALIC
         sequence1_1.Add("You're too cute to know the truth.");
-
         sequence1_1.Add("What was that?");
-
         sequence1_1.Add("Nothing! See you later Hana!");
-
         sequence1_1.Add("Lators gators!");
 
         // SEQUENCE 1_2
         sequence1_2.Add("Yea, just for funsies, but winning is still pretty important to win.");
-
         sequence1_2.Add("Yea, I guessssss but I was never a competitive person ya know? I just wanna have fun! ^_^");
-
         sequence1_2.Add("Well that's nice, I think that is a good trait to have.");
-
         sequence1_2.Add("Thanks, dude! I wanna have fun with everybody, would make this place a lot brighter, doncha think!");
-
         sequence1_2.Add("Well I admire her passion."); //ITALIC
         sequence1_2.Add("Yea I think you’re right.");
         sequence1_2.Add("Well nice talking to you, Hana.");
-
         sequence1_2.Add("Lators gators!");
+
+        // SEQUENCE 2
+        sequence2.Add("Hey Hana.");
+        sequence2.Add("Oh! Hey dude! What's up?");
+        sequence2.Add("You know, the usual. Trying to not die I guess. ");
+        sequence2.Add("Haha. You are like so hilarious! ");
+        sequence2.Add("Btw, I think some of my cards are broken. Every time that ox card is played before me, I have to draw four cards T_T.");
+        sequence2.Add("That might just be part of the game.");
+        sequence2.Add("Did she just indirectly reveal a rule?"); //ITALIC
+        sequence2.Add("Did you notice anything else like that happening");
+        sequence2.Add("Hmmm…. I don’t think so, but I will definitely let you know! ^_^");
+        sequence2.Add("Alsoooooo, did you notice all the animals and the zodiac calendars everywhere? I love zodiac signs, can I guess yours?");
+
+        // SEQUENCE 2_1
+        sequence2_1.Add("Hmmmmm…. Haha just kidding!");
+        sequence2_1.Add("That was all for show. Did I get you? You for sure thought I was reading your mind or something LOL!");
+        sequence2_1.Add("But, I think… you are a dragon! Well? Well? Am I right?!");
+
+        // SEQUENCE 2_1a
+        sequence2_1a.Add("HAHA YES! I knew it!");
+        sequence2_1a.Add("You know how I could tell?");
+        sequence2_1a.Add("I think there is something about you. I noticed you talked to other people and even me. Your energy and there is something about you that's…. special…");
+        sequence2_1a.Add("Thanks, I try my best. I feel like there is some way to make this situation better.");
+        sequence2_1a.Add("YEAH! I always try my best to make everyone happy! Seeing you talking to people inspired me to try my hardest too! ");
+        sequence2_1a.Add("Thanks, Hana I will keep doing everything I can. I’ll see ya.");
+        sequence2_1a.Add("See ya hyena!");
+
+        // SEQUENCE 2_1b
+        sequence2_1b.Add("Awww, well that stuff is kind of just speculation anyway, right?");
+        sequence2_1b.Add("I think you still act like a dragon at least. You are outgoing and stand out in a crowd. Even in this crowd of diverse people you still manage to have a presence. ");
+        sequence2_1b.Add("Thanks Hana. I mean it. That gives me a bit more confidence haha. I’ll be seeing you.");
+        sequence2_1b.Add("See ya hyena!");
+
+        // SEQUENCE 2_2
+        sequence2_2.Add("Oh ok, no worries haha.");
+        sequence2_2.Add("Well I’m gonna get going now. Later Hana.");
+        sequence2_2.Add("See ya hyena…");
     }
 
     public void onClickAction() {
@@ -90,6 +114,7 @@ public class CharHana : Character, IClick
         StartTalk();
         UI_Feedback.clip = SFX_clicked;
         UI_Feedback.Play();
+        session++;
     }
 
     private void StartTalk(){
@@ -99,7 +124,15 @@ public class CharHana : Character, IClick
         mm.StartConversation();
 
         curLine = -1;
-        seqMethod = () => play1();
+        switch(session){
+            case 0:
+                seqMethod = () => play1();
+                break;
+            case 1:
+                seqMethod = () => play2();
+                break;
+        }
+        
         AdvanceTalk();
     }
 
@@ -164,12 +197,14 @@ public class CharHana : Character, IClick
                 SwitchName("You");
                 SwitchStyle(FontStyle.Italic);
                 ShowButtons();
-                mm.responseButtonTexts[0].GetComponent<Text>().text = responses[0][0];
-                mm.responseButtonTexts[1].GetComponent<Text>().text = responses[0][1]; 
+
+                responses.Clear();
+                responses.Add("Yes");
+                responses.Add("No");
+                mm.responseButtonTexts[0].GetComponent<Text>().text = responses[0];
+                mm.responseButtonTexts[1].GetComponent<Text>().text = responses[1]; 
                 break;
         }
-
-
     }
 
     private void play1_1(){
@@ -243,6 +278,144 @@ public class CharHana : Character, IClick
         }
     }
 
+    private void play2(){
+        lines = sequence2;
+        curSeq = "2";
+
+        switch(curLine){
+            case 0:
+                SwitchName("You");
+                SwitchStyle(FontStyle.Normal);
+                break;
+            
+            case 1:
+                SwitchName("<color=#ff69b4ff>Hana</color>");
+                break;
+
+            case 2:
+                SwitchName("You");
+                break;
+
+            case 3:       
+            case 4:
+                SwitchName("<color=#ff69b4ff>Hana</color>");
+                break;
+            
+            case 5:
+                SwitchName("You");          
+                break;
+
+            case 6:
+                SwitchStyle(FontStyle.Italic);//did she just...
+                break;
+
+            case 7:
+                SwitchStyle(FontStyle.Normal);
+                break;
+
+            case 8:
+                SwitchName("<color=#ff69b4ff>Hana</color>");
+                break;
+            case 9:
+                ShowButtons();
+                responses.Clear();
+                responses.Add("Yea, sure.");
+                responses.Add("No, sorry.");
+                mm.responseButtonTexts[0].GetComponent<Text>().text = responses[0];
+                mm.responseButtonTexts[1].GetComponent<Text>().text = responses[1]; 
+                break;
+        }
+    }
+
+    private void play2_1(){
+        lines = sequence2_1;
+        curSeq = "2_1";
+
+        switch(curLine){
+            case 0:
+            case 1:
+                SwitchName("<color=#ff69b4ff>Hana</color>");
+                break;
+            case 2:
+                ShowButtons();
+                responses.Clear();
+                responses.Add("Yeah, that's right.");
+                responses.Add("Nope.");
+                mm.responseButtonTexts[0].GetComponent<Text>().text = responses[0];
+                mm.responseButtonTexts[1].GetComponent<Text>().text = responses[1];
+                break;
+            
+        }
+        
+    }
+
+    private void play2_1a(){
+        lines = sequence2_1a;
+        curSeq = "2_1a";
+
+        switch(curLine){
+            case 0:
+            case 1:
+            case 2:
+                SwitchName("<color=#ff69b4ff>Hana</color>");
+                break;
+            case 3:
+                SwitchName("You");
+                break;
+            case 4:
+                SwitchName("<color=#ff69b4ff>Hana</color>");
+                break;
+            case 5:
+                SwitchName("You");
+                break;
+            case 6:
+                SwitchName("<color=#ff69b4ff>Hana</color>");
+                EndTalk();
+                break;
+        }
+        
+    }
+
+    private void play2_1b(){
+        lines = sequence2_1b;
+        curSeq = "2_1b";
+
+        switch(curLine){
+            case 0:
+            case 1:
+                SwitchName("<color=#ff69b4ff>Hana</color>");
+                break;
+            case 2:
+                SwitchName("You");
+                break;
+            case 3:
+                SwitchName("<color=#ff69b4ff>Hana</color>");
+                EndTalk();
+                break;
+        }
+        
+    }
+
+    private void play2_2(){
+        lines = sequence2_2;
+        curSeq = "2_2";
+
+        switch(curLine){
+            case 1:
+                SwitchName("<color=#ff69b4ff>Hana</color>");
+                break;
+            case 2:
+                SwitchName("You");
+                break;
+            case 3:
+                SwitchName("<color=#ff69b4ff>Hana</color>");
+                EndTalk();
+                break;
+        }
+        
+    }
+
+
     private void AdvanceTalk(){
         curLine++;
         seqMethod();
@@ -262,12 +435,19 @@ public class CharHana : Character, IClick
         mm.responseButtons[1].SetActive(false);
         curLine = -1;
 
-        if(curSeq == "1"){
-            seqMethod = () => play1_1();
-            AdvanceTalk();
-        }
-        else{
-            EndTalk();
+        switch(curSeq){
+            case "1":
+                seqMethod = () => play1_1();
+                AdvanceTalk();
+                break;
+            case "2":
+                seqMethod = () => play2_1();
+                AdvanceTalk();
+                break;
+            case "2_1":
+                seqMethod = () => play2_1a();
+                AdvanceTalk();
+                break;
         }
     }
 
@@ -277,13 +457,21 @@ public class CharHana : Character, IClick
         mm.responseButtons[1].SetActive(false);
         curLine = -1;
 
-        if(curSeq == "1"){
-            seqMethod = () => play1_2();
-            AdvanceTalk();
+        switch(curSeq){
+            case "1":
+                seqMethod = () => play1_2();
+                AdvanceTalk();
+                break;
+            case "2":
+                seqMethod = () => play2_2();
+                AdvanceTalk();
+                break;
+            case "2_1":
+                seqMethod = () => play2_1b();
+                AdvanceTalk();
+                break;
         }
-        else{
-            EndTalk();
-        }
+
     }
 
     public override void Response3()

@@ -9,6 +9,9 @@ public class CharEddie : Character, IClick
     protected ModeManager mm;
     public AudioSource UI_Feedback;
     public AudioClip SFX_clicked;
+    protected List<string> sequence1 = new List<string>();
+    protected List<string> sequence1_1 = new List<string>();
+    protected List<string> sequence1_2 = new List<string>();
 
     // Start is called before the first frame update
     void Start()
@@ -16,11 +19,12 @@ public class CharEddie : Character, IClick
         mm = FindObjectOfType<ModeManager>();
         curLine = 0;
         sequence1 = new List<string>();
-        responses = new List<List<string>>();
+        responses = new List<string>();
         sequence1.Add("Oh, hey.");
-        responses.Add(new List<string> {"Hi!", "How's it going?"});
+        responses.Clear();
+        responses.Add("Hi!");
+        responses.Add("How's it going?");
         sequence1.Add("I'm kinda busy right now...");
-        responses.Add(new List<string> {"Oh.", "Sorry."});
     }
 
     public void onClickAction() {
@@ -37,8 +41,8 @@ public class CharEddie : Character, IClick
         mm.StartConversation();
         nameUI.GetComponent<Text>().text = "???";
         textUI.GetComponent<TMPro.TextMeshProUGUI>().text = sequence1[curLine];
-        mm.responseButtonTexts[0].GetComponent<Text>().text = responses[curLine][0];
-        mm.responseButtonTexts[1].GetComponent<Text>().text = responses[curLine][1]; 
+        mm.responseButtonTexts[0].GetComponent<Text>().text = responses[0];
+        mm.responseButtonTexts[1].GetComponent<Text>().text = responses[1]; 
         mm.responseButtons[0].SetActive(true);
         mm.responseButtons[1].SetActive(true);
     }
@@ -46,8 +50,11 @@ public class CharEddie : Character, IClick
     private void AdvanceTalk(){
         curLine++;
         textUI.GetComponent<TMPro.TextMeshProUGUI>().text = sequence1[curLine];
-        mm.responseButtonTexts[0].GetComponent<Text>().text = responses[curLine][0];
-        mm.responseButtonTexts[1].GetComponent<Text>().text = responses[curLine][1]; 
+        responses.Clear();
+        responses.Add("Oh.");
+        responses.Add("Sorry.");
+        mm.responseButtonTexts[0].GetComponent<Text>().text = responses[0];
+        mm.responseButtonTexts[1].GetComponent<Text>().text = responses[1]; 
     }
 
     private void EndTalk(){
