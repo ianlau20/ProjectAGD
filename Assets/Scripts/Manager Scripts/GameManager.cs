@@ -374,6 +374,7 @@ public class GameManager : MonoBehaviour
     private void FindLoser(){
         int mostCards = playerHand.Count;
         bool playerWon = false;
+        bool playerSurvived = false;
         loser = enemyHands[0];
 
         // Find the loser
@@ -381,6 +382,7 @@ public class GameManager : MonoBehaviour
             if (mh.currHand.Count >= mostCards){
                 loser = mh;
                 mostCards = loser.currHand.Count;
+                playerSurvived = true;
             }
         }
 
@@ -393,7 +395,7 @@ public class GameManager : MonoBehaviour
         }
 
         // remove who lost
-        if (mostCards == playerHand.Count && playerWon == false){
+        if (playerSurvived == false && playerWon == false){
             UI_Feedback.clip = SFX_lose;
             UI_Feedback.Play();
             LoseUI.SetActive(true);

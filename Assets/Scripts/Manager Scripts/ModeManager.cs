@@ -17,16 +17,21 @@ public class ModeManager : MonoBehaviour
     public List<GameObject> responseButtonTexts;
     public Character curPerson;
     public CharCatman catman;
+    public Intro intro;
     public int pplTalkedTo;
 
     // Start is called before the first frame update
     void Start()
     {
         gm = FindObjectOfType<GameManager>();
-        StartChatMode();
+        StartIntro();
         responseButtons[0].SetActive(false);
         responseButtons[1].SetActive(false);
         responseButtons[2].SetActive(false);
+    }
+
+    private void StartIntro(){
+        intro.StartIntro();
     }
 
     public void StartRound(){

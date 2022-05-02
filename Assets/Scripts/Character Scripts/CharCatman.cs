@@ -30,8 +30,6 @@ public class CharCatman : Character, IClick
     public void onClickAction() {
         // Open Dialogue
         StartTalk();
-        UI_Feedback.clip = SFX_clicked;
-        UI_Feedback.Play();
     }
 
     public void StartTalk(){
