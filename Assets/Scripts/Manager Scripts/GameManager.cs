@@ -67,10 +67,6 @@ public class GameManager : MonoBehaviour
     void Start(){
         mm = FindObjectOfType<ModeManager>();
         deckRend = deckObj.GetComponent<Renderer>();
-    }
-
-    public void SetupMatch(){
-        Deal();
 
         // Create Rule Lists
         Func<bool> rule;
@@ -78,7 +74,8 @@ public class GameManager : MonoBehaviour
         limitRules.Add(rule);
 
         System.Random r = new System.Random();
-        int ruleSet = r.Next(1, 4);
+        //TEMPORARY DECREASED TO ONLY INCLUDE 1 & 2
+        int ruleSet = r.Next(1, 3);
         Debug.Log("Rule set: " + ruleSet);
 
         if (ruleSet == 1){
@@ -95,6 +92,10 @@ public class GameManager : MonoBehaviour
             enableRules.Add(() => FillDog(currentCard));
             enableRules.Add(() => SuccessionRooster(currentCard));
         }
+    }
+
+    public void SetupMatch(){
+        Deal();
 
         // Enable UI
         EndUICoolDown();
@@ -632,6 +633,7 @@ public class GameManager : MonoBehaviour
                 DrawCorrect();
                 i++;
             }
+            IncTurnIndex();
             IncTurnIndex();
             UI_Feedback2.clip = SFX_effect;
             UI_Feedback2.Play();

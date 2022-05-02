@@ -10,8 +10,18 @@ using System;
 public class CharCody : Character, IClick
 {
     protected ModeManager mm;
-    public Sprite sNormal;
-    public Sprite sCrying;
+    public Sprite sNeutral_KnucklesCrack;
+    public Sprite sNeutral_ArmsCrossed;
+    public Sprite sIrate_KnucklesCrack;
+    public Sprite sIrate_ArmsCrossed;
+    public Sprite sBrowsRaised_KnucklesCrack;
+    public Sprite sBrowsRaised_ArmsCrossed;
+    public Sprite sBrowsFurrowed_KnucklesCrack;
+    public Sprite sBrowsFurrowed_ArmsCrossed;
+    public Sprite sAngry_KnucklesCrack;
+    public Sprite sAngry_ArmsCrossed;
+
+
     public SpriteRenderer self;
     public AudioSource UI_Feedback;
     public AudioClip SFX_clicked;
@@ -35,7 +45,7 @@ public class CharCody : Character, IClick
         curName = "<color=#C0C0C0ff>???</color>";
         lines = new List<string>();
         responses = new List<string>();
-        SpriteChange(sCrying);
+        SpriteChange(sNeutral_ArmsCrossed);
 
         // SEQUENCE 1
         sequence1.Add("He-hey how’s it going?");
@@ -123,6 +133,7 @@ public class CharCody : Character, IClick
                 break;
 
             case 1:
+                SpriteChange(sBrowsRaised_ArmsCrossed);
                 SwitchName(curName);
                 break;
             
@@ -131,6 +142,7 @@ public class CharCody : Character, IClick
                 break;
 
             case 3:
+                SpriteChange(sIrate_ArmsCrossed);
                 SwitchName(curName);
                 break;
             
@@ -138,6 +150,7 @@ public class CharCody : Character, IClick
                 SwitchName("You");          
                 break;
             case 5:
+                SpriteChange(sAngry_ArmsCrossed);
                 SwitchName(curName);
                 break;
             
@@ -145,6 +158,7 @@ public class CharCody : Character, IClick
                 SwitchName("You");          
                 break;
             case 7:
+                SpriteChange(sIrate_ArmsCrossed);
                 SwitchName(curName);
                 break;
             
@@ -152,6 +166,7 @@ public class CharCody : Character, IClick
                 SwitchName("You");          
                 break;
             case 9:
+                SpriteChange(sNeutral_ArmsCrossed);
                 SwitchName(curName);
                 break;
             
@@ -160,6 +175,7 @@ public class CharCody : Character, IClick
                 break;
             case 11:
                 SwitchName(curName);
+                SpriteChange(sIrate_ArmsCrossed);
                 SwitchStyle(FontStyle.Italic);
                 break;
 
@@ -176,6 +192,7 @@ public class CharCody : Character, IClick
 
         switch(curLine){
             case 0:
+                SpriteChange(sNeutral_ArmsCrossed);
                 SwitchName("You");
                 SwitchStyle(FontStyle.Bold);
                 break;
@@ -185,6 +202,7 @@ public class CharCody : Character, IClick
                 break;
             
             case 2:
+                SpriteChange(sIrate_ArmsCrossed);
                 SwitchName(curName);
                 break;
 
@@ -218,6 +236,7 @@ public class CharCody : Character, IClick
                 SwitchStyle(FontStyle.Bold);
                 break;
             case 10:
+                SpriteChange(sBrowsRaised_ArmsCrossed);
                 SwitchName(curName);
                 SwitchStyle(FontStyle.Normal);
                 break;
@@ -225,6 +244,7 @@ public class CharCody : Character, IClick
                 SwitchName("You");          
                 break;
             case 12:
+                SpriteChange(sIrate_KnucklesCrack);
                 SwitchName(curName);
                 break;
             
@@ -232,6 +252,7 @@ public class CharCody : Character, IClick
                 SwitchName("You");          
                 break;
             case 14:
+                SpriteChange(sBrowsRaised_KnucklesCrack);
                 SwitchName(curName);
 
                 ShowButtons();
@@ -250,6 +271,7 @@ public class CharCody : Character, IClick
 
         switch(curLine){
             case 0:
+                SpriteChange(sAngry_KnucklesCrack);
                 SwitchName(curName);
                 break;
             case 1:
@@ -266,6 +288,7 @@ public class CharCody : Character, IClick
 
         switch(curLine){
             case 0:
+                SpriteChange(sIrate_ArmsCrossed);
                 SwitchName(curName);
                 break;
             case 1:
@@ -275,6 +298,7 @@ public class CharCody : Character, IClick
                 SwitchName(curName);
                 break;
             case 3:
+                SpriteChange(sNeutral_ArmsCrossed);
                 SwitchName(curName);
                 break;
             case 4:

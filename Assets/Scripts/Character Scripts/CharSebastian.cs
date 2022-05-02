@@ -10,8 +10,22 @@ using System;
 public class CharSebastian : Character, IClick
 {
     protected ModeManager mm;
-    public Sprite sNormal;
-    public Sprite sCrying;
+    public Sprite sWorry_Neutral;
+    public Sprite sWorry_HandsClasped;
+    public Sprite sWorry_Bow;
+    public Sprite sSus_Neutral;
+    public Sprite sSus_HandsClasped;
+    public Sprite sSus_Bow;
+    public Sprite sNeutral_Neutral;
+    public Sprite sNeutral_HandsClasped;
+    public Sprite sNeutral_Bow;
+    public Sprite sIrate_Neutral;
+    public Sprite sIrate_HandsClasped;
+    public Sprite sHappy_Neutral;
+    public Sprite sHappy_HandsClasped;
+    public Sprite sHappy_Bow;
+
+
     public SpriteRenderer self;
     public AudioSource UI_Feedback;
     public AudioClip SFX_clicked;
@@ -30,7 +44,7 @@ public class CharSebastian : Character, IClick
         curName = "<color=#C0C0C0ff>???</color>";
         lines = new List<string>();
         responses = new List<string>();
-        SpriteChange(sCrying);
+        SpriteChange(sNeutral_HandsClasped);
 
         // SEQUENCE 1
         sequence1.Add("*Before you stands a tall and slender man, with perfect posture and grace. He smells like fresh flowers and his aura oozes perfection and class*");
@@ -91,6 +105,8 @@ public class CharSebastian : Character, IClick
         sequence2.Add("Would you like to practice your handshake, young master?");
         sequence2.Add("Yea!");
         sequence2.Add("Very well.");
+        sequence2.Add("*Sebastian extends his right hand with a smile.*");
+        sequence2.Add("*His hand firmly grasps yours, followed by one, two, three pumps.*");
         sequence2.Add("Well done young master, you have a very firm grip. Seems you have learned a lot in such a short time.");
         sequence2.Add("I’m learning from the best, what can I say.");
         sequence2.Add("I shall prepare another lesson for you if you wish to see me next time, young master.");
@@ -141,6 +157,7 @@ public class CharSebastian : Character, IClick
                 SwitchStyle(FontStyle.Bold);         
                 break;
             case 3:
+                SpriteChange(sNeutral_Bow);
                 curName = "<color=#FFD700ff>Sebastian</color>";
                 SwitchStyle(FontStyle.Normal);
                 SwitchName(curName);
@@ -149,48 +166,56 @@ public class CharSebastian : Character, IClick
                 SwitchName("You");          
                 break;
             case 5:
+                SpriteChange(sHappy_Bow);
                 SwitchName(curName);
                 break;
             case 6:
                 SwitchName("You");          
                 break;
             case 7:
+                SpriteChange(sHappy_HandsClasped);
                 SwitchName(curName);
                 break;
             case 8:
                 SwitchName("You");          
                 break;
             case 9:
+                SpriteChange(sNeutral_HandsClasped);
                 SwitchName(curName);
                 break;
             case 10:
                 SwitchName("You");          
                 break;
             case 11:
+                SpriteChange(sIrate_HandsClasped);
                 SwitchName(curName);
                 break;
             case 12:
                 SwitchName("You");          
                 break;
             case 13:
+                SpriteChange(sHappy_Bow);
                 SwitchName(curName);
                 break;
             case 14:
                 SwitchName("You");          
                 break;
             case 15:
+                SpriteChange(sHappy_HandsClasped);
                 SwitchName(curName);
                 break;
             case 16:
                 SwitchName("You");          
                 break;
             case 17:
+                SpriteChange(sNeutral_HandsClasped);
                 SwitchName(curName);
                 break;
             case 18:
                 SwitchName("You");          
                 break;
             case 19:
+                SpriteChange(sIrate_HandsClasped);
                 SwitchName(curName);
                 break;
             case 20:
@@ -204,12 +229,14 @@ public class CharSebastian : Character, IClick
                 break;
             case 23:
             case 24:
+                SpriteChange(sIrate_Neutral);
                 SwitchName(curName);
                 break;
             case 25:
                 SwitchName("You");          
                 break;
             case 26:
+                SpriteChange(sNeutral_Bow);
                 SwitchName(curName);
                 break;
             case 27:
@@ -228,6 +255,7 @@ public class CharSebastian : Character, IClick
 
         switch(curLine){
             case 0:
+                SpriteChange(sNeutral_Neutral);
                 SwitchName("You");          
                 break;
             case 1:
@@ -238,6 +266,7 @@ public class CharSebastian : Character, IClick
                 break;
             case 3:
             case 4:
+                SpriteChange(sHappy_Bow);
                 SwitchName(curName);
                 break;
             case 5:
@@ -246,18 +275,21 @@ public class CharSebastian : Character, IClick
             case 6:
             case 7:
             case 8:
+                SpriteChange(sIrate_Neutral);
                 SwitchName(curName);
                 break;
             case 9:
                 SwitchName("You");          
                 break;
             case 10:
+                SpriteChange(sHappy_Bow);
                 SwitchName(curName);
                 break;
             case 11:
                 SwitchName("You");          
                 break;
             case 12:
+                SpriteChange(sNeutral_Bow);
                 SwitchName(curName);
                 break;
             case 13:
@@ -271,7 +303,10 @@ public class CharSebastian : Character, IClick
                 SwitchName("You");          
                 break;
             case 17:
+                SwitchName(curName);
+                break;
             case 18:
+                SpriteChange(sHappy_Bow);
                 SwitchName(curName);
                 break;
             case 19:
@@ -284,31 +319,42 @@ public class CharSebastian : Character, IClick
                 SwitchName("You");          
                 break;
             case 22:
+                SpriteChange(sHappy_HandsClasped);
                 SwitchName(curName);
                 break;
             case 23:
                 SwitchName("You");          
                 break;
             case 24:
+                SpriteChange(sNeutral_HandsClasped);
                 SwitchName(curName);
                 break;
             case 25:
                 SwitchName("You");     
                 break;
             case 26:
-            case 27:
                 SwitchName(curName);
                 break;
+            case 27:
             case 28:
-                SwitchName("You");     
+                SwitchName("");
+                SwitchStyle(FontStyle.Italic);
                 break;
             case 29:
+                SpriteChange(sNeutral_Neutral);
                 SwitchName(curName);
                 break;
             case 30:
                 SwitchName("You");     
                 break;
             case 31:
+                SpriteChange(sHappy_Neutral);
+                SwitchName(curName);
+                break;
+            case 32:
+                SwitchName("You");     
+                break;
+            case 33:
                 EndTalk();
                 break;
         }

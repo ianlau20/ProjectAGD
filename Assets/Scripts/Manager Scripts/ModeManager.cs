@@ -1,6 +1,8 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using System.Threading.Tasks;
+using System;
 
 public class ModeManager : MonoBehaviour
 {
@@ -15,6 +17,9 @@ public class ModeManager : MonoBehaviour
     public List<Camera> cameras;
     public List<GameObject> responseButtons;
     public List<GameObject> responseButtonTexts;
+    public AudioSource Music;
+    public AudioClip MC_game;
+    public AudioClip MC_talk;
     public Character curPerson;
     public CharCatman catman;
     public Intro intro;
@@ -31,11 +36,16 @@ public class ModeManager : MonoBehaviour
     }
 
     private void StartIntro(){
-        intro.StartIntro();
+        DelayedIntro();
     }
 
     public void StartRound(){
         mode = "play";
+        // Start Music
+        Music.clip = MC_game;
+        Music.volume = 0.1f;
+        Music.Play();
+
         // Switch to main cam
         foreach(Camera cam in cameras){
             cam.gameObject.SetActive(false);
@@ -59,6 +69,11 @@ public class ModeManager : MonoBehaviour
 
     public void StartChatMode(){
         mode = "chat";
+        // Start Music
+        Music.clip = MC_talk;
+        Music.volume = 0.1f;
+        Music.Play();
+
         pplTalkedTo = 0;
         cameras[0].gameObject.SetActive(true);
         cameras[6].gameObject.SetActive(false);
@@ -115,5 +130,10 @@ public class ModeManager : MonoBehaviour
 
     public void SkipDialogue(){
         curPerson.SkipText();
+    }
+
+    private async Task DelayedIntro(){
+        await Task.Delay(500);
+        intro.StartIntro();
     }
 }

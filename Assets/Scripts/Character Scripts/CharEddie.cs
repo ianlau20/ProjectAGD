@@ -10,8 +10,18 @@ using System;
 public class CharEddie : Character, IClick
 {
     protected ModeManager mm;
-    public Sprite sNormal;
-    public Sprite sCrying;
+    public Sprite sSus_Neutral;
+    public Sprite sSus_ArmsCrossed;
+    public Sprite sNeutral_Neutral;
+    public Sprite sNeutral_ArmsCrossed;
+    public Sprite sHappy_Neutral;
+    public Sprite sHappy_HeadScratch;
+    public Sprite sGrumpy_ArmsCrossed;
+    public Sprite sDissapointed_Neutral;
+    public Sprite sDissapointed_HeadScratch;
+    public Sprite sDissapointed_ArmsCrossed;
+
+
     public SpriteRenderer self;
     public AudioSource UI_Feedback;
     public AudioClip SFX_clicked;
@@ -35,7 +45,7 @@ public class CharEddie : Character, IClick
         curName = "<color=#C0C0C0ff>???</color>";
         lines = new List<string>();
         responses = new List<string>();
-        SpriteChange(sCrying);
+        SpriteChange(sSus_Neutral);
 
         // SEQUENCE 1
         sequence1.Add("Can I help you?");
@@ -135,6 +145,7 @@ public class CharEddie : Character, IClick
                 break;
 
             case 4:
+                SpriteChange(sSus_ArmsCrossed);
                 SwitchName(curName);
 
                 ShowButtons();
@@ -153,6 +164,7 @@ public class CharEddie : Character, IClick
 
         switch(curLine){
             case 0:
+                SpriteChange(sGrumpy_ArmsCrossed);
                 SwitchName(curName);
                 break;
             case 1:
@@ -169,6 +181,7 @@ public class CharEddie : Character, IClick
 
         switch(curLine){
             case 0:
+                SpriteChange(sGrumpy_ArmsCrossed);
                 SwitchName(curName);
                 break;
             case 1:
@@ -185,12 +198,14 @@ public class CharEddie : Character, IClick
 
         switch(curLine){
             case 0:
+                SpriteChange(sNeutral_ArmsCrossed);
                 SwitchName(curName);
                 break;
             case 1:
                 SwitchName("You");
                 break;
             case 2:
+                SpriteChange(sGrumpy_ArmsCrossed);
                 SwitchName(curName);
                 break;
             case 3:
@@ -203,8 +218,11 @@ public class CharEddie : Character, IClick
                 SwitchName("You");
                 break;
             case 6:
-            case 7:
+                SpriteChange(sNeutral_ArmsCrossed);
                 SwitchName(curName);
+                break;
+            case 7:
+                SpriteChange(sHappy_Neutral);
                 break;
             case 8:
                 SwitchName("You");
@@ -225,6 +243,7 @@ public class CharEddie : Character, IClick
 
         switch(curLine){
             case 0:
+                SpriteChange(sNeutral_Neutral);
                 SwitchName(curName);
                 break;
 
@@ -233,6 +252,7 @@ public class CharEddie : Character, IClick
                 break;
   
             case 2:
+                SpriteChange(sNeutral_ArmsCrossed);
                 SwitchName(curName);
                 break;
             
@@ -245,6 +265,9 @@ public class CharEddie : Character, IClick
                 break;
 
             case 5:
+                SpriteChange(sDissapointed_ArmsCrossed);
+                SwitchName(curName);
+
                 ShowButtons();
                 responses.Clear();
                 responses.Add("Yes.");
@@ -261,6 +284,7 @@ public class CharEddie : Character, IClick
 
         switch(curLine){
             case 0:
+                SpriteChange(sDissapointed_HeadScratch);
                 SwitchName(curName);
                 break;
             case 1:
@@ -277,6 +301,7 @@ public class CharEddie : Character, IClick
 
         switch(curLine){
             case 0:
+                SpriteChange(sGrumpy_ArmsCrossed);
                 SwitchName(curName);
                 break;
             case 1:
@@ -294,12 +319,14 @@ public class CharEddie : Character, IClick
 
         switch(curLine){
             case 0:
+                SpriteChange(sDissapointed_HeadScratch);
                 SwitchName(curName);
                 break;
             case 1:
                 SwitchName("You");
                 break;
             case 2:
+                SpriteChange(sHappy_HeadScratch);
                 SwitchName(curName);
                 break;
             case 3:

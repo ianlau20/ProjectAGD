@@ -12,6 +12,7 @@ public class Intro : Character
     protected ModeManager mm;
     public Sprite sNormal;
     public Sprite sCat;
+    public GameObject hider;
     public SpriteRenderer self;
     public AudioSource UI_Feedback;
     public AudioClip SFX_clicked;
@@ -100,6 +101,7 @@ public class Intro : Character
                 nameUI.GetComponent<Text>().text = "<color=#C0C0C0ff>???</color>";
                 break;
             case 15:
+                hider.SetActive(false);
                 mm.cameras[0].gameObject.SetActive(true);
                 mm.cameras[8].gameObject.SetActive(false);
                 break;

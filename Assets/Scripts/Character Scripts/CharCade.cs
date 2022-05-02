@@ -10,8 +10,19 @@ using System;
 public class CharCade : Character, IClick
 {
     protected ModeManager mm;
-    public Sprite sNormal;
-    public Sprite sCrying;
+    public Sprite sThinking_Neutral;
+    public Sprite sNeutral_Neutral;
+    public Sprite sHesitant_Punch;
+    public Sprite sHesitant_Neutral;
+    public Sprite sHesitant_FistsUp;
+    public Sprite sHappy_Punch;
+    public Sprite sHappy_Neutral;
+    public Sprite sHappy_FistsUp;
+    public Sprite sBlush_Neutral;
+    public Sprite sAngry_Punch;
+    public Sprite sAngry_Neutral;
+    public Sprite sAngry_FistsUp;
+ 
     public SpriteRenderer self;
     public AudioSource UI_Feedback;
     public AudioClip SFX_clicked;
@@ -39,12 +50,12 @@ public class CharCade : Character, IClick
         curName = "<color=#C0C0C0ff>???</color>";
         lines = new List<string>();
         responses = new List<string>();
-        SpriteChange(sCrying);
+        SpriteChange(sThinking_Neutral);
 
         // SEQUENCE 1
         sequence1.Add("*In front of you is a young man, squatting on the floor and subtly nodding his head to some rock music.*");
         sequence1.Add("Where did he get that radio? Did he sneak it in with him? I guess the game master doesn't mind, since they probably would have confiscated it by now.");
-        sequence1.Add("* You swear in the corner of your eye you see the game master nodding along with the music.*");
+        sequence1.Add("*You swear in the corner of your eye you see the game master nodding along with the music.*");
         sequence1.Add("*The boy looks up and notices you. Suddenly, he stands up.*");
         sequence1.Add("The hell are you looking at!?!");
         sequence1.Add("Oh nothing! Just admiring your tunes haha. ");
@@ -186,6 +197,7 @@ public class CharCade : Character, IClick
                 break;
 
             case 4:
+                SpriteChange(sAngry_Punch);
                 SwitchStyle(FontStyle.Normal);
                 SwitchName(curName);
                 break;
@@ -193,6 +205,7 @@ public class CharCade : Character, IClick
                 SwitchName("You");          
                 break;
             case 6:
+                SpriteChange(sAngry_FistsUp);
                 SwitchName(curName);
                 break;
             case 7:
@@ -200,6 +213,7 @@ public class CharCade : Character, IClick
                 SwitchStyle(FontStyle.Italic);
                 break;
             case 8:
+                SpriteChange(sNeutral_Neutral);
                 SwitchStyle(FontStyle.Normal);
                 SwitchName(curName);
                 break;
@@ -212,6 +226,7 @@ public class CharCade : Character, IClick
                 SwitchStyle(FontStyle.Normal);       
                 break;
             case 11:
+                SpriteChange(sHesitant_Neutral);
                 SwitchName(curName);
                 break;
             case 12:
@@ -223,12 +238,14 @@ public class CharCade : Character, IClick
                 SwitchStyle(FontStyle.Normal);       
                 break;
             case 14:
+                SpriteChange(sNeutral_Neutral);
                 SwitchName(curName);
                 break;
             case 15:
                 SwitchName("You");        
                 break;
             case 16:
+                SpriteChange(sAngry_Punch);
                 SwitchName(curName);
                 break;
             case 17:
@@ -239,6 +256,7 @@ public class CharCade : Character, IClick
                 SwitchStyle(FontStyle.Bold);       
                 break;
             case 19:
+                SpriteChange(sThinking_Neutral);
                 SwitchName(curName);
                 SwitchStyle(FontStyle.Normal); 
                 break;
@@ -246,9 +264,11 @@ public class CharCade : Character, IClick
                 SwitchName("You");        
                 break;
             case 21:
+                SpriteChange(sNeutral_Neutral);
                 SwitchName(curName);
                 break;
             case 22:
+                SpriteChange(sHappy_Neutral);
                 curName = "<color=#A020F0ff>Cade</color>";
                 SwitchName(curName);
                 break;
@@ -259,12 +279,14 @@ public class CharCade : Character, IClick
                 SwitchName("You");        
                 break;
             case 25:
+                SpriteChange(sHappy_Punch);
                 SwitchName(curName);
                 break;
             case 26:
                 SwitchName("You");        
                 break;
             case 27:
+                SpriteChange(sHappy_FistsUp);
                 SwitchName(curName);
                 break;
             case 28:
@@ -274,6 +296,7 @@ public class CharCade : Character, IClick
                 SwitchName("You");        
                 break;
             case 30:
+                SpriteChange(sHesitant_Neutral);
                 SwitchName(curName);
                 break;
 
@@ -290,6 +313,7 @@ public class CharCade : Character, IClick
 
         switch(curLine){
             case 0:
+                SpriteChange(sNeutral_Neutral);
                 SwitchName("You");
                 break;
             case 1:
@@ -311,18 +335,21 @@ public class CharCade : Character, IClick
                 SwitchName("You");        
                 break;
             case 6:
+                SpriteChange(sAngry_FistsUp);
                 SwitchName(curName);
                 break;
             case 7:
                 SwitchName("You");        
                 break;
             case 8:
+                SpriteChange(sAngry_Neutral);
                 SwitchName(curName);
                 break;
             case 9:
                 SwitchName("You");        
                 break;
             case 10:
+                SpriteChange(sAngry_Punch);
                 SwitchName(curName);
                 break;
             case 11:
@@ -334,38 +361,48 @@ public class CharCade : Character, IClick
                 SwitchStyle(FontStyle.Normal);       
                 break;
             case 13:
-            case 14:
+                SpriteChange(sThinking_Neutral);
                 SwitchName(curName);
+                break;
+            case 14:
+                SpriteChange(sHappy_Neutral);
                 break;
             case 15:
                 SwitchName("You");        
                 break;
             case 16:
+                SpriteChange(sAngry_Neutral);
                 SwitchName(curName);
                 break;
             case 17:
                 SwitchName("You");        
                 break;
             case 18:
+                SpriteChange(sThinking_Neutral);
                 SwitchName(curName);
                 break;
             case 19:
                 SwitchName("You");        
                 break;
             case 20:
+                SpriteChange(sAngry_Punch);
                 SwitchName(curName);
                 break;
             case 21:
                 SwitchName("You");        
                 break;
             case 22:
-            case 23:
+                SpriteChange(sHappy_Punch);
                 SwitchName(curName);
+                break;
+            case 23:
+                SpriteChange(sHesitant_Neutral);
                 break;
             case 24:
                 SwitchName("You");        
                 break;
             case 25:
+                SpriteChange(sNeutral_Neutral);
                 SwitchName(curName);
 
                 ShowButtons();
@@ -386,6 +423,7 @@ public class CharCade : Character, IClick
 
         switch(curLine){
             case 0:
+                SpriteChange(sAngry_Neutral);
                 SwitchName(curName);
                 break;
             case 1:
@@ -402,6 +440,7 @@ public class CharCade : Character, IClick
 
         switch(curLine){
             case 0:
+                SpriteChange(sHappy_FistsUp);
                 SwitchName(curName);
                 break;
             case 1:
@@ -418,6 +457,7 @@ public class CharCade : Character, IClick
 
         switch(curLine){
             case 0:
+                SpriteChange(sNeutral_Neutral);
                 SwitchName(curName);
 
                 ShowButtons();
@@ -438,6 +478,7 @@ public class CharCade : Character, IClick
 
         switch(curLine){
             case 0:
+                SpriteChange(sAngry_Neutral);
                 SwitchName(curName);
                 break;
             case 1:
@@ -454,6 +495,7 @@ public class CharCade : Character, IClick
 
         switch(curLine){
             case 0:
+                SpriteChange(sHappy_FistsUp);
                 SwitchName(curName);
                 break;
             case 1:
@@ -470,9 +512,11 @@ public class CharCade : Character, IClick
 
         switch(curLine){
             case 0:
+                SpriteChange(sThinking_Neutral);
                 SwitchName(curName);
                 break;
             case 1:
+                SpriteChange(sNeutral_Neutral);
                 SwitchName(curName);
 
                 ShowButtons2();
@@ -491,6 +535,7 @@ public class CharCade : Character, IClick
 
         switch(curLine){
             case 0:
+                SpriteChange(sThinking_Neutral);
                 SwitchName(curName);
                 break;
             case 1:
@@ -507,6 +552,7 @@ public class CharCade : Character, IClick
 
         switch(curLine){
             case 0:
+                SpriteChange(sAngry_Punch);
                 SwitchName(curName);
                 break;
             case 1:
@@ -524,6 +570,7 @@ public class CharCade : Character, IClick
 
         switch(curLine){
             case 0:
+                SpriteChange(sNeutral_Neutral);
                 SwitchName(curName);
                 break;
             case 1:
@@ -534,9 +581,12 @@ public class CharCade : Character, IClick
                 SwitchStyle(FontStyle.Italic);
                 break;
             case 3:
-            case 4:
+                SpriteChange(sThinking_Neutral);
                 SwitchName(curName);
                 SwitchStyle(FontStyle.Normal);
+                break;
+            case 4:
+                SpriteChange(sNeutral_Neutral);
                 break;
             case 5:
                 SwitchName("You");
