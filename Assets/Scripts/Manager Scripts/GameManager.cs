@@ -21,6 +21,7 @@ public class GameManager : MonoBehaviour
     public GameObject latestCardUI;
     public GameObject WinUI;
     public GameObject LoseUI;
+    public GameObject SurvivedUI;
     public GameObject drawButton;
     public GameObject nextPageUI;
     public GameObject previousPageUI;
@@ -41,7 +42,9 @@ public class GameManager : MonoBehaviour
     public AudioClip SFX_shuffle;
     public AudioClip SFX_win;
     public AudioClip SFX_lose;
+    public AudioClip SFX_survived;
     public AudioClip SFX_effect;
+    public AudioClip SFX_death;
     private int TurnIndex = -1;
     private int pageCount = 1;
     private int curPage = 0;
@@ -58,7 +61,8 @@ public class GameManager : MonoBehaviour
     List<Action> enableRules = new List<Action>();
     private Vector3 scaleChange = new Vector3(0.00f, 0.0025f, 0.00f);
     private Vector3 resetHeight = new Vector3(0.07f, 0.00f, 0.105f);
-    private Vector3 resetPos = new Vector3(2f, 0.59f, -0.5f);
+    private Vector3 resetPos = new Vector3(1.92200005f,0.532400012f,0.725000024f);
+    private MaoHand loser;
 
     void Start(){
         mm = FindObjectOfType<ModeManager>();
@@ -354,21 +358,60 @@ public class GameManager : MonoBehaviour
 
     private bool CheckForWinner(){
         if (playerHand.Count == 0){
-            UI_Feedback.clip = SFX_win;
-            UI_Feedback.Play();
-            WinUI.SetActive(true);
+            FindLoser();
             return true;
         }
         foreach(MaoHand mh in enemyHands){
             if (mh.currHand.Count == 0){
-                UI_Feedback.clip = SFX_lose;
-                UI_Feedback.Play();
-                LoseUI.SetActive(true);
-                DelayedHideLose();
+                FindLoser();
                 return true;
             }
         }
         return false;
+    }
+
+    // find and remove the loser from the game
+    private void FindLoser(){
+        int mostCards = playerHand.Count;
+        bool playerWon = false;
+        loser = enemyHands[0];
+
+        // Find the loser
+        foreach(MaoHand mh in enemyHands){
+            if (mh.currHand.Count >= mostCards){
+                loser = mh;
+                mostCards = loser.currHand.Count;
+            }
+        }
+
+        // check if player won
+        if (playerHand.Count == 0){
+            UI_Feedback.clip = SFX_win;
+            UI_Feedback.Play();
+            WinUI.SetActive(true);
+            playerWon = true;
+        }
+
+        // remove who lost
+        if (mostCards == playerHand.Count && playerWon == false){
+            UI_Feedback.clip = SFX_lose;
+            UI_Feedback.Play();
+            LoseUI.SetActive(true);
+            //Delayed game restart
+            DelayedRestart();
+            return;
+        }
+        else {
+            if (!playerWon){
+                UI_Feedback.clip = SFX_survived;
+                UI_Feedback.Play();
+                SurvivedUI.SetActive(true);
+            }
+            //play dying sound
+            UI_Feedback2.clip = SFX_death;
+            UI_Feedback2.Play();
+            return;
+        }
     }
 
     // Perform game clean up
@@ -411,8 +454,12 @@ public class GameManager : MonoBehaviour
         abilityRules.Clear();
         enableRules.Clear();
 
-        // <<HAVE SOMETHING THAT REMOVES THE LOSER>>
+        // REMOVE LOSER
+        loser.gameObject.transform.parent.gameObject.SetActive(false);
+        enemyHands.Remove(loser);
+
         // <<LATER ADD SYSTEM THAT ALLOWS PLAYER TO CHOOSE NEW RULE>>
+
 
         // Clean open slots & pages
         for (int i = 0; i < freeCardSlots.Length; i++){
@@ -682,6 +729,11 @@ public class GameManager : MonoBehaviour
     private async Task DelayedStartChat(){
         await Task.Delay(3000);
         mm.StartChatMode();
+    }
+
+    private async Task DelayedRestart(){
+        await Task.Delay(3000);
+        SceneManager.LoadScene(0);
     }
 
     public Card GetLatestCard(){

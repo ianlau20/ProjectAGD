@@ -17,6 +17,7 @@ public abstract class Character : MonoBehaviour
     protected int curLine;
     protected int session;
     protected string curSeq;
+    protected string curName;
 
     public abstract void Response1();
     public abstract void Response2();

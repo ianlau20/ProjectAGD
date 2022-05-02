@@ -32,6 +32,7 @@ public class CharHana : Character, IClick
         curLine = -1;
         session = 0;
         curSeq = "0";
+        curName = "<color=#C0C0C0ff>???</color>";
         lines = new List<string>();
         responses = new List<string>();
         SpriteChange(sCrying);
@@ -124,6 +125,7 @@ public class CharHana : Character, IClick
         mm.StartConversation();
 
         curLine = -1;
+        SwitchStyle(FontStyle.Normal);
         switch(session){
             case 0:
                 seqMethod = () => play1();
@@ -142,18 +144,19 @@ public class CharHana : Character, IClick
 
         switch(curLine){
             case 0:
-                SwitchName("???");
+                SwitchName(curName);
                 SwitchStyle(FontStyle.Normal);
                 break;
             
             case 1:
-                SwitchName("<color=#ff69b4ff>Hana</color>");
+                curName = "<color=#ff69b4ff>Hana</color>";
+                SwitchName(curName);
                 SpriteChange(sNormal);
                 break;
 
             case 2:
                 SwitchName("You");
-                SwitchStyle(FontStyle.Italic);
+                SwitchStyle(FontStyle.Bold);
                 break;
 
             case 3:
@@ -161,7 +164,7 @@ public class CharHana : Character, IClick
                 break;
             
             case 4:
-                SwitchName("<color=#ff69b4ff>Hana</color>");
+                SwitchName(curName);
                 break;
             
             case 5:
@@ -169,11 +172,11 @@ public class CharHana : Character, IClick
                 break;
 
             case 6:
-                SwitchStyle(FontStyle.Italic);//what an active..
+                SwitchStyle(FontStyle.Bold);//what an active..
                 break;
 
             case 7:
-                SwitchName("<color=#ff69b4ff>Hana</color>");
+                SwitchName(curName);
                 SwitchStyle(FontStyle.Normal);
                 break;
 
@@ -182,7 +185,7 @@ public class CharHana : Character, IClick
                 break;
 
             case 9:
-                SwitchName("<color=#ff69b4ff>Hana</color>");
+                SwitchName(curName);
                 break;
 
             case 10:
@@ -190,12 +193,12 @@ public class CharHana : Character, IClick
                 break;
 
             case 11:
-                SwitchName("<color=#ff69b4ff>Hana</color>");
+                SwitchName(curName);
                 break;
 
             case 12:
                 SwitchName("You");
-                SwitchStyle(FontStyle.Italic);
+                SwitchStyle(FontStyle.Bold);
                 ShowButtons();
 
                 responses.Clear();
@@ -217,23 +220,23 @@ public class CharHana : Character, IClick
                 SwitchStyle(FontStyle.Normal);
                 break;
             case 1:
-                SwitchName("<color=#ff69b4ff>Hana</color>");
+                SwitchName(curName);
                 break;
             case 2:
                 SwitchName("You");
-                SwitchStyle(FontStyle.Italic);
+                SwitchStyle(FontStyle.Bold);
                 break;
             case 3:
                 SwitchStyle(FontStyle.Normal);
                 break;
             case 4:
-                SwitchName("<color=#ff69b4ff>Hana</color>");
+                SwitchName(curName);
                 break;
             case 5:
                 SwitchName("You");
                 break;
             case 6:
-                SwitchName("<color=#ff69b4ff>Hana</color>");
+                SwitchName(curName);
                 break;
             case 7:
                 EndTalk();
@@ -334,7 +337,7 @@ public class CharHana : Character, IClick
         switch(curLine){
             case 0:
             case 1:
-                SwitchName("<color=#ff69b4ff>Hana</color>");
+                SwitchName(curName);
                 break;
             case 2:
                 ShowButtons();
@@ -357,19 +360,21 @@ public class CharHana : Character, IClick
             case 0:
             case 1:
             case 2:
-                SwitchName("<color=#ff69b4ff>Hana</color>");
+                SwitchName(curName);
                 break;
             case 3:
                 SwitchName("You");
                 break;
             case 4:
-                SwitchName("<color=#ff69b4ff>Hana</color>");
+                SwitchName(curName);
                 break;
             case 5:
                 SwitchName("You");
                 break;
             case 6:
-                SwitchName("<color=#ff69b4ff>Hana</color>");
+                SwitchName(curName);
+                break;
+            case 7:
                 EndTalk();
                 break;
         }
@@ -383,13 +388,15 @@ public class CharHana : Character, IClick
         switch(curLine){
             case 0:
             case 1:
-                SwitchName("<color=#ff69b4ff>Hana</color>");
+                SwitchName(curName);
                 break;
             case 2:
                 SwitchName("You");
                 break;
             case 3:
-                SwitchName("<color=#ff69b4ff>Hana</color>");
+                SwitchName(curName);
+                break;
+            case 4:
                 EndTalk();
                 break;
         }
@@ -401,14 +408,16 @@ public class CharHana : Character, IClick
         curSeq = "2_2";
 
         switch(curLine){
-            case 1:
-                SwitchName("<color=#ff69b4ff>Hana</color>");
+            case 0:
+                SwitchName(curName);
                 break;
-            case 2:
+            case 1:
                 SwitchName("You");
                 break;
+            case 2:
+                SwitchName(curName);
+                break;
             case 3:
-                SwitchName("<color=#ff69b4ff>Hana</color>");
                 EndTalk();
                 break;
         }
