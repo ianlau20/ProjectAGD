@@ -452,11 +452,6 @@ public class GameManager : MonoBehaviour
         // Have the next game start with the player
         TurnIndex = -1;
 
-        // Clear match rules
-        limitRules.Clear();
-        abilityRules.Clear();
-        enableRules.Clear();
-
         // REMOVE LOSER
         loser.gameObject.transform.parent.gameObject.SetActive(false);
         enemyHands.Remove(loser);
