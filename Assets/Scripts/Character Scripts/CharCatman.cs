@@ -9,6 +9,7 @@ public class CharCatman : Character, IClick
     protected ModeManager mm;
     public AudioSource UI_Feedback;
     public AudioClip SFX_clicked;
+    public AudioClip SFX_drum;
     protected List<string> sequence1 = new List<string>();
     protected List<string> sequence1_1 = new List<string>();
     protected List<string> sequence1_2 = new List<string>();
@@ -20,7 +21,7 @@ public class CharCatman : Character, IClick
         curLine = 0;
         sequence1 = new List<string>();
         responses = new List<string>();
-        sequence1.Add("Would you like to start?");
+        sequence1.Add("Let's begin.");
         responses.Clear();
         responses.Add("Yes");
         responses.Add("No");
@@ -33,17 +34,19 @@ public class CharCatman : Character, IClick
         UI_Feedback.Play();
     }
 
-    private void StartTalk(){
+    public void StartTalk(){
         mm.curPerson = this;
         mm.cameras[0].gameObject.SetActive(false);
         mm.cameras[1].gameObject.SetActive(true);
         mm.StartConversation();
-        nameUI.GetComponent<Text>().text = "???";
+        UI_Feedback.clip = SFX_drum;
+        UI_Feedback.Play();
+        nameUI.GetComponent<Text>().text = "<color=#C0C0C0ff>???</color>";
         textUI.GetComponent<TMPro.TextMeshProUGUI>().text = sequence1[curLine];
         mm.responseButtonTexts[0].GetComponent<Text>().text = responses[0];
         mm.responseButtonTexts[1].GetComponent<Text>().text = responses[1]; 
-        mm.responseButtons[0].SetActive(true);
-        mm.responseButtons[1].SetActive(true);
+        //mm.responseButtons[0].SetActive(true);
+        //mm.responseButtons[1].SetActive(true);
     }
 
     private void EndTalk(){
@@ -70,6 +73,7 @@ public class CharCatman : Character, IClick
 
     public override void SkipText()
     {
-        //AdvanceTalk();
+        EndTalk();
+        mm.StartRound();
     }
 }

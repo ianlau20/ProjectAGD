@@ -322,7 +322,7 @@ public class CharSebastian : Character, IClick
 
     private void EndTalk(){
         curLine = -1;
-        mm.cameras[2].gameObject.SetActive(false);
+        mm.cameras[5].gameObject.SetActive(false);
         mm.cameras[0].gameObject.SetActive(true);
         mm.EndConversation();
     }
