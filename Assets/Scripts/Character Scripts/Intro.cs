@@ -12,6 +12,7 @@ public class Intro : Character
     protected ModeManager mm;
     public Sprite sNormal;
     public Sprite sCat;
+    public Sprite TeaBG;
     public GameObject hider;
     public SpriteRenderer self;
     public AudioSource UI_Feedback;
@@ -22,8 +23,8 @@ public class Intro : Character
 
     
 
-    // Start is called before the first frame update
-    void Start()
+    // LoadDialogue is called after name is input
+    public override void LoadDialogue()
     {
         mm = FindObjectOfType<ModeManager>();
         curLine = -1;
@@ -93,6 +94,9 @@ public class Intro : Character
         switch(curLine){
             case 0:
                 SwitchName("");
+                break;
+            case 4:
+                //SpriteChange(TeaBG);
                 break;
             case 14:
                 SpriteChange(sCat);

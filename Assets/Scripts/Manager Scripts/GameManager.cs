@@ -59,7 +59,7 @@ public class GameManager : MonoBehaviour
     List<Func<bool>> limitRules = new List<Func<bool>>();
     List<Action> abilityRules = new List<Action>();
     List<Action> enableRules = new List<Action>();
-    private Vector3 scaleChange = new Vector3(0.00f, 0.0025f, 0.00f);
+    private Vector3 scaleChange = new Vector3(0.00f, 0.001f, 0.00f);
     private Vector3 resetHeight = new Vector3(0.07f, 0.00f, 0.105f);
     private Vector3 resetPos = new Vector3(1.92200005f,0.532400012f,0.725000024f);
     private MaoHand loser;
@@ -246,6 +246,11 @@ public class GameManager : MonoBehaviour
             checkedPage++;
             slotInd = 0;
         }
+
+        if (deck.Count == 0){
+            deckRend.enabled = false;
+            Shuffle();
+        }
     }
 
     public void DrawCardAI(){
@@ -264,6 +269,11 @@ public class GameManager : MonoBehaviour
         randCard.hasBeenPlayed = false;
         enemyHands[TurnIndex].AddToHand(randCard);
         deck.Remove(randCard);
+
+        if (deck.Count == 0){
+            deckRend.enabled = false;
+            Shuffle();
+        }
     }
 
     public void PlayCard(Card playedCard){
@@ -335,11 +345,6 @@ public class GameManager : MonoBehaviour
             successionEnabled = false;
             UI_Feedback.clip = SFX_effect;
             UI_Feedback.Play();
-        }
-
-        if (deck.Count == 0){
-            deckRend.enabled = false;
-            Shuffle();
         }
 
         // If not player turn, play AI
@@ -432,14 +437,12 @@ public class GameManager : MonoBehaviour
             mh.currHand.Clear();
             mh.ClearCardBacks();
         }
-        foreach(Card c in playedPile){
-            deck.Add(c);
-        }
-        playedPile.Clear();
 
         // Reset Latest Card & Physical Deck/Play Pile
         latestCard = null;
         latestCardUI.GetComponent<Image>().sprite = cardBackSprite;
+
+        // Takes care of cards in play pile
         Shuffle();
 
 

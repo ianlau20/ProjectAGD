@@ -35,14 +35,14 @@ public class CharEddie : Character, IClick
     protected List<string> sequence2_3 = new List<string>();
     
 
-    // Start is called before the first frame update
-    void Start()
+    // LoadDialogue is called after name is input
+    public override void LoadDialogue()
     {
         mm = FindObjectOfType<ModeManager>();
         curLine = -1;
         session = 0;
         curSeq = "0";
-        curName = "<color=#C0C0C0ff>???</color>";
+        curName = "<color=#C19A6Bff>???</color>";
         lines = new List<string>();
         responses = new List<string>();
         SpriteChange(sSus_Neutral);

@@ -13,7 +13,7 @@ public class ModeManager : MonoBehaviour
     public List<GameObject> chatModeUI;
     public List<GameObject> convoOffUI;
     public List<GameObject> convoOnUI;
-    public List<GameObject> people;
+    public List<Character> people;
     public List<Camera> cameras;
     public List<GameObject> responseButtons;
     public List<GameObject> responseButtonTexts;
@@ -24,19 +24,24 @@ public class ModeManager : MonoBehaviour
     public CharCatman catman;
     public Intro intro;
     public int pplTalkedTo;
+    public string username;
 
     // Start is called before the first frame update
     void Start()
     {
         gm = FindObjectOfType<GameManager>();
-        StartIntro();
         responseButtons[0].SetActive(false);
         responseButtons[1].SetActive(false);
         responseButtons[2].SetActive(false);
+
+        // Turn off hitboxes
+        foreach(Character person in people){
+            person.gameObject.GetComponent<BoxCollider2D>().enabled = true;
+        }
     }
 
-    private void StartIntro(){
-        DelayedIntro();
+    public void StartIntro(){
+        intro.StartIntro();
     }
 
     public void StartRound(){
@@ -60,8 +65,8 @@ public class ModeManager : MonoBehaviour
             ui_element.SetActive(true);
         }
         // Turn off hitboxes
-        foreach(GameObject person in people){
-            person.GetComponent<BoxCollider2D>().enabled = false;
+        foreach(Character person in people){
+            person.gameObject.GetComponent<BoxCollider2D>().enabled = false;
         }
         gm.GetComponent<GameManager>().enabled = true;
         gm.SetupMatch();
@@ -84,8 +89,8 @@ public class ModeManager : MonoBehaviour
         chatModeUI[4].SetActive(true); // click ppl text
 
         // Turn on hitboxes
-        foreach(GameObject person in people){
-            person.GetComponent<BoxCollider2D>().enabled = true;
+        foreach(Character person in people){
+            person.gameObject.GetComponent<BoxCollider2D>().enabled = true;
         }
     }
 
@@ -95,8 +100,8 @@ public class ModeManager : MonoBehaviour
         }
 
         // Turn off hitboxes
-        foreach(GameObject person in people){
-            person.GetComponent<BoxCollider2D>().enabled = false;
+        foreach(Character person in people){
+            person.gameObject.GetComponent<BoxCollider2D>().enabled = false;
         }
     }
     public void EndConversation(){
@@ -106,13 +111,13 @@ public class ModeManager : MonoBehaviour
         }
 
         // Turn on hitboxes
-        foreach(GameObject person in people){
-            person.GetComponent<BoxCollider2D>().enabled = true;
+        foreach(Character person in people){
+            person.gameObject.GetComponent<BoxCollider2D>().enabled = true;
         }
         // Except for who you just talked to
-        curPerson.gameObject.GetComponent<BoxCollider2D>().enabled = false;
+        //curPerson.gameObject.GetComponent<BoxCollider2D>().enabled = false;
 
-        if (pplTalkedTo == 2){
+        if (pplTalkedTo == 5 || (pplTalkedTo == 1 && gm.enemyHands.Count == 1)){
             //cat interrupt
             catman.StartTalk();
         }
@@ -128,12 +133,15 @@ public class ModeManager : MonoBehaviour
         curPerson.Response3();
     }
 
-    public void SkipDialogue(){
-        curPerson.SkipText();
+    public void LoadAllDialogue(){
+        intro.LoadDialogue();
+        catman.LoadDialogue();
+        foreach(Character person in people){
+            person.LoadDialogue();
+        }
     }
 
-    private async Task DelayedIntro(){
-        await Task.Delay(500);
-        intro.StartIntro();
+    public void SkipDialogue(){
+        curPerson.SkipText();
     }
 }

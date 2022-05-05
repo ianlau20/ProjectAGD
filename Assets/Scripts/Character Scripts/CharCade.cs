@@ -37,17 +37,24 @@ public class CharCade : Character, IClick
     protected List<string> sequence2_8a = new List<string>();
     protected List<string> sequence2_8b = new List<string>();
     protected List<string> sequence2_9 = new List<string>();
+    protected List<string> sequence3 = new List<string>();
+    protected List<string> sequence3_1 = new List<string>();
+    protected List<string> sequence3_2 = new List<string>();
+    protected List<string> sequence3_3 = new List<string>();
+    protected List<string> sequence3_4 = new List<string>();
+    protected List<string> sequence4 = new List<string>();
+    protected List<string> sequenceSad = new List<string>();
     
     
 
-    // Start is called before the first frame update
-    void Start()
+    // LoadDialogue is called after name is input
+    public override void LoadDialogue()
     {
         mm = FindObjectOfType<ModeManager>();
         curLine = -1;
         session = 0;
         curSeq = "0";
-        curName = "<color=#C0C0C0ff>???</color>";
+        curName = "<color=#A020F0ff>???</color>";
         lines = new List<string>();
         responses = new List<string>();
         SpriteChange(sThinking_Neutral);
@@ -76,7 +83,7 @@ public class CharCade : Character, IClick
         sequence1.Add("Me? No way never-never. ");
         sequence1.Add("I had you painted out to be a massive dork loser. Guess I was wrong. ");
         sequence1.Add("Name’s Cade, Cade Vicious. How's it fuckin goin?");
-        sequence1.Add("I’m Jessie.");
+        sequence1.Add("I’m " + mm.username + ".");
         sequence1.Add("So other than a god-tier music taste, what else is there to know about you?");
         sequence1.Add("I’m a pretty simple man. This city is my kingdom and I’m the king. I am a pretty chill king though. Don't piss me off and I won't bash your face in. Easy. ");
         sequence1.Add("Sounds simple enough.");
@@ -147,6 +154,88 @@ public class CharCade : Character, IClick
         sequence2_9.Add("Class is dismissed for now. ");
         sequence2_9.Add("Later Cade. ");
 
+        // SEQUENCE 3
+        sequence3.Add("Hey! I gotta ask you something important. ");
+        sequence3.Add("Oh sure, what's up?");
+        sequence3.Add("Do you like animals?");
+        sequence3.Add("Uh…");
+        sequence3.Add("Why are you staring at me like that? Answer the damn question.");
+        sequence3.Add("Yeah, I like animals.");
+        sequence3.Add("Ok great, that was another test. Congrats you passed. ");
+        sequence3.Add("Is there any deeper meaning behind that question?");
+        sequence3.Add("Don’t worry about the “deeper meaning” right now. ");
+        sequence3.Add("Ok follow-up question. Cats or dogs?");
+
+        // SEQUENCE 3_1
+        sequence3_1.Add("Hm, I am more of a dog person, but that is an acceptable answer. ");
+
+        // SEQUENCE 3_2
+        sequence3_2.Add("Nice! Me too, dogs are way cooler than cats. ");
+
+        // SEQUENCE 3_3
+        sequence3_3.Add("Interesting… I never thought of that before.");
+
+        // SEQUENCE 3_4
+        sequence3_4.Add("Good, good. Everything is looking great so far. ");
+        sequence3_4.Add("Did you have any pets growing up Cade?");
+        sequence3_4.Add("Of course! I found a small dog in an alley as a kid and took it home. Had to hide it from my parents though. Named him Meatball. ");
+        sequence3_4.Add("He was a mutt. I couldn't tell what breed, but he looked like he had some beagle in him.");
+        sequence3_4.Add("That's nice.");
+        sequence3_4.Add("He was the best, small as a shoe, but man he was tough as nails. He didn’t take shit from nobody.");
+        sequence3_4.Add("Smart little bastard too managed to find where I hid the treats every time I moved them.");
+        sequence3_4.Add("That’s awesome!");
+        sequence3_4.Add("Right! This one time he…");
+        sequence3_4.Add("DAMMIT, I’M SUPPOSED TO BE QUESTIONING YOU HERE! I DON’T WANNA THINK ABOUT THIS SHIT RIGHT NOW. ");
+        sequence3_4.Add("WE ARE DONE FOR TODAY! ");
+        sequence3_4.Add("*Cade puts his arm over his eyes and walks away*");
+        sequence3_4.Add("OH MEATBALL, MY LITTLE WARRIOR! ");
+
+        // SEQUENCE 4
+        sequence4.Add("Yo! Dude! Come here for a sec.");
+        sequence4.Add("What's going on Cade?");
+        sequence4.Add("Alright, after evaluating your scores I have decided that you are worthy.");
+        sequence4.Add("Sweet! I can join your gang?");
+        sequence4.Add("What? No not that, this is MUCH bigger. ");
+        sequence4.Add("Bigger? What is it?");
+        sequence4.Add("My true dream.");
+        sequence4.Add("Your true dream?");
+        sequence4.Add("What are you a parrot? Let me finish.");
+        sequence4.Add("Right, sorry.");
+        sequence4.Add("Ever since I was a kid, I loved animals, especially strays. They reminded me of myself, tossed away by society with nowhere to go. ");
+        sequence4.Add("Once I left my parent's place, I only had my small apartment, so I couldn't take care of a lot, I only got about 25 pets right now.");
+        sequence4.Add("25!? That seems like a lot to me.");
+        sequence4.Add("But it’s not enough. I need to go bigger. I want to open up an animal shelter. ");
+        sequence4.Add("That sounds like a great idea!");
+        sequence4.Add("It is. It comes with two problems though. One, I don't have enough money, and two, my appearance.");
+        sequence4.Add("I’ve been taking night classes in secret so I can increase my chances of getting a better job, but issue number two is still a problem.");
+        sequence4.Add("I get the money, but what do you mean your appearance is a problem?");
+        sequence4.Add("Isn't it obvious? I can’t be a tough-as-nails biker gang leader and like puppies kissing my face at the same time! My crew will think I'm soft, and I can't have that.");
+        sequence4.Add("Are you sure? I think you might be exaggerating. ");
+        sequence4.Add("No way! I can’t be a guy who punches people in the face for lookin at me funny and dresses animals up in little costumes, talks to ‘em in baby voices, booping their little noses…");
+        sequence4.Add("Agh! You see what I mean, I can’t show any weakness or else my image falls apart. ");
+        sequence4.Add("I get what you mean, but I think you are overthinking it. Your crew, aren’t they your ride or dies? I think they wouldn’t care about all that.");
+        sequence4.Add("No no no. You don’t get it. I have to be their fearless leader. If my weakness shows, it affects everything, not just me! ");
+        sequence4.Add("But aren't you tired of hiding your true self and passions? You came to me to reveal your big plan. I think you know deep inside you are ready to bring it out.");
+        sequence4.Add("I-I don’t.");
+        sequence4.Add("If these people are important to you, Cade, I doubt they would think any less of you. Besides, your dream is one of great compassion, and frankly, I admire it a lot myself. ");
+        sequence4.Add("…");
+        sequence4.Add("DON’T BE AFRAID TO SHOW WHO YOU REALLY ARE CADE. YOU ARE STRONG AND A GREAT LEADER.");
+        sequence4.Add("You’re right. YOU’RE RIGHT GODDAMMIT! I’LL TELL ‘EM ALL. ONCE I GET OUTTA HERE, I’LL TELL THEM THE WHOLE PLAN.");
+        sequence4.Add("HELL YEAH, CHEER WITH ME! I LOVE PUPPIES AND I’M PROUD!");
+        sequence4.Add("I LOVE PUPPIES AND I’M PROUD!");
+        sequence4.Add("I LOVE KITTIES AND I’M PROUD!");
+        sequence4.Add("I LOVE KITTIES AND I’M PROUD!");
+        sequence4.Add("I LOVE ANIMALS AND I’M PROUD!");
+        sequence4.Add("I LOVE ANIMALS AND I’M PROUD!");
+        sequence4.Add("Well, how do you feel?");
+        sequence4.Add("I feel great, so great. All that yelling made me lightheaded though.");
+        sequence4.Add("Yeah me too haha.");
+        sequence4.Add("Thanks bro, I mean it. Thanks to you I finally have the chance to live out my dream. I’m gonna think about all my future plans now, so see ya around.");
+        sequence4.Add("No problem Cade. Take care.");
+
+        // SEQUENCE SAD
+        sequenceSad.Add("Oh, what's up bro. Sorry, too busy thinking of my animal empire to talk to right now. See ya.");
+
     }
 
     public void onClickAction() {
@@ -171,6 +260,15 @@ public class CharCade : Character, IClick
                 break;
             case 1:
                 seqMethod = () => play2();
+                break;
+            case 2:
+                seqMethod = () => play3();
+                break;
+            case 3:
+                seqMethod = () => play4();
+                break;
+            case int session when session > 3:
+                seqMethod = () => playSad();
                 break;
         }
         
@@ -597,6 +695,305 @@ public class CharCade : Character, IClick
         }
     }
 
+    private void play3(){
+        lines = sequence3;
+        curSeq = "3";
+
+        switch(curLine){
+            case 0:
+                SwitchStyle(FontStyle.Normal);
+                SwitchName(curName);
+                break;
+            case 1:
+                SwitchName("You");
+                break;
+            case 2:
+                SwitchName(curName);
+                break;
+            case 3:
+                SwitchName("You");
+                break;
+            case 4:
+                SwitchName(curName);
+                break;
+            case 5:
+                SwitchName("You");
+                break;
+            case 6:
+                SwitchName(curName);
+                break;
+            case 7:
+                SwitchName("You");
+                break;
+            case 8:
+                SwitchName(curName);
+                break;
+            case 9:
+
+                ShowButtons();
+                responses.Clear();
+                responses.Add("Cats.");
+                responses.Add("Dogs.");
+                responses.Add("Neither.");
+                mm.responseButtonTexts[0].GetComponent<Text>().text = responses[0];
+                mm.responseButtonTexts[1].GetComponent<Text>().text = responses[1]; 
+                mm.responseButtonTexts[2].GetComponent<Text>().text = responses[2]; 
+                break;
+        }
+    }
+
+      private void play3_1(){
+        lines = sequence3_1;
+        curSeq = "3_1";
+
+        switch(curLine){
+            case 0:
+                SwitchName(curName);
+                break;
+            case 1:
+                curLine = -1;
+                seqMethod = () => play3_4();
+                AdvanceTalk();
+                break;
+        }
+    }
+
+    private void play3_2(){
+        lines = sequence3_2;
+        curSeq = "3_2";
+
+        switch(curLine){
+            case 0:
+                SwitchName(curName);
+                break;
+            case 1:
+                curLine = -1;
+                seqMethod = () => play3_4();
+                AdvanceTalk();
+                break;
+        }
+    }
+
+    private void play3_3(){
+        lines = sequence3_3;
+        curSeq = "3_3";
+
+        switch(curLine){
+            case 0:
+                SwitchName(curName);
+                break;
+            case 1:
+                curLine = -1;
+                seqMethod = () => play3_4();
+                AdvanceTalk();
+                break;
+        }
+    }
+
+    private void play3_4(){
+        lines = sequence3_4;
+        curSeq = "3_4";
+
+        switch(curLine){
+            case 0:
+                SwitchName(curName);
+                break;
+            case 1:
+                SwitchName("You");
+                break;
+            case 2:
+                SwitchName(curName);
+                break;
+            case 3:
+                SwitchName(curName);
+                break;
+            case 4:
+                SwitchName("You");
+                break;
+            case 5:
+                SwitchName(curName);
+                break;
+            case 6:
+                SwitchName(curName);
+                break;
+            case 7:
+                SwitchName("You");
+                break;
+            case 8:
+                SwitchName(curName);
+                break;
+            case 9:
+                SwitchName(curName);
+                break;
+            case 10:
+                SwitchName(curName);
+                break;
+            case 11:
+                SwitchName("");
+                SwitchStyle(FontStyle.Italic);
+                break;
+            case 12:
+                SwitchName(curName);
+                SwitchStyle(FontStyle.Normal);
+                break;
+            case 13:
+                EndTalk();
+                break;
+        }
+    }
+
+    private void play4(){
+        lines = sequence4;
+        curSeq = "4";
+
+        switch(curLine){
+            case 0:
+                SwitchName(curName);
+                break;
+            case 1:
+                SwitchName("You");
+                break;
+            case 2:
+                SwitchName(curName);
+                break;
+            case 3:
+                SwitchName("You");
+                break;
+            case 4:
+                SwitchName(curName);
+                break;
+            case 5:
+                SwitchName("You");
+                break;
+            case 6:
+                SwitchName(curName);
+                break;
+            case 7:
+                SwitchName("You");
+                break;
+            case 8:
+                SwitchName(curName);
+                break;
+            case 9:
+                SwitchName("You");
+                break;
+
+            case 10:
+                SwitchName(curName);
+                break;
+            case 11:
+                SwitchName(curName);
+                break;
+            case 12:
+                SwitchName("You");
+                break;
+            case 13:
+                SwitchName(curName);
+                break;
+            case 14:
+                SwitchName("You");
+                break;
+            case 15:
+                SwitchName(curName);
+                break;
+            case 16:
+                SwitchName(curName);
+                break;
+            case 17:
+                SwitchName("You");
+                break;
+            case 18:
+                SwitchName(curName);
+                break;
+            case 19:
+                SwitchName("You");
+                break;
+
+            case 20:
+                SwitchName(curName);
+                break;
+            case 21:
+                SwitchName(curName);
+                break;
+            case 22:
+                SwitchName("You");
+                break;
+            case 23:
+                SwitchName(curName);
+                break;
+            case 24:
+                SwitchName("You");
+                break;
+            case 25:
+                SwitchName(curName);
+                break;
+            case 26:
+                SwitchName("You");
+                break;
+            case 27:
+                SwitchName(curName);
+                break;
+            case 28:
+                SwitchName("You");
+                break;
+            case 29:
+                SwitchName(curName);
+                break;
+            case 30:
+                SwitchName("You");
+                break;
+            case 31:
+                SwitchName(curName);
+                break;
+            case 32:
+                SwitchName("You");
+                break;
+            case 33:
+                SwitchName(curName);
+                break;
+            case 34:
+                SwitchName("You");
+                break;
+            case 35:
+                SwitchName(curName);
+                break;
+            case 36:
+                SwitchName("You");
+                break;
+            case 37:
+                SwitchName(curName);
+                break;
+            case 38:
+                SwitchName("You");
+                break;
+            case 39:
+                SwitchName(curName);
+                break;
+            case 40:
+                SwitchName("You");
+                break;
+
+
+            case 41:
+                EndTalk();
+                break;
+        }
+    }
+
+    private void playSad(){
+        lines = sequenceSad;
+        curSeq = "Sad";
+
+        switch(curLine){
+            case 0:
+                SwitchName(curName);
+                break;
+            case 1:
+                EndTalk();
+                break;
+        }
+        
+    }
 
     private void AdvanceTalk(){
         curLine++;
@@ -631,6 +1028,10 @@ public class CharCade : Character, IClick
                 seqMethod = () => play2_8a();
                 AdvanceTalk();
                 break;
+            case "3":
+                seqMethod = () => play3_1();
+                AdvanceTalk();
+                break;
         }
     }
 
@@ -654,6 +1055,10 @@ public class CharCade : Character, IClick
                 seqMethod = () => play2_8b();
                 AdvanceTalk();
                 break;
+            case "3":
+                seqMethod = () => play3_2();
+                AdvanceTalk();
+                break;
         }
     }
 
@@ -671,6 +1076,10 @@ public class CharCade : Character, IClick
                 break;
             case "2_4":
                 seqMethod = () => play2_5_7();
+                AdvanceTalk();
+                break;
+            case "3":
+                seqMethod = () => play3_3();
                 AdvanceTalk();
                 break;
         }

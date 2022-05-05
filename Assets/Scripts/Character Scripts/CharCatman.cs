@@ -14,8 +14,8 @@ public class CharCatman : Character, IClick
     protected List<string> sequence1_1 = new List<string>();
     protected List<string> sequence1_2 = new List<string>();
 
-    // Start is called before the first frame update
-    void Start()
+    // LoadDialogue is called after name is input
+    public override void LoadDialogue()
     {
         mm = FindObjectOfType<ModeManager>();
         curLine = 0;

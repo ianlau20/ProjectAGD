@@ -34,14 +34,14 @@ public class CharSebastian : Character, IClick
 
     
 
-    // Start is called before the first frame update
-    void Start()
+    // LoadDialogue is called after name is input
+    public override void LoadDialogue()
     {
         mm = FindObjectOfType<ModeManager>();
         curLine = -1;
         session = 0;
         curSeq = "0";
-        curName = "<color=#C0C0C0ff>???</color>";
+        curName = "<color=#FFD700ff>???</color>";
         lines = new List<string>();
         responses = new List<string>();
         SpriteChange(sNeutral_HandsClasped);
@@ -51,16 +51,16 @@ public class CharSebastian : Character, IClick
         sequence1.Add("*Just seeing him makes you stand up straight and unclench your jaw like you got in trouble with the principal in middle school* ");
         sequence1.Add("Why am I acting like this? I’m a fully grown adult here. It’s just something about them."); //bold
         sequence1.Add("Well hello there, let me introduce myself. I am Sebastion Duke Ainsworth, head butler for the house of Windsor.");
-        sequence1.Add("Oh..um, I’m Jessie from uh house of… my parents.");
-        sequence1.Add("Well, Jessie from the house of parents, it is a pleasure to make your acquaintance. ");
+        sequence1.Add("Oh.. um, I’m " + mm.username + " from uh house of… my parents");
+        sequence1.Add("Well, " + mm.username + " from the house of parents, it is a pleasure to make your acquaintance. ");
         sequence1.Add("Nice to meet you too Sebastian Doot Ainswan from the house of Wonka.");
         sequence1.Add("Sebastian will suffice. ");
         sequence1.Add("Ok Sebastian. ");
-        sequence1.Add("Is there a reason you approached me? Master, Jessie.");
+        sequence1.Add("Is there a reason you approached me? Master, " + mm.username + ".");
         sequence1.Add("Oh, I just wanted to get to know everyone a bit better, so I am introducing myself.");
         sequence1.Add("Is that really the only reason?");
         sequence1.Add("What? Um, yeah. ");
-        sequence1.Add("Well, Master Jessie is there anything you would like to know?");
+        sequence1.Add("Well, Master " + mm.username + " is there anything you would like to know?");
         sequence1.Add("What's it like being a butler?");
         sequence1.Add("Being a butler is my calling, my destiny. I cannot see myself doing anything but this in my life. I strive for greatness, excellence, and class, and nothing will stop me from completing my tasks.");
         sequence1.Add("Oh so do-");
@@ -71,9 +71,9 @@ public class CharSebastian : Character, IClick
         sequence1.Add("If a butler cannot perform these tasks, then they do not deserve to call themselves a butler. And besides, that does not even begin to scratch the surface of a butler's responsibilities. ");
         sequence1.Add("Wh-");
         sequence1.Add("Not only this, but they must be perfect at every task. Simply being able to carry out these activities is not enough! They must master it. Nothing but perfection is acceptable. ");
-        sequence1.Add("I sense some confusion coming from you Master Jessie. Shall I explain it from the top?");
+        sequence1.Add("I sense some confusion coming from you Master " + mm.username + ". Shall I explain it from the top?");
         sequence1.Add("What? No, it’s totally clear! Drive the clothes and cook the kids. Got it. ");
-        sequence1.Add("Well then, I will bore you with my ramblings no longer. Till another time Master Jessie.");
+        sequence1.Add("Well then, I will bore you with my ramblings no longer. Till another time Master " + mm.username + ".");
         sequence1.Add("Au revoir, Sebastián.");
 
 
@@ -343,6 +343,7 @@ public class CharSebastian : Character, IClick
             case 29:
                 SpriteChange(sNeutral_Neutral);
                 SwitchName(curName);
+                SwitchStyle(FontStyle.Normal);
                 break;
             case 30:
                 SwitchName("You");     
