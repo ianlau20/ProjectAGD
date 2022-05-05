@@ -75,7 +75,7 @@ public class GameManager : MonoBehaviour
 
         System.Random r = new System.Random();
         //TEMPORARY DECREASED TO ONLY INCLUDE 1 & 2
-        int ruleSet = r.Next(1, 3);
+        int ruleSet = r.Next(1, 4);
         Debug.Log("Rule set: " + ruleSet);
 
         if (ruleSet == 1){
@@ -631,7 +631,6 @@ public class GameManager : MonoBehaviour
                 DrawCorrect();
                 i++;
             }
-            IncTurnIndex();
             IncTurnIndex();
             UI_Feedback2.clip = SFX_effect;
             UI_Feedback2.Play();

@@ -33,6 +33,13 @@ public class CharEddie : Character, IClick
     protected List<string> sequence2_1 = new List<string>();
     protected List<string> sequence2_2 = new List<string>();
     protected List<string> sequence2_3 = new List<string>();
+    protected List<string> sequence3 = new List<string>();
+    protected List<string> sequence3_1 = new List<string>();
+    protected List<string> sequence3_2 = new List<string>();
+    protected List<string> sequence3_3 = new List<string>();
+    protected List<string> sequence3_4 = new List<string>();
+    protected List<string> sequence4 = new List<string>();
+    protected List<string> sequenceSad = new List<string>();
     
 
     // LoadDialogue is called after name is input
@@ -92,6 +99,79 @@ public class CharEddie : Character, IClick
         sequence2_3.Add("Sorry to go all preacher on ya kid.");
         sequence2_3.Add("It's alright.");
         sequence2_3.Add("Haha, that kinda took it out of me. Look, if I’m still around next time feel free to see me again.");
+
+        // SEQUENCE 3
+        sequence3.Add("Hey, Eddy.");
+        sequence3.Add("Looks like you’re still kickin. How ya holdin up kid? ");
+        sequence3.Add("Just trying to stay positive I guess.");
+        sequence3.Add("Well, that's the important part, right? No matter what life throws at ya, just keep on keepin on. ");
+        sequence3.Add("I’m probably the millionth person to have said that but, if it's been said so many times, it’s gotta have some truth to it right?");
+        sequence3.Add("You seem to be saying stuff like that a lot. Is it coming from personal experience? ");
+        sequence3.Add("Ha, is it that obvious? Yeah, I guess you could say I have some experience in screwing up. ");
+        sequence3.Add("Oh sorry, I didn’t mean it like that. ");
+        sequence3.Add("Don’t sweat it, kid. If anything, see it as an old man trying to give some advice. ");
+        sequence3.Add("Well, in that case, I feel like even though we have talked a few times, I still don’t know anything about you.");
+        sequence3.Add("You're persistent, aren’t ya.");
+        sequence3.Add("Well then, what do you wanna know?");
+
+        // SEQUENCE 3_1
+        sequence3_1.Add("Sheesh, that’s a heavy hitter. I have a lot of regrets, but I think my biggest one would be giving in to my vices... ");
+        sequence3_1.Add("I eventually quit, but by the time I did, the damage was already done.");
+
+        // SEQUENCE 3_2
+        sequence3_2.Add("I worked. I worked a lot. Had 3 jobs, none of them anything special, but I needed the cash. ");
+
+        // SEQUENCE 3_3
+        sequence3_3.Add("My dream huh. ");
+        sequence3_3.Add("…");
+        sequence3_3.Add("Restoring my life to what it was before. I want to fix my mistakes and make things go back to the way they were.");
+
+        // SEQUENCE 3_4
+        sequence3_4.Add("Thanks for sharing with me, Eddy. I bet it took a lot to say those things.");
+        sequence3_4.Add("No problem, kid. Thanks for talking to me. It feels good to talk about it.");
+        sequence3_4.Add("Anytime, Eddy.");
+        sequence3_4.Add("I’m gonna relax a bit before the next round. Feel free to see me again if I make it to the next one. There are some things I want to talk to you about.");
+        sequence3_4.Add("Okay. Take care, Eddy.");
+
+        // SEQUENCE 4
+        sequence4.Add("Hey, Eddy.");
+        sequence4.Add("Oh, it's you. Glad you made it another round, kid.");
+        sequence4.Add("Same to you, Eddy. ");
+        sequence4.Add("You said last time that there was something you wanted to tell me?");
+        sequence4.Add("Yeah, I wanted to tell you my story. It doesn’t mean much, but I wanted to repay you for taking the time to talk to an old man like me. ");
+        sequence4.Add("Sure thing, Eddy. ");
+        sequence4.Add("Hell, maybe you might learn a thing or two. ");
+        sequence4.Add("Well, let's see. My childhood wasn’t anything special. I was a normal kid with a decent family. I think my life really started after I graduated college. ");
+        sequence4.Add("I was always someone who admired hard work and tried my best in whatever I was doing. You could say that was also my greatest weakness. ");
+        sequence4.Add("My hard work in college landed me a cushy office job. ");
+        sequence4.Add("It wasn't anything special, but the pay was good, the workload was light, it had great benefits, and my coworkers were some great people.");
+        sequence4.Add("That office job was when everything in my life started. There was a lady who worked down the hall from me. She was beautiful. ");
+        sequence4.Add("Until this point, I was too busy focusing on my work to ever build any meaningful relationships, whether it be friends or a significant other. ");
+        sequence4.Add("This lady, however, changed my life. We started talking, which led to dating, and eventually, we got married and even had a daughter.");
+        sequence4.Add("She gave me a new purpose in life.");
+        sequence4.Add("I never thought I’d be a family man, but when I was holding my newborn girl in my arms, I knew I had to do everything I could to make their lives amazing.");
+        sequence4.Add("That moment was also my greatest downfall. I developed a mindset that I was never good enough. I was never doing enough. I needed a way to provide more for my family.");
+        sequence4.Add("In my desperation, I started gambling. What a perfect way to earn money quickly, right? I think you can guess how well that went.");
+        sequence4.Add("I lost everything. I got stuck in a loop trying to win back what I lost by putting in more money. ");
+        sequence4.Add("The stress drove me to drink and smoke. I even stopped showing up to work and eventually got fired. ");
+        sequence4.Add("Everything was falling apart in front of me, but I didn’t realize it until I had lost everything. ");
+        sequence4.Add("My wife divorced me and I lost custody of my daughter. By the time I realized what had happened, I was in too deep. ");
+        sequence4.Add("So now, instead of trying to provide for my family, I have to prove to myself that I have changed. ");
+        sequence4.Add("I sobered up and started working multiple jobs to pull myself out of debt, and well, I saw this opportunity and caved. ");
+        sequence4.Add("It was my gambling problem all over again. I took a shortcut and now I’m in a death game run by some crazy cat thing. ");
+        sequence4.Add("All in all, I took shortcuts and they screwed me over. Not to say shortcuts are necessarily bad, but some people draw the short stick in life. ");
+        sequence4.Add("Sometimes there is only so much they can do before resorting to some sort of shortcut. ");
+        sequence4.Add("The problem is there are a lot of people out there who prey on that desperation, luring people who are down on their luck with the promises of greatness and wealth. ");
+        sequence4.Add("I should have done my research before going in, but desperation is a strong force to keep at bay.");
+        sequence4.Add("So, that's everything kid. Nothing special, but that's me. Sorry for talking your ears off.");
+        sequence4.Add("You don't have to say anything. That was a long ramble. I just wanna say one last thing, thanks. Thanks for not giving up on me and hearing me out. I appreciate it.");
+        sequence4.Add("Yeah, of course, Eddy. Thanks for telling me your story.");
+        sequence4.Add("Heh, no worries kid. I think I’m gonna take a smoke break. I’m kind of exhausted after all that. See ya around.");
+        sequence4.Add("Goodbye, Eddy.");
+
+        // SEQUENCE SAD
+        sequenceSad.Add("Hey kid, still a too tired to talk right now, sorry.");
+
     }
 
     public void onClickAction() {
@@ -116,6 +196,15 @@ public class CharEddie : Character, IClick
                 break;
             case 1:
                 seqMethod = () => play2();
+                break;
+            case 2:
+                seqMethod = () => play3();
+                break;
+            case 3:
+                seqMethod = () => play4();
+                break;
+            case int session when session > 3:
+                seqMethod = () => playSad();
                 break;
         }
         
@@ -148,7 +237,7 @@ public class CharEddie : Character, IClick
                 SpriteChange(sSus_ArmsCrossed);
                 SwitchName(curName);
 
-                ShowButtons();
+                ShowButtons2();
                 responses.Clear();
                 responses.Add("You seemed interesting.");
                 responses.Add("I picked randomly.");
@@ -268,7 +357,7 @@ public class CharEddie : Character, IClick
                 SpriteChange(sDissapointed_ArmsCrossed);
                 SwitchName(curName);
 
-                ShowButtons();
+                ShowButtons2();
                 responses.Clear();
                 responses.Add("Yes.");
                 responses.Add("No.");
@@ -336,6 +425,218 @@ public class CharEddie : Character, IClick
         
     }
 
+    private void play3(){
+        lines = sequence3;
+        curSeq = "3";
+
+        switch(curLine){
+            case 0:
+                SwitchStyle(FontStyle.Normal);
+                SwitchName("You");
+                break;
+            case 1:
+                SwitchName(curName);
+                break;
+            case 2:
+                SwitchName("You");
+                break;
+            case 3:
+                SwitchName(curName);
+                break;
+            case 4:
+                SwitchName(curName);
+                break;
+            case 5:
+                SwitchName("You");
+                break;
+            case 6:
+                SwitchName(curName);
+                break;
+            case 7:
+                SwitchName("You");
+                break;
+            case 8:
+                SwitchName(curName);
+                break;
+            case 9:
+                SwitchName("You");
+                break;
+            case 10:
+                SwitchName(curName);
+                break;
+            case 11:
+                SwitchName(curName);
+
+                ShowButtons();
+                responses.Clear();
+                responses.Add("What is your biggest regret?");
+                responses.Add("What did you do before?");
+                responses.Add("What is your dream?");
+                mm.responseButtonTexts[0].GetComponent<Text>().text = responses[0];
+                mm.responseButtonTexts[1].GetComponent<Text>().text = responses[1]; 
+                mm.responseButtonTexts[2].GetComponent<Text>().text = responses[2]; 
+                break;
+        }
+    }
+
+      private void play3_1(){
+        lines = sequence3_1;
+        curSeq = "3_1";
+
+        switch(curLine){
+            case 0:
+            case 1:
+                SwitchName(curName);
+                break;
+            case 2:
+                curLine = -1;
+                seqMethod = () => play3_4();
+                AdvanceTalk();
+                break;
+        }
+    }
+
+    private void play3_2(){
+        lines = sequence3_2;
+        curSeq = "3_2";
+
+        switch(curLine){
+            case 0:
+                SwitchName(curName);
+                break;
+            case 1:
+                curLine = -1;
+                seqMethod = () => play3_4();
+                AdvanceTalk();
+                break;
+        }
+    }
+
+    private void play3_3(){
+        lines = sequence3_3;
+        curSeq = "3_3";
+
+        switch(curLine){
+            case 0:
+            case 1:
+            case 2:
+                SwitchName(curName);
+                break;
+            case 3:
+                curLine = -1;
+                seqMethod = () => play3_4();
+                AdvanceTalk();
+                break;
+        }
+    }
+
+    private void play3_4(){
+        lines = sequence3_4;
+        curSeq = "3_4";
+
+        switch(curLine){
+            case 0:
+                SwitchName("You");
+                break;
+            case 1:
+                SwitchName(curName);
+                break;
+            case 2:
+                SwitchName("You");
+                break;
+            case 3:
+                SwitchName(curName);
+                break;
+            case 4:
+                SwitchName("You");
+                break;
+            case 5:
+                EndTalk();
+                break;
+        }
+    }
+
+    private void play4(){
+        lines = sequence4;
+        curSeq = "4";
+        SwitchStyle(FontStyle.Normal);
+
+        switch(curLine){
+            case 0:
+                SwitchName("You");
+                break;
+            case 1:
+                SwitchName(curName);
+                break;
+            case 2:
+                SwitchName("You");
+                break;
+            case 3:
+                SwitchName("You");
+                break;
+            case 4:
+                SwitchName(curName);
+                break;
+            case 5:
+                SwitchName("You");
+                break;
+            case 6:
+            case 7:
+            case 8:
+            case 9:
+            case 10:
+            case 11:
+            case 12:
+            case 13:
+            case 14:
+            case 15:
+            case 16:
+            case 17:
+            case 18:
+            case 19:
+            case 20:
+            case 21:
+            case 22:
+            case 23:
+            case 24:
+            case 25:
+            case 26:
+            case 27:
+            case 28:
+            case 29:
+            case 30:
+                SwitchName(curName);
+                break;
+            case 31:
+                SwitchName("You");
+                break;
+            case 32:
+                SwitchName(curName);
+                break;
+            case 33:
+                SwitchName("You");
+                break;
+            case 34:
+                EndTalk();
+                break;
+        }
+    }
+
+    private void playSad(){
+        lines = sequenceSad;
+        curSeq = "Sad";
+
+        switch(curLine){
+            case 0:
+                SwitchName(curName);
+                break;
+            case 1:
+                EndTalk();
+                break;
+        }
+        
+    }
+
 
     private void AdvanceTalk(){
         curLine++;
@@ -365,6 +666,10 @@ public class CharEddie : Character, IClick
                 seqMethod = () => play2_1();
                 AdvanceTalk();
                 break;
+            case "3":
+                seqMethod = () => play3_1();
+                AdvanceTalk();
+                break;
         }
     }
 
@@ -383,6 +688,10 @@ public class CharEddie : Character, IClick
                 seqMethod = () => play2_2();
                 AdvanceTalk();
                 break;
+            case "3":
+                seqMethod = () => play3_2();
+                AdvanceTalk();
+                break;
         }
 
     }
@@ -393,6 +702,13 @@ public class CharEddie : Character, IClick
         mm.responseButtons[1].SetActive(false);
         mm.responseButtons[2].SetActive(false);
         curLine = -1;
+
+        switch(curSeq){
+            case "3":
+                seqMethod = () => play3_3();
+                AdvanceTalk();
+                break;
+        }
     }
 
     public override void SkipText()
@@ -400,10 +716,17 @@ public class CharEddie : Character, IClick
         AdvanceTalk();
     }
 
+    private void ShowButtons2()
+    {
+        mm.responseButtons[0].SetActive(true);
+        mm.responseButtons[1].SetActive(true);
+    }
+
     private void ShowButtons()
     {
         mm.responseButtons[0].SetActive(true);
         mm.responseButtons[1].SetActive(true);
+        mm.responseButtons[2].SetActive(true);
     }
 
     private void SwitchName(string name)
