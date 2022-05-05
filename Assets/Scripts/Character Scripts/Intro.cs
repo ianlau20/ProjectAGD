@@ -10,16 +10,19 @@ using System;
 public class Intro : Character
 {
     protected ModeManager mm;
+    protected UIManager um;
     public Sprite sNormal;
     public Sprite sCat;
-    public Sprite TeaBG;
-    public GameObject hider;
+    public GameObject TeaBG;
+    public GameObject RestartButton;
+    public GameObject NextButton;
     public SpriteRenderer self;
     public AudioSource UI_Feedback;
     public AudioClip SFX_clicked;
     public AudioClip SFX_drum;
     protected List<string> sequence1 = new List<string>();
-    protected List<string> sequence2 = new List<string>();
+    protected List<string> sequenceOutro = new List<string>();
+
 
     
 
@@ -27,6 +30,7 @@ public class Intro : Character
     public override void LoadDialogue()
     {
         mm = FindObjectOfType<ModeManager>();
+        um = FindObjectOfType<UIManager>();
         curLine = -1;
         session = 0;
         curSeq = "0";
@@ -66,6 +70,11 @@ public class Intro : Character
         //sequence1.Add("Ah, I almost forgot. The winner of each round can add a new rule to the game that only they will know.");
         sequence1.Add("Now, let the game begin!");
 
+        // OUTRO
+        sequenceOutro.Add("Congratulations " + mm.username + ".");
+        sequenceOutro.Add("Don't worry about the other contestants. They lost, and you won.");
+        sequenceOutro.Add("Now, what is your wish?");
+
     }
 
     public void StartIntro(){
@@ -87,6 +96,20 @@ public class Intro : Character
         AdvanceTalk();
     }
 
+    public void StartOutro(){
+        mm.curPerson = this;
+        mm.cameras[0].gameObject.SetActive(false);
+        mm.cameras[1].gameObject.SetActive(true);
+        mm.StartConversation();
+
+        curLine = -1;
+        SwitchStyle(FontStyle.Normal);
+
+        seqMethod = () => playOutro();
+        
+        AdvanceTalk();
+    }
+
     private void play1(){
         lines = sequence1;
         curSeq = "1";
@@ -95,22 +118,40 @@ public class Intro : Character
             case 0:
                 SwitchName("");
                 break;
-            case 4:
-                //SpriteChange(TeaBG);
+            case 13:
+                TeaBG.SetActive(true);
                 break;
             case 14:
                 SpriteChange(sCat);
                 UI_Feedback.clip = SFX_drum;
                 UI_Feedback.Play();
-                nameUI.GetComponent<Text>().text = "<color=#C0C0C0ff>???</color>";
+                nameUI.GetComponent<Text>().text = "<color=#ffe449ff>???</color>";
                 break;
             case 15:
-                hider.SetActive(false);
                 mm.cameras[0].gameObject.SetActive(true);
                 mm.cameras[8].gameObject.SetActive(false);
                 break;
             case 22:
                 EndTalk();
+                break;
+        }
+    }
+
+    private void playOutro(){
+        lines = sequenceOutro;
+        curSeq = "Outro";
+
+        switch(curLine){
+            case 0:
+                SwitchName("<color=#ffe449ff>???</color>");
+                break;
+            case 1:
+                SwitchName("<color=#ffe449ff>???</color>");
+                break;
+            case 2:
+                SwitchName("<color=#ffe449ff>???</color>");
+                NextButton.SetActive(false);
+                DelayedEndGame();
                 break;
         }
     }
@@ -181,6 +222,13 @@ public class Intro : Character
 
     private void SpriteChange(Sprite sprite){
         self.sprite = sprite;
+    }
+
+    private async Task DelayedEndGame(){
+        await Task.Delay(3000);
+        um.StartFade();
+        await Task.Delay(3000);
+        RestartButton.SetActive(true);
     }
 
 }

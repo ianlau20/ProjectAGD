@@ -13,15 +13,20 @@ public class CharCatman : Character, IClick
     protected List<string> sequence1 = new List<string>();
     protected List<string> sequence1_1 = new List<string>();
     protected List<string> sequence1_2 = new List<string>();
+    protected List<string> sequence2 = new List<string>();
+    private bool starting;
 
     // LoadDialogue is called after name is input
     public override void LoadDialogue()
     {
         mm = FindObjectOfType<ModeManager>();
         curLine = 0;
+        curName = "<color=#ffe449ff>???</color>";
         sequence1 = new List<string>();
+        sequence2 = new List<string>();
         responses = new List<string>();
         sequence1.Add("Let's begin.");
+        sequence2.Add("The round is over. If you wish to, take a break and talk amongst yourselves while I set up the next round.");
         responses.Clear();
         responses.Add("Yes");
         responses.Add("No");
@@ -39,12 +44,23 @@ public class CharCatman : Character, IClick
         mm.StartConversation();
         UI_Feedback.clip = SFX_drum;
         UI_Feedback.Play();
-        nameUI.GetComponent<Text>().text = "<color=#C0C0C0ff>???</color>";
+        nameUI.GetComponent<Text>().text = curName;
+        curLine = 0;
         textUI.GetComponent<TMPro.TextMeshProUGUI>().text = sequence1[curLine];
-        mm.responseButtonTexts[0].GetComponent<Text>().text = responses[0];
-        mm.responseButtonTexts[1].GetComponent<Text>().text = responses[1]; 
-        //mm.responseButtons[0].SetActive(true);
-        //mm.responseButtons[1].SetActive(true);
+        starting = true;
+    }
+
+    public void StartTransition(){
+        mm.curPerson = this;
+        mm.cameras[0].gameObject.SetActive(false);
+        mm.cameras[1].gameObject.SetActive(true);
+        mm.StartConversation();
+        UI_Feedback.clip = SFX_drum;
+        UI_Feedback.Play();
+        nameUI.GetComponent<Text>().text = curName;
+        curLine = 0;
+        textUI.GetComponent<TMPro.TextMeshProUGUI>().text = sequence2[curLine];
+        starting = false;
     }
 
     private void EndTalk(){
@@ -72,6 +88,12 @@ public class CharCatman : Character, IClick
     public override void SkipText()
     {
         EndTalk();
-        mm.StartRound();
+        if (starting){
+            mm.StartRound();
+        }
+        else{
+            mm.StartChatMode();
+        }
+        
     }
 }

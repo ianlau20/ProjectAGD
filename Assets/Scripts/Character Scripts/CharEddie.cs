@@ -655,6 +655,7 @@ public class CharEddie : Character, IClick
     {
         mm.responseButtons[0].SetActive(false);
         mm.responseButtons[1].SetActive(false);
+        mm.responseButtons[2].SetActive(false);
         curLine = -1;
 
         switch(curSeq){
@@ -677,6 +678,7 @@ public class CharEddie : Character, IClick
     {
         mm.responseButtons[0].SetActive(false);
         mm.responseButtons[1].SetActive(false);
+        mm.responseButtons[2].SetActive(false);
         curLine = -1;
 
         switch(curSeq){

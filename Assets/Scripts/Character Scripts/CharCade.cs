@@ -701,6 +701,7 @@ public class CharCade : Character, IClick
 
         switch(curLine){
             case 0:
+                SpriteChange(sAngry_FistsUp);
                 SwitchStyle(FontStyle.Normal);
                 SwitchName(curName);
                 break;
@@ -709,27 +710,31 @@ public class CharCade : Character, IClick
                 break;
             case 2:
                 SwitchName(curName);
+                SpriteChange(sBlush_Neutral);
                 break;
             case 3:
                 SwitchName("You");
                 break;
             case 4:
+                SpriteChange(sAngry_Punch);
                 SwitchName(curName);
                 break;
             case 5:
                 SwitchName("You");
                 break;
             case 6:
+                SpriteChange(sHappy_Neutral);
                 SwitchName(curName);
                 break;
             case 7:
                 SwitchName("You");
                 break;
             case 8:
+                SpriteChange(sHesitant_Punch);
                 SwitchName(curName);
                 break;
             case 9:
-
+                SpriteChange(sNeutral_Neutral);
                 ShowButtons();
                 responses.Clear();
                 responses.Add("Cats.");
@@ -748,6 +753,7 @@ public class CharCade : Character, IClick
 
         switch(curLine){
             case 0:
+                SpriteChange(sThinking_Neutral);
                 SwitchName(curName);
                 break;
             case 1:
@@ -764,6 +770,7 @@ public class CharCade : Character, IClick
 
         switch(curLine){
             case 0:
+                SpriteChange(sHappy_FistsUp);
                 SwitchName(curName);
                 break;
             case 1:
@@ -780,6 +787,7 @@ public class CharCade : Character, IClick
 
         switch(curLine){
             case 0:
+                SpriteChange(sThinking_Neutral);
                 SwitchName(curName);
                 break;
             case 1:
@@ -796,21 +804,25 @@ public class CharCade : Character, IClick
 
         switch(curLine){
             case 0:
+                SpriteChange(sNeutral_Neutral);
                 SwitchName(curName);
                 break;
             case 1:
                 SwitchName("You");
                 break;
             case 2:
+                SpriteChange(sHappy_Punch);
                 SwitchName(curName);
                 break;
             case 3:
+                SpriteChange(sHappy_Neutral);
                 SwitchName(curName);
                 break;
             case 4:
                 SwitchName("You");
                 break;
             case 5:
+                SpriteChange(sHappy_FistsUp);
                 SwitchName(curName);
                 break;
             case 6:
@@ -820,12 +832,15 @@ public class CharCade : Character, IClick
                 SwitchName("You");
                 break;
             case 8:
+                SpriteChange(sHappy_Neutral);
                 SwitchName(curName);
                 break;
             case 9:
+                SpriteChange(sAngry_FistsUp);
                 SwitchName(curName);
                 break;
             case 10:
+                SpriteChange(sAngry_Punch);
                 SwitchName(curName);
                 break;
             case 11:

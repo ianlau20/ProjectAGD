@@ -73,6 +73,7 @@ public class ModeManager : MonoBehaviour
     }
 
     public void StartChatMode(){
+
         mode = "chat";
         // Start Music
         Music.clip = MC_talk;
@@ -92,6 +93,20 @@ public class ModeManager : MonoBehaviour
         foreach(Character person in people){
             person.gameObject.GetComponent<BoxCollider2D>().enabled = true;
         }
+    }
+
+    public void StartTransition(){
+        foreach(GameObject ui_element in gameOffUI){
+            ui_element.SetActive(false);
+        }
+        catman.StartTransition();
+    }
+
+    public void StartEnding(){
+        foreach(GameObject ui_element in gameOffUI){
+            ui_element.SetActive(false);
+        }
+        intro.StartOutro();
     }
 
     public void StartConversation(){

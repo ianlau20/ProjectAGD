@@ -52,6 +52,7 @@ public class GameManager : MonoBehaviour
     private Card latestCard;
     private Card currentCard;
     public bool coolDown = false;
+    public bool playerLost = false;
     private bool fillEnabled = false;
     private bool reverseEnabled = false;
     private bool successionEnabled = false;
@@ -75,7 +76,7 @@ public class GameManager : MonoBehaviour
 
         System.Random r = new System.Random();
         //TEMPORARY DECREASED TO ONLY INCLUDE 1 & 2
-        int ruleSet = r.Next(1, 4);
+        int ruleSet = r.Next(1, 3);
         Debug.Log("Rule set: " + ruleSet);
 
         if (ruleSet == 1){
@@ -247,7 +248,7 @@ public class GameManager : MonoBehaviour
             slotInd = 0;
         }
 
-        if (deck.Count == 0){
+        if (deck.Count < 1){
             deckRend.enabled = false;
             Shuffle();
         }
@@ -270,7 +271,7 @@ public class GameManager : MonoBehaviour
         enemyHands[TurnIndex].AddToHand(randCard);
         deck.Remove(randCard);
 
-        if (deck.Count == 0){
+        if (deck.Count < 1){
             deckRend.enabled = false;
             Shuffle();
         }
@@ -407,17 +408,18 @@ public class GameManager : MonoBehaviour
             LoseUI.SetActive(true);
             //Delayed game restart
             DelayedRestart();
+            playerLost = true;
             return;
         }
         else {
             if (!playerWon){
-                UI_Feedback.clip = SFX_survived;
-                UI_Feedback.Play();
+                //UI_Feedback.clip = SFX_survived;
+                //UI_Feedback.Play();
                 SurvivedUI.SetActive(true);
             }
             //play dying sound
-            UI_Feedback2.clip = SFX_death;
-            UI_Feedback2.Play();
+            UI_Feedback.clip = SFX_death;
+            UI_Feedback.Play();
             return;
         }
     }
@@ -428,6 +430,12 @@ public class GameManager : MonoBehaviour
         // Move cards from hands/playedPile to deck
         foreach (Card c in playerHand){
             deck.Add(c);
+            c.hasBeenPlayed = false;
+
+            // Physical Deck Change
+            deckRend.enabled = true;
+            deckObj.transform.localScale += scaleChange;
+            deckObj.transform.position += scaleChange/2;
         }
         playerHand.Clear();
         foreach (MaoHand mh in enemyHands){
@@ -456,8 +464,11 @@ public class GameManager : MonoBehaviour
         TurnIndex = -1;
 
         // REMOVE LOSER
-        loser.gameObject.transform.parent.gameObject.SetActive(false);
-        enemyHands.Remove(loser);
+        if (!playerLost){
+            loser.gameObject.transform.parent.gameObject.SetActive(false);
+            enemyHands.Remove(loser);
+        }
+        
 
         // <<LATER ADD SYSTEM THAT ALLOWS PLAYER TO CHOOSE NEW RULE>>
 
@@ -471,7 +482,12 @@ public class GameManager : MonoBehaviour
         nextPageUI.SetActive(false);
         previousPageUI.SetActive(false);
 
-        DelayedStartChat();
+        if (enemyHands.Count == 0){
+            DelayedStartOutro();
+        }
+        else{
+            DelayedStartTransition();
+        }
     }
 
     // Deal Cards
@@ -727,9 +743,14 @@ public class GameManager : MonoBehaviour
         LoseUI.SetActive(false);
     }
 
-    private async Task DelayedStartChat(){
+    private async Task DelayedStartTransition(){
         await Task.Delay(3000);
-        mm.StartChatMode();
+        mm.StartTransition();
+    }
+
+    private async Task DelayedStartOutro(){
+        await Task.Delay(3000);
+        mm.StartEnding();
     }
 
     private async Task DelayedRestart(){
