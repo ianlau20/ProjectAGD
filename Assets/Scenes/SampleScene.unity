@@ -6974,7 +6974,7 @@ MonoBehaviour:
   ownerSprite: {fileID: 21300000, guid: 3c5c52577c70ba249a410922c2bba003, type: 3}
   cardBacks: []
   cardBack: {fileID: 873039240}
-  nextCardPos: {x: 1.195, y: 0.634, z: 1.167}
+  nextCardPos: {x: 1.066, y: 0.634, z: 1.202}
   cardShift: {x: -0.02777778, y: 0, z: -0.07222222}
   cardRotation: 175
 --- !u!4 &585369715
@@ -10484,7 +10484,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 873039240}
   m_LocalRotation: {x: 0, y: -0.53729963, z: 0, w: 0.8433914}
-  m_LocalPosition: {x: 1.195, y: 0.634, z: 5.005}
+  m_LocalPosition: {x: 3.84, y: 0.634, z: 6.84}
   m_LocalScale: {x: 0.02, y: 0.02, z: 0.15}
   m_Children: []
   m_Father: {fileID: 0}
@@ -12283,7 +12283,7 @@ MonoBehaviour:
   ownerSprite: {fileID: 21300000, guid: cca98b6d0b59c154b8e506296316ee52, type: 3}
   cardBacks: []
   cardBack: {fileID: 873039240}
-  nextCardPos: {x: 2.24, y: 0.634, z: -0.623}
+  nextCardPos: {x: 2.5, y: 0.634, z: -0.4}
   cardShift: {x: 0.07222222, y: 0, z: 0.02777778}
   cardRotation: 45
 --- !u!4 &1006423461
@@ -22546,7 +22546,7 @@ MonoBehaviour:
   ownerSprite: {fileID: 21300000, guid: 7af52bb806ad31d4c95b32fef9285d01, type: 3}
   cardBacks: []
   cardBack: {fileID: 873039240}
-  nextCardPos: {x: 2.928, y: 0.634, z: -0.171}
+  nextCardPos: {x: 3.077, y: 0.634, z: 0.261}
   cardShift: {x: 0.02777778, y: 0, z: 0.07222222}
   cardRotation: 0
 --- !u!4 &1832886502

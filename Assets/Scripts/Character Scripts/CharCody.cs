@@ -54,7 +54,7 @@ public class CharCody : Character, IClick
         SpriteChange(sNeutral_ArmsCrossed);
 
         // SEQUENCE 1
-        sequence1.Add("A massive man towers before you.His presence is heavy and you feel weak in your knees."); //italics
+        sequence1.Add("A massive man towers before you. His presence is heavy and you feel weak in your knees."); //italics
         sequence1.Add("He-hey how’s it going?");
         sequence1.Add("…….");
         sequence1.Add("What's your name?");

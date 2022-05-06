@@ -56,70 +56,75 @@ public class CharSebastian : Character, IClick
         SpriteChange(sNeutral_HandsClasped);
 
         // SEQUENCE 1
-        sequence1.Add("*Before you stands a tall and slender man, with perfect posture and grace. He smells like fresh flowers and his aura oozes perfection and class*");
-        sequence1.Add("*Just seeing him makes you stand up straight and unclench your jaw like you got in trouble with the principal in middle school* ");
+        sequence1.Add("Before you stands a tall and slender man, with perfect posture and grace. He smells like fresh flowers, and his aura oozes perfection and class.");
+        sequence1.Add("Just seeing him makes you stand up straight and unclench your jaw like you got in trouble with the principal in middle school.");
         sequence1.Add("Why am I acting like this? I’m a fully grown adult here. It’s just something about them."); //bold
-        sequence1.Add("Well hello there, let me introduce myself. I am Sebastian Duke Ainsworth, head butler for the house of Windsor.");
-        sequence1.Add("Oh.. um, I’m " + mm.username + " from uh house of… my parents");
+        sequence1.Add("Well, hello there, let me introduce myself. I am Sebastian Duke Ainsworth, head butler for the house of Windsor.");
+        sequence1.Add("Oh.. um, I’m " + mm.username + " from, uh, house of… my parents");
         sequence1.Add("Well, " + mm.username + " from the house of parents, it is a pleasure to make your acquaintance. ");
-        sequence1.Add("Nice to meet you too Sebastian Doot Ainswan from the house of Wonka.");
-        sequence1.Add("Sebastian will suffice. ");
-        sequence1.Add("Ok Sebastian. ");
-        sequence1.Add("Is there a reason you approached me? Master, " + mm.username + ".");
+        sequence1.Add("Nice to meet you, too, Sebastian Doot Ainswan, from the house of Wonka.");
+        sequence1.Add("Sebastian will suffice.");
+        sequence1.Add("Okay, Sebastian. ");
+        sequence1.Add("Is there a reason you approached me, Master " + mm.username + "?");
         sequence1.Add("Oh, I just wanted to get to know everyone a bit better, so I am introducing myself.");
         sequence1.Add("Is that really the only reason?");
-        sequence1.Add("What? Um, yeah. ");
-        sequence1.Add("Well, Master " + mm.username + " is there anything you would like to know?");
+        sequence1.Add("What? Um, yeah.");
+        sequence1.Add("Well, Master " + mm.username + ", is there anything you would like to know?");
         sequence1.Add("What's it like being a butler?");
-        sequence1.Add("Being a butler is my calling, my destiny. I cannot see myself doing anything but this in my life. I strive for greatness, excellence, and class, and nothing will stop me from completing my tasks.");
-        sequence1.Add("Oh so do-");
-        sequence1.Add("Hard work, dedication, and honor are just a few things that make a butler special. It takes years of training to learn everything a family might need. ");
+        sequence1.Add("Being a butler is my calling, my destiny. I cannot see myself doing anything but this in my life.");
+        sequence1.Add("I strive for greatness, excellence, and class, and nothing will stop me from completing my tasks.");
+        sequence1.Add("Oh, so do-");
+        sequence1.Add("Hard work, dedication, and honor are just a few things that make a butler special. It takes years of training to learn everything a family might need.");
         sequence1.Add("Like wha-");
-        sequence1.Add("I’m glad you asked: cooking, cleaning, laundry, raising children, chauffeuring, shopping, tying up loose ends, …");
+        sequence1.Add("I’m glad you asked: cooking, cleaning, laundry, raising children, chauffeuring, shopping, tying up loose ends …");
         sequence1.Add("What was that last part?");
-        sequence1.Add("If a butler cannot perform these tasks, then they do not deserve to call themselves a butler. And besides, that does not even begin to scratch the surface of a butler's responsibilities. ");
+        sequence1.Add("If a butler cannot perform these tasks, then they do not deserve to call themselves a butler.");
+        sequence1.Add("And besides, that does not even begin to scratch the surface of a butler's responsibilities.");
         sequence1.Add("Wh-");
-        sequence1.Add("Not only this, but they must be perfect at every task. Simply being able to carry out these activities is not enough! They must master it. Nothing but perfection is acceptable. ");
+        sequence1.Add("Not only this, but they must be perfect at every task. Simply being able to carry out these activities is not enough!");
+        sequence1.Add("They must master it. Nothing but perfection is acceptable.");
         sequence1.Add("I sense some confusion coming from you Master " + mm.username + ". Shall I explain it from the top?");
         sequence1.Add("What? No, it’s totally clear! Drive the clothes and cook the kids. Got it. ");
-        sequence1.Add("Well then, I will bore you with my ramblings no longer. Till another time Master " + mm.username + ".");
+        sequence1.Add("Well then, I will bore you with my ramblings no longer. Till another time, Master " + mm.username + ".");
         sequence1.Add("Au revoir, Sebastián.");
 
 
         // SEQUENCE 2
-        sequence2.Add("Hello Sebastian.");
-        sequence2.Add("Ah, young master, I see you have survived another round, congratulations. ");
-        sequence2.Add("Congrats to you for making it as well. ");
-        sequence2.Add("Much obliged, for the sake of my honor and pride I cannot fail just yet.");
-        sequence2.Add("Was there something else you wanted to discuss with me, young master?");
+        sequence2.Add("Hello, Sebastian.");
+        sequence2.Add("Ah, Master " + mm.username + ", I see you have survived another round, congratulations. ");
+        sequence2.Add("Congrats to you for making it as well.");
+        sequence2.Add("Much obliged. For the sake of my honor and pride, I cannot fail just yet.");
+        sequence2.Add("Was there something else you wanted to discuss with me, Master" + mm.username + "?");
         sequence2.Add("Can you teach me your ways?");
         sequence2.Add("Teach you?");
         sequence2.Add("...");
-        sequence2.Add("Etiquette and butlering aren’t a game, it takes years of dedication and practice. Are you sure you’re up for it?");
+        sequence2.Add("Etiquette and butlering is not a game; it takes years of dedication and practice. Are you sure you are up for it?");
         sequence2.Add("Yes, yes I am.");
-        sequence2.Add("Very well, obviously we don't have years to practice so, I will just be giving you the basics of etiquette. ");
+        sequence2.Add("Very well. Clearly, we do not have years to practice, so I will just be giving you the basics of etiquette. ");
         sequence2.Add("Let's do this. ");
-        sequence2.Add("At formal parties and events, always hold your drink in your left hand. ");
-        sequence2.Add("Why is that?");
-        sequence2.Add("This ties into another rule, always shake with your right hand, you don’t want any liquid from your glass to get onto your shaking hand.");
+        sequence2.Add("At formal parties and events, always hold your drink in your left hand.");
+        sequence2.Add("Why is tha-");
+        sequence2.Add("This ties into another rule, always shake with your right hand. You don’t want any liquid from your glass to get onto your shaking hand.");
         sequence2.Add("This also applies to anything else you might be carrying, like purses or handbags. ");
         sequence2.Add("Got it!");
         sequence2.Add("Good.");
-        sequence2.Add("Next lesson, in any event where you are given name tags, never wear your nametag over your heart. Always wear it on the right side of your chest, that way it will still be visible during handshakes. ");
+        sequence2.Add("Next lesson, in any event where you are given name tags, never wear your nametag over your heart.");
+        sequence2.Add("Always wear it on the right side of your chest, that way it will still be visible during handshakes. ");
         sequence2.Add("Handshakes seem to be very important.");
-        sequence2.Add("Extremely. I could go on for years about important handshake etiquette but for the sake of time, I will give you one more rule. Ready?");
+        sequence2.Add("Extremely. I could go on for years about important handshake etiquette. But for the sake of time, I will give you one more rule. Ready?");
         sequence2.Add("Ready.");
-        sequence2.Add("When giving a handshake, make sure your grip is firm, not bone-crushing. Then, once you connect hands, the handshake should last about 3 seconds or 3 hand pumps, no more no less. ");
-        sequence2.Add("Ok, 3 pumps got it.");
-        sequence2.Add("Would you like to practice your handshake, young master?");
-        sequence2.Add("Yea!");
+        sequence2.Add("When giving a handshake, make sure your grip is firm, not bone-crushing.");
+        sequence2.Add("Once you connect hands, the handshake should last about three seconds or three hand pumps, no more no less.");
+        sequence2.Add("Ok, three pumps got it.");
+        sequence2.Add("Would you like to practice your handshake, Master " + mm.username + "?");
+        sequence2.Add("Yeah!");
         sequence2.Add("Very well.");
-        sequence2.Add("*Sebastian extends his right hand with a smile.*");
-        sequence2.Add("*His hand firmly grasps yours, followed by one, two, three pumps.*");
-        sequence2.Add("Well done young master, you have a very firm grip. Seems you have learned a lot in such a short time.");
-        sequence2.Add("I’m learning from the best, what can I say.");
-        sequence2.Add("I shall prepare another lesson for you if you wish to see me next time, young master.");
-        sequence2.Add("Farewell Sebastian. ");
+        sequence2.Add("Sebastian extends his right hand with a smile.");
+        sequence2.Add("His hand firmly grasps yours, followed by one, two, three pumps.");
+        sequence2.Add("Well done, Master " + mm.username + ", you have a very firm grip. It seems you have learned a lot in such a short time.");
+        sequence2.Add("I’m learning from the best. What can I say?");
+        sequence2.Add("I shall prepare another lesson for you if you wish to see me next time, Master " + mm.username + ".");
+        sequence2.Add("Farewell, Sebastian.");
 
         // SEQUENCE 3
         sequence3.Add("Hello, Sebastian!");
@@ -269,7 +274,7 @@ public class CharSebastian : Character, IClick
                 break;
             case 2:
                 SwitchName("You");
-                SwitchStyle(FontStyle.Bold);         
+                SwitchStyle(FontStyle.Italic);         
                 break;
             case 3:
                 SpriteChange(sNeutral_Bow);
@@ -320,44 +325,49 @@ public class CharSebastian : Character, IClick
                 SwitchName(curName);
                 break;
             case 16:
-                SwitchName("You");          
                 break;
             case 17:
+                SwitchName("You");          
+                break;
+            case 18:
                 SpriteChange(sNeutral_HandsClasped);
                 SwitchName(curName);
                 break;
-            case 18:
+            case 19:
                 SwitchName("You");          
                 break;
-            case 19:
+            case 20:
                 SpriteChange(sIrate_HandsClasped);
                 SwitchName(curName);
                 break;
-            case 20:
-                SwitchName("You");          
-                break;
             case 21:
-                SwitchName(curName);
+                SwitchName("You");          
                 break;
             case 22:
-                SwitchName("You");          
+                SwitchName(curName);
                 break;
             case 23:
+                break;
             case 24:
+                SwitchName("You");          
+                break;
+            case 25:
+            case 26:
+            case 27:
                 SpriteChange(sIrate_Neutral);
                 SwitchName(curName);
                 break;
-            case 25:
+            case 28:
                 SwitchName("You");          
                 break;
-            case 26:
+            case 29:
                 SpriteChange(sNeutral_Bow);
                 SwitchName(curName);
                 break;
-            case 27:
+            case 30:
                 SwitchName("You");          
                 break;
-            case 28:
+            case 31:
                 EndTalk();
                 break;
         }
@@ -426,52 +436,56 @@ public class CharSebastian : Character, IClick
                 SwitchName(curName);
                 break;
             case 19:
-                SwitchName("You");          
                 break;
             case 20:
-                SwitchName(curName);
-                break;
-            case 21:
                 SwitchName("You");          
                 break;
+            case 21:
+                SwitchName(curName);
+                break;
             case 22:
+                SwitchName("You");          
+                break;
+            case 23:
                 SpriteChange(sHappy_HandsClasped);
                 SwitchName(curName);
                 break;
-            case 23:
+            case 24:
+                break;
+            case 25:
                 SwitchName("You");          
                 break;
-            case 24:
+            case 26:
                 SpriteChange(sNeutral_HandsClasped);
                 SwitchName(curName);
                 break;
-            case 25:
+            case 27:
                 SwitchName("You");     
                 break;
-            case 26:
+            case 28:
                 SwitchName(curName);
                 break;
-            case 27:
-            case 28:
+            case 29:
+            case 30:
                 SwitchName("");
                 SwitchStyle(FontStyle.Italic);
                 break;
-            case 29:
+            case 31:
                 SpriteChange(sNeutral_Neutral);
                 SwitchName(curName);
                 SwitchStyle(FontStyle.Normal);
-                break;
-            case 30:
-                SwitchName("You");     
-                break;
-            case 31:
-                SpriteChange(sHappy_Neutral);
-                SwitchName(curName);
                 break;
             case 32:
                 SwitchName("You");     
                 break;
             case 33:
+                SpriteChange(sHappy_Neutral);
+                SwitchName(curName);
+                break;
+            case 34:
+                SwitchName("You");     
+                break;
+            case 35:
                 EndTalk();
                 break;
         }
