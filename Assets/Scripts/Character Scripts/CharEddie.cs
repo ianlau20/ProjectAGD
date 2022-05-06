@@ -79,7 +79,7 @@ public class CharEddie : Character, IClick
         sequence1_3.Add("…..");
         sequence1_3.Add("You know I’m kidding right?");
         sequence1_3.Add("Oh… yeah totally...");
-        sequence1_3.Add("There isn’t much to say about me, maybe I’ll tell ya another time. You can call me Eddy by the way.");
+        sequence1_3.Add("There isn’t much to say about me. Maybe I’ll tell ya another time. You can call me Eddy, by the way.");
 
         // SEQUENCE 2
         sequence2.Add("Well, look who survived another round. How's it goin kid?");
@@ -90,10 +90,12 @@ public class CharEddie : Character, IClick
         sequence2.Add("Say kid, do you have anything you regret? And not something like I wish I saw that movie. I’m talking about something you think about every night.");
 
         // SEQUENCE 2_1
-        sequence2_1.Add("Really? You know, I’m kinda surprised. Maybe it's true that everyone has regrets, but I think what matters is how we move on from them. Don’t let the things you can't change ruin the things you can.");
+        sequence2_1.Add("Really? You know, I’m kinda surprised. Maybe it's true that everyone has regrets, but I think what matters is how we move on from them.");
+        sequence2_1.Add("Don’t let the things you can't change ruin the things you can.");
 
         // SEQUENCE 2_2
-        sequence2_2.Add("Heh, I envy you kid. I hope it stays that way. Regrets are something you can’t do anything about. It does horrible things to a person, it turns them into their worst selves.");
+        sequence2_2.Add("Heh, I envy you kid. I hope it stays that way. Regrets are something you can’t do anything about.");
+        sequence2_2.Add("It does horrible things to a person; it turns them into their worst selves.");
 
         // SEQUENCE 2_3
         sequence2_3.Add("Sorry to go all preacher on ya kid.");
@@ -104,12 +106,12 @@ public class CharEddie : Character, IClick
         sequence3.Add("Hey, Eddy.");
         sequence3.Add("Looks like you’re still kickin. How ya holdin up kid? ");
         sequence3.Add("Just trying to stay positive I guess.");
-        sequence3.Add("Well, that's the important part, right? No matter what life throws at ya, just keep on keepin on. ");
-        sequence3.Add("I’m probably the millionth person to have said that but, if it's been said so many times, it’s gotta have some truth to it right?");
-        sequence3.Add("You seem to be saying stuff like that a lot. Is it coming from personal experience? ");
-        sequence3.Add("Ha, is it that obvious? Yeah, I guess you could say I have some experience in screwing up. ");
-        sequence3.Add("Oh sorry, I didn’t mean it like that. ");
-        sequence3.Add("Don’t sweat it, kid. If anything, see it as an old man trying to give some advice. ");
+        sequence3.Add("Well, that's the important part, right? No matter what life throws at ya, just keep on keepin on.");
+        sequence3.Add("I’m probably the millionth person to have said that, but if it's been said so many times, it’s gotta have some truth to it right?");
+        sequence3.Add("You seem to be saying stuff like that a lot. Is it coming from personal experience?");
+        sequence3.Add("Ha, is it that obvious? Yeah, I guess you could say I have some experience in screwing up.");
+        sequence3.Add("Oh sorry, I didn’t mean it like that.");
+        sequence3.Add("Don’t sweat it, kid. If anything, see it as an old man trying to give some advice.");
         sequence3.Add("Well, in that case, I feel like even though we have talked a few times, I still don’t know anything about you.");
         sequence3.Add("You're persistent, aren’t ya.");
         sequence3.Add("Well then, what do you wanna know?");
@@ -150,7 +152,8 @@ public class CharEddie : Character, IClick
         sequence4.Add("This lady, however, changed my life. We started talking, which led to dating, and eventually, we got married and even had a daughter.");
         sequence4.Add("She gave me a new purpose in life.");
         sequence4.Add("I never thought I’d be a family man, but when I was holding my newborn girl in my arms, I knew I had to do everything I could to make their lives amazing.");
-        sequence4.Add("That moment was also my greatest downfall. I developed a mindset that I was never good enough. I was never doing enough. I needed a way to provide more for my family.");
+        sequence4.Add("That moment was also my greatest downfall. I developed a mindset that I was never good enough.");
+        sequence4.Add("I was never doing enough. I needed a way to provide more for my family.");
         sequence4.Add("In my desperation, I started gambling. What a perfect way to earn money quickly, right? I think you can guess how well that went.");
         sequence4.Add("I lost everything. I got stuck in a loop trying to win back what I lost by putting in more money. ");
         sequence4.Add("The stress drove me to drink and smoke. I even stopped showing up to work and eventually got fired. ");
@@ -161,16 +164,19 @@ public class CharEddie : Character, IClick
         sequence4.Add("It was my gambling problem all over again. I took a shortcut and now I’m in a death game run by some crazy cat thing. ");
         sequence4.Add("All in all, I took shortcuts and they screwed me over. Not to say shortcuts are necessarily bad, but some people draw the short stick in life. ");
         sequence4.Add("Sometimes there is only so much they can do before resorting to some sort of shortcut. ");
-        sequence4.Add("The problem is there are a lot of people out there who prey on that desperation, luring people who are down on their luck with the promises of greatness and wealth. ");
+        sequence4.Add("The problem is there are a lot of people out there who prey on that desperation…");
+        sequence4.Add("luring people who are down on their luck with the promises of greatness and wealth.");
         sequence4.Add("I should have done my research before going in, but desperation is a strong force to keep at bay.");
         sequence4.Add("So, that's everything kid. Nothing special, but that's me. Sorry for talking your ears off.");
-        sequence4.Add("You don't have to say anything. That was a long ramble. I just wanna say one last thing, thanks. Thanks for not giving up on me and hearing me out. I appreciate it.");
+        sequence4.Add("You don't have to say anything. That was a long ramble.");
+        sequence4.Add("I just wanna say one last thing, thanks.");
+        sequence4.Add("Thanks for not giving up on me and hearing me out. I appreciate it.");
         sequence4.Add("Yeah, of course, Eddy. Thanks for telling me your story.");
         sequence4.Add("Heh, no worries kid. I think I’m gonna take a smoke break. I’m kind of exhausted after all that. See ya around.");
         sequence4.Add("Goodbye, Eddy.");
 
         // SEQUENCE SAD
-        sequenceSad.Add("Hey kid, still a too tired to talk right now, sorry.");
+        sequenceSad.Add("Hey kid, still a bit too tired to talk right now, sorry.");
 
     }
 
@@ -377,6 +383,8 @@ public class CharEddie : Character, IClick
                 SwitchName(curName);
                 break;
             case 1:
+                break;
+            case 2:
                 curLine = -1;
                 seqMethod = () => play2_3();
                 AdvanceTalk();
@@ -394,6 +402,8 @@ public class CharEddie : Character, IClick
                 SwitchName(curName);
                 break;
             case 1:
+                break;
+            case 2:
                 curLine = -1;
                 seqMethod = () => play2_3();
                 AdvanceTalk();
@@ -435,33 +445,39 @@ public class CharEddie : Character, IClick
                 SwitchName("You");
                 break;
             case 1:
+                SpriteChange(sHappy_Neutral);
                 SwitchName(curName);
                 break;
             case 2:
                 SwitchName("You");
                 break;
             case 3:
+                SpriteChange(sNeutral_ArmsCrossed);
                 SwitchName(curName);
                 break;
             case 4:
+                SpriteChange(sDissapointed_HeadScratch);
                 SwitchName(curName);
                 break;
             case 5:
                 SwitchName("You");
                 break;
             case 6:
+                SpriteChange(sHappy_HeadScratch);
                 SwitchName(curName);
                 break;
             case 7:
                 SwitchName("You");
                 break;
             case 8:
+                SpriteChange(sHappy_Neutral);
                 SwitchName(curName);
                 break;
             case 9:
                 SwitchName("You");
                 break;
             case 10:
+                SpriteChange(sNeutral_ArmsCrossed);
                 SwitchName(curName);
                 break;
             case 11:
@@ -485,7 +501,10 @@ public class CharEddie : Character, IClick
 
         switch(curLine){
             case 0:
+                SpriteChange(sHappy_HeadScratch);
+                break;
             case 1:
+                SpriteChange(sGrumpy_ArmsCrossed);
                 SwitchName(curName);
                 break;
             case 2:
@@ -502,6 +521,7 @@ public class CharEddie : Character, IClick
 
         switch(curLine){
             case 0:
+                SpriteChange(sNeutral_Neutral);
                 SwitchName(curName);
                 break;
             case 1:
@@ -518,8 +538,13 @@ public class CharEddie : Character, IClick
 
         switch(curLine){
             case 0:
+                SpriteChange(sDissapointed_HeadScratch);
+                break ;
             case 1:
+                SpriteChange(sSus_ArmsCrossed);
+                break;
             case 2:
+                SpriteChange(sNeutral_ArmsCrossed);
                 SwitchName(curName);
                 break;
             case 3:
@@ -539,6 +564,7 @@ public class CharEddie : Character, IClick
                 SwitchName("You");
                 break;
             case 1:
+                SpriteChange(sHappy_HeadScratch);
                 SwitchName(curName);
                 break;
             case 2:
@@ -563,6 +589,7 @@ public class CharEddie : Character, IClick
 
         switch(curLine){
             case 0:
+                SpriteChange(sHappy_HeadScratch);
                 SwitchName("You");
                 break;
             case 1:
@@ -575,48 +602,96 @@ public class CharEddie : Character, IClick
                 SwitchName("You");
                 break;
             case 4:
+                SpriteChange(sNeutral_ArmsCrossed);
                 SwitchName(curName);
                 break;
             case 5:
                 SwitchName("You");
                 break;
             case 6:
+                SpriteChange(sHappy_HeadScratch);
+                SwitchName(curName);
+                break;
             case 7:
             case 8:
+                SpriteChange(sNeutral_ArmsCrossed);
+                break;
             case 9:
             case 10:
+                SpriteChange(sHappy_HeadScratch);
+                break;
             case 11:
             case 12:
+                SpriteChange(sNeutral_ArmsCrossed);
+                break;
             case 13:
             case 14:
+                SpriteChange(sHappy_Neutral);
+                break;
             case 15:
+                SpriteChange(sHappy_HeadScratch);
+                break;
             case 16:
             case 17:
+                SpriteChange(sSus_Neutral);
+                break;
             case 18:
+                SpriteChange(sSus_ArmsCrossed);
+                break;
             case 19:
+                SpriteChange(sSus_Neutral);
+                break;
             case 20:
             case 21:
+                SpriteChange(sDissapointed_ArmsCrossed);
+                break;
             case 22:
+                SpriteChange(sDissapointed_Neutral);
+                break;
             case 23:
+                SpriteChange(sDissapointed_HeadScratch);
+                break;
             case 24:
+                SpriteChange(sNeutral_ArmsCrossed);
+                break;
             case 25:
+                SpriteChange(sSus_ArmsCrossed);
+                break;
             case 26:
+                SpriteChange(sNeutral_ArmsCrossed);
+                break;
             case 27:
+                SpriteChange(sDissapointed_HeadScratch);
+                break;
             case 28:
             case 29:
+                SpriteChange(sSus_ArmsCrossed);
+                break;
             case 30:
-                SwitchName(curName);
+                SpriteChange(sDissapointed_Neutral);
                 break;
             case 31:
-                SwitchName("You");
+                SpriteChange(sHappy_HeadScratch);
                 break;
             case 32:
-                SwitchName(curName);
+                SpriteChange(sNeutral_Neutral);
                 break;
             case 33:
+            case 34:
+                SpriteChange(sHappy_Neutral);
+                SwitchName(curName);
+                break;
+            case 35:
                 SwitchName("You");
                 break;
-            case 34:
+            case 36:
+                SpriteChange(sHappy_HeadScratch);
+                SwitchName(curName);
+                break;
+            case 37:
+                SwitchName("You");
+                break;
+            case 38:
                 EndTalk();
                 break;
         }
@@ -628,6 +703,7 @@ public class CharEddie : Character, IClick
 
         switch(curLine){
             case 0:
+                SpriteChange(sHappy_HeadScratch);
                 SwitchName(curName);
                 break;
             case 1:
