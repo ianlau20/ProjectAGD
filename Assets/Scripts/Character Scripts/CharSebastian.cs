@@ -108,7 +108,7 @@ public class CharSebastian : Character, IClick
         sequence2.Add("This also applies to anything else you might be carrying, like purses or handbags. ");
         sequence2.Add("Got it!");
         sequence2.Add("Good.");
-        sequence2.Add("Next lesson, in any event where you are given name tags, never wear your nametag over your heart.");
+        sequence2.Add("Next lesson. In any event where you are given name tags, never wear your nametag over your heart.");
         sequence2.Add("Always wear it on the right side of your chest, that way it will still be visible during handshakes. ");
         sequence2.Add("Handshakes seem to be very important.");
         sequence2.Add("Extremely. I could go on for years about important handshake etiquette. But for the sake of time, I will give you one more rule. Ready?");
@@ -128,25 +128,25 @@ public class CharSebastian : Character, IClick
 
         // SEQUENCE 3
         sequence3.Add("Hello, Sebastian!");
-        sequence3.Add("Ah, hello, Young Master.");
-        sequence3.Add("*Sebastian extends his arm for a handshake, how do you respond?*");
+        sequence3.Add("Ah, hello, Master " + mm.username + ".");
+        sequence3.Add("Sebastian extends his arm for a handshake, how do you respond?");
 
 
         // SEQUENCE 3_1
-        sequence3_1.Add("*Sebastian smiles, and shakes your hand with a firm grip.*");
-        sequence3_1.Add("A pleasure, to see you again, Young Master.");
+        sequence3_1.Add("Sebastian smiles and shakes your hand with a firm grip.");
+        sequence3_1.Add("A pleasure to see you again, Master " + mm.username + ".");
 
         // SEQUENCE 3_2
-        sequence3_2.Add("Remember, Young Master, always shake with your right hand. ");
+        sequence3_2.Add("Remember, Master " + mm.username + ", always shake with your right hand. ");
         sequence3_2.Add("Oops!");
 
         // SEQUENCE 3_3
-        sequence3_3.Add("If you are seeing me again, I assume you are ready for our next lesson, yes? ");
+        sequence3_3.Add("If you are seeing me again, I assume you are ready for our next lesson, yes?");
         sequence3_3.Add("Yes, sir!");
-        sequence3_3.Add("Very good. Our next lesson will be on proper table manners. ");
+        sequence3_3.Add("Very good. Our next lesson will be on proper table manners.");
         sequence3_3.Add("Once you sit down, place your napkin on your lap. It shall remain there until the end of the meal unless being used. ");
-        sequence3_3.Add("Never put the used napkin back on the table, is that clear?");
-        sequence3_3.Add("Napkin on lap, got it.");
+        sequence3_3.Add("Never put the used napkin back on the table. Is that clear?");
+        sequence3_3.Add("Napkin on lap. Got it.");
         sequence3_3.Add("Good, now that you have taken your seat, do not place any personal items on the table. Leave your phone, keys, etcetera in your pockets or bag. ");
         sequence3_3.Add("Any questions so far?");
         sequence3_3.Add("So far, so good!");
@@ -161,64 +161,65 @@ public class CharSebastian : Character, IClick
         sequence3_3.Add("Do you think one day, perhaps… We could get dinner sometime?");
         sequence3_3.Add("If fate connects us after this horrid game, it would be an honor.");
         sequence3_3.Add("It’s a deal then! Later, Sebastian.");
-        sequence3_3.Add("Until next time, Young Master. ");
-        sequence3_3.Add("dawg");
-        sequence3_3.Add("dawg");
-        sequence3_3.Add("dawg");
-        sequence3_3.Add("dawg");
+        sequence3_3.Add("Until next time, Master " + mm.username);
 
 
         // SEQUENCE 4
-        sequence4.Add("Hello, Sebastian! ");
-        sequence4.Add("Ah, hello, Young Master.");
-        sequence4.Add("I’m ready for my next lesson, is there another one you can give me?");
+        sequence4.Add("Hello, Sebastian!");
+        sequence4.Add("Ah, hello, Master " + mm.username + ".");
+        sequence4.Add("I’m ready for my next lesson. Is there another one you can give me?");
         sequence4.Add("Yes, the lesson.");
         sequence4.Add("…");
         sequence4.Add("I’m afraid there is no lesson this time, and frankly never again.");
         sequence4.Add("Why? Did I do something wrong?");
-        sequence4.Add("No, not at all, Young Master. The problem lies with me.");
+        sequence4.Add("No, not at all, Master " + mm.username + ". The problem lies with me.");
         sequence4.Add("With you? What happened?");
-        sequence4.Add("I’m afraid I’ve been lying to you, Young Master.");
+        sequence4.Add("I’m afraid I’ve been lying to you, Master " + mm.username + ".");
         sequence4.Add("I am no butler… I am a failure.");
         sequence4.Add("What? But you taught me so many things.");
-        sequence4.Add("Yes, however, I failed the most important task a butler has.");
+        sequence4.Add("Yes. However, I failed the most important task a butler has.");
         sequence4.Add("I failed to protect my masters—my family. ");
         sequence4.Add("What happened?");
         sequence4.Add("…");
         sequence4.Add("Very well. I will tell you.");
         sequence4.Add("I was a young man in an abusive household, but that did not matter to me. ");
-        sequence4.Add("I had a dream, it didn’t matter what anyone said or did to me, I would achieve that dream.");
-        sequence4.Add("I wanted to become a butler. I was always fascinated by their elegance, their prestige, I wanted to be just like them. ");
-        sequence4.Add("Of course, I had no money to go to a proper school and learn so I took a job as a waiter to earn money.");
+        sequence4.Add("I had a dream. It didn’t matter what anyone said or did to me; I would achieve that dream.");
+        sequence4.Add("I wanted to become a butler; I was always fascinated by their elegance, their prestige. I wanted to be just like them. ");
+        sequence4.Add("Of course, I had no money to go to a proper school and learn, so I took a job as a waiter to earn money.");
         sequence4.Add("Meanwhile, I would practice on my own and read books from the library on manners and etiquette. ");
         sequence4.Add("One day, however, a couple came into the restaurant, a husband and a wife. I served their table like normal and thought nothing of it.");
-        sequence4.Add("After they finished eating, I was bringing them their check and the wife asked me if I was alright.");
+        sequence4.Add("After they finished eating, I brought them their check, and the wife asked me if I was alright.");
         sequence4.Add("I was confused at first, thinking, “Did I do something wrong?” She then said to me that I have a sad look behind my eyes.");
-        sequence4.Add("I wasn’t sure what to think, were they making fun of me? I thought at first, but the look on the couple's faces seemed genuine. ");
+        sequence4.Add("I wasn’t sure what to think; were they making fun of me? I thought at first, but the look on the couple's faces seemed genuine. ");
         sequence4.Add("They even asked when I got off work, so they could talk to me.");
         sequence4.Add("Out of pure curiosity, I indulged them. I made sure to stay near the restaurant for my safety, just in case. ");
         sequence4.Add("Then, the couple asked about my story. I told them about my living situation and my dream. ");
         sequence4.Add("They said they would pay for my schooling, and if I graduated they would hire me. ");
         sequence4.Add("I couldn’t believe it, but when I got a check in the mail, my dream became a reality.");
-        sequence4.Add("I worked hard and graduated top of my class. It was a short, but extensive, 10-week program and I enjoyed every second of it. ");
-        sequence4.Add("The couple gave me their address, after I graduated I drove to their manor and they welcomed me with open arms. ");
+        sequence4.Add("I worked hard and graduated top of my class. It was a short, but extensive, 10-week program, and I enjoyed every second of it. ");
+        sequence4.Add("The couple gave me their address. After I graduated, I drove to their manor and they welcomed me with open arms. ");
         sequence4.Add("My dream finally came true. ");
-        sequence4.Add("After a few years of working, the couple had a child. A daughter. I raised her as if she was my own. ");
-        sequence4.Add("This family not only helped me fulfill my dream but also gave me a chance to have a real family.");
-        sequence4.Add("15 years go by, and I was living my best life. Until that one fateful day, I was staying at the manor to clean and prepare dinner, and I then received a call from the police. ");
+        sequence4.Add("After a few years of working, the couple had a child, a daughter. I raised her as if she was my own. ");
+        sequence4.Add("This family not only helped me fulfill my dream, but also gave me a chance to have a real family.");
+        sequence4.Add("Fifteen years went by, and I was living my best life, until that one fateful day.");
+        sequence4.Add("I was staying at the manor to clean and prepare dinner, and I then received a call from the police. ");
         sequence4.Add("A drunk driver struck my family in a head-on collision. All three of them passed away. ");
-        sequence4.Add("In one day, I lost everything. That is my greatest failure… I should have been there—done something to prevent it from happening.");
-        sequence4.Add("But I wasn’t.");
+        sequence4.Add("In one day, I lost everything. That is my greatest failure…. I should have been there—done something to prevent it from happening.");
+        sequence4.Add("But I was not.");
         sequence4.Add("I am unfit to call myself a butler until I fix this.");
         sequence4.Add("Sebastian, I am so sorry.");
-        sequence4.Add("I do not need your pity, Young Master. I need to win. ");
+        sequence4.Add("I do not need your pity, Master " + mm.username + ". I need to win. ");
         sequence4.Add("It is not just my life on the line here. If I fail, my family will be gone forever, too. ");
-        sequence4.Add("Unfortunately, that means you need to lose, too, Young Master.");
+        sequence4.Add("Unfortunately, that means you need to lose, Master " + mm.username + ".");
         sequence4.Add("You and I both know how this game works. ");
-        sequence4.Add("I couldn’t lie to you anymore, pretending that everything was alright, knowing that in order to bring my family back… You would have to die.");
+        sequence4.Add("I could not lie to you anymore, pretending that everything was alright, knowing that in order to bring my family back, you would have to die.");
         sequence4.Add("I don’t—");
-        sequence4.Add("Please, don't say anything. I can’t do this anymore. I am so sorry this is how we met, under other circumstances… You would make a great apprentice and even… A friend.");
-        sequence4.Add("Goodbye, Young Master… Whatever afterlife there is, I hope it's kinder than this.");
+        sequence4.Add("Please, do not say anything. I can’t do this anymore. I am so sorry this is how we met.");
+        sequence4.Add("Under other circumstances…");
+        sequence4.Add("You would make a great apprentice and even…");
+        sequence4.Add("A greater friend.");
+        sequence4.Add("Goodbye, Master " + mm.username + "…");
+        sequence4.Add("Whatever afterlife there is, I hope it is kinder than this.");
 
         // SEQUENCE SAD
         sequenceSad.Add("…");
@@ -753,48 +754,57 @@ public class CharSebastian : Character, IClick
             case 34:
             case 35:
             case 36:
+            case 37:
                 SpriteChange(sNeutral_Neutral);
                 break;
             
-            case 37:
             case 38:
             case 39:
+            case 40:
                 SpriteChange(sWorry_Neutral);
                 break;
             
-            case 40:
+            case 41:
                 SwitchName(curName);
                 break;
-            case 41:
+            case 42:
                 SwitchName("You");
                 break;
-            case 42:
             case 43:
+            case 44:
                 SwitchName(curName);
                 SpriteChange(sIrate_Neutral);
                 break;
             
-            case 44:
+            case 45:
                 SpriteChange(sMenacing_HandsClasped);
                 SwitchName(curName);
                 break;
-            case 45:
             case 46:
+            case 47:
                 SpriteChange(sWorry_Neutral);
                 SwitchName(curName);
                 break;
-            case 47:
+            case 48:
                 SwitchName("You");
                 break;
-            case 48:
+            case 49:
                 SwitchName(curName);
                 SpriteChange(sIrate_HandsClasped);
                 break;
-            case 49:
+            case 50:
+                break;
+            case 51:
+                break;
+            case 52:
+                break;
+            case 53:
                 SpriteChange(sWorry_Bow);
                 SwitchName(curName);
                 break;
-            case 50:
+            case 54:
+                break;
+            case 55:
                 EndTalk();
                 break;
         }
