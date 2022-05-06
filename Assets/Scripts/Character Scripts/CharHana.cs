@@ -54,9 +54,10 @@ public class CharHana : Character, IClick
         SpriteChange(sWorry_Neutral);
 
         // SEQUENCE 1
+        sequence1.Add("A girl stands in front of you, looking desperately looking through her bag.");   //italics
         sequence1.Add("Gosh, where did I put my phone, I just had it! I swear I’d lose my head if it wasn’t attached.");
-        sequence1.Add("*She looks up and notices you standing there*");
-        sequence1.Add("Oh, Hi hi! I’m Hana, what's up dude!");
+        sequence1.Add("She looks up and notices you standing there.");
+        sequence1.Add("Oh, hi hi! I’m Hana. What's up, dude?");
         sequence1.Add("Looks like she is over losing her phone."); //ITALIC
         sequence1.Add("Hey I’m "+ mm.username +", just wanted to see what's up.");
         sequence1.Add("Hella! Did you see that cat guy aren’t they like sooooooooo cute! I wonder what is behind that mask. Maybe a little kitty piloting a robot body!");
@@ -252,70 +253,77 @@ public class CharHana : Character, IClick
 
         switch(curLine){
             case 0:
+                SpriteChange(sWorry_Neutral);
+                SwitchName("");
+                SwitchStyle(FontStyle.Italic);
+                break;
+
+            case 1:
                 SwitchName(curName);
                 SwitchStyle(FontStyle.Normal);
                 break;
-            case 1:
+
+            case 2:
                 SwitchName("");
                 SwitchStyle(FontStyle.Italic);
                 break;
             
-            case 2:
+            case 3:
                 SpriteChange(sGrin_Peace);
                 curName = "<color=#ff69b4ff>Hana</color>";
                 SwitchName(curName);
                 SwitchStyle(FontStyle.Normal);
                 break;
 
-            case 3:
+            case 4:
                 SwitchName("You");
-                SwitchStyle(FontStyle.Bold);
+                SwitchStyle(FontStyle.Italic);
                 break;
 
-            case 4:
+            case 5:
                 SwitchStyle(FontStyle.Normal);
                 break;
             
-            case 5:
+            case 6:
                 SpriteChange(sGrin_FistsRaised);
                 SwitchName(curName);
                 break;
             
-            case 6:
+            case 7:
                 SwitchName("You");          
                 break;
 
-            case 7:
-                SwitchStyle(FontStyle.Bold);//what an active..
+            case 8:
+                SwitchStyle(FontStyle.Italic);//what an active..
                 break;
 
-            case 8:
+            case 9:
                 SpriteChange(sNeutral_Neutral);
                 SwitchName(curName);
                 SwitchStyle(FontStyle.Normal);
                 break;
 
-            case 9:
+            case 10:
                 SwitchName("You"); //thats kinda the point
                 break;
 
-            case 10:
+            case 11:
                 SpriteChange(sWorry_FistsRaised);
                 SwitchName(curName);
                 break;
 
-            case 11:
+            case 12:
                 SwitchName("You");
                 break;
 
-            case 12:
+            case 13:
                 SpriteChange(sNeutral_Neutral);
                 SwitchName(curName);
                 break;
 
-            case 13:
+            case 14:
                 SwitchName("You");
-                SwitchStyle(FontStyle.Bold);
+                SwitchStyle(FontStyle.Italic);
                 ShowButtons();
 
                 responses.Clear();
@@ -384,7 +392,7 @@ public class CharHana : Character, IClick
                 break;
             case 4:
                 SwitchName("You");
-                SwitchStyle(FontStyle.Bold);
+                SwitchStyle(FontStyle.Italic);
                 break;
             case 5:
             case 6:
@@ -429,7 +437,7 @@ public class CharHana : Character, IClick
             
             case 5:
                 SwitchName("You");
-                SwitchStyle(FontStyle.Bold);        
+                SwitchStyle(FontStyle.Italic);        
                 break;
             case 6:
                 SwitchStyle(FontStyle.Normal);
@@ -445,7 +453,7 @@ public class CharHana : Character, IClick
             case 9:
                 ShowButtons();
                 responses.Clear();
-                responses.Add("Yea, sure.");
+                responses.Add("Yeah, sure.");
                 responses.Add("No, sorry.");
                 mm.responseButtonTexts[0].GetComponent<Text>().text = responses[0];
                 mm.responseButtonTexts[1].GetComponent<Text>().text = responses[1]; 
@@ -595,7 +603,7 @@ public class CharHana : Character, IClick
                 SwitchName(curName);
                 break;
             case 5:
-                SwitchStyle(FontStyle.Bold);
+                SwitchStyle(FontStyle.Italic);
                 SwitchName("You");
                 break;
             case 6:
@@ -753,7 +761,7 @@ public class CharHana : Character, IClick
                 SwitchName(curName);
                 break;
             case 18:
-                SwitchStyle(FontStyle.Bold);
+                SwitchStyle(FontStyle.Italic);
                 SwitchName("You");
                 break;
             case 19:

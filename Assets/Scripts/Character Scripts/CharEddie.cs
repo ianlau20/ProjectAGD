@@ -55,6 +55,7 @@ public class CharEddie : Character, IClick
         SpriteChange(sSus_Neutral);
 
         // SEQUENCE 1
+        sequence1.Add("You approach a tall man slouched over, starting to light a cigarette. He smells like smoke."); //italics
         sequence1.Add("Can I help you?");
         sequence1.Add("I was wondering if you wanted to talk.");
         sequence1.Add("Talk? About what?");
@@ -223,23 +224,28 @@ public class CharEddie : Character, IClick
 
         switch(curLine){
             case 0:
+                SpriteChange(sSus_Neutral);
+                SwitchName("");
+                SwitchStyle(FontStyle.Italic);
+                break;
+            case 1:
                 SwitchName(curName);
                 SwitchStyle(FontStyle.Normal);
                 break;
             
-            case 1:
+            case 2:
                 SwitchName("You");
                 break;
 
-            case 2:
+            case 3:
                 SwitchName(curName);
                 break;
             
-            case 3:
+            case 4:
                 SwitchName("You");          
                 break;
 
-            case 4:
+            case 5:
                 SpriteChange(sSus_ArmsCrossed);
                 SwitchName(curName);
 

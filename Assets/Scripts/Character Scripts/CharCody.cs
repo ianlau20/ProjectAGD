@@ -54,6 +54,7 @@ public class CharCody : Character, IClick
         SpriteChange(sNeutral_ArmsCrossed);
 
         // SEQUENCE 1
+        sequence1.Add("A massive man towers before you.His presence is heavy and you feel weak in your knees."); //italics
         sequence1.Add("He-hey how’s it going?");
         sequence1.Add("…….");
         sequence1.Add("What's your name?");
@@ -239,57 +240,65 @@ public class CharCody : Character, IClick
 
         switch(curLine){
             case 0:
-                SwitchName("You");
+                SpriteChange(sNeutral_ArmsCrossed);
+                SwitchName("");
+                SwitchStyle(FontStyle.Italic);
                 break;
 
             case 1:
+                SwitchName("You");
+                break;
+
+            case 2:
                 SpriteChange(sBrowsRaised_ArmsCrossed);
                 SwitchName(curName);
                 break;
             
-            case 2:
+            case 3:
                 SwitchName("You");          
                 break;
 
-            case 3:
+            case 4:
                 SpriteChange(sIrate_ArmsCrossed);
                 SwitchName(curName);
                 break;
             
-            case 4:
+            case 5:
                 SwitchName("You");          
                 break;
-            case 5:
+            case 6:
                 SpriteChange(sAngry_ArmsCrossed);
                 SwitchName(curName);
                 break;
             
-            case 6:
+            case 7:
                 SwitchName("You");          
                 break;
-            case 7:
+
+            case 8:
                 SpriteChange(sIrate_ArmsCrossed);
                 SwitchName(curName);
                 break;
             
-            case 8:
+            case 9:
                 SwitchName("You");          
                 break;
-            case 9:
+
+            case 10:
                 SpriteChange(sNeutral_ArmsCrossed);
                 SwitchName(curName);
                 break;
             
-            case 10:
+            case 11:
                 SwitchName("You");          
                 break;
-            case 11:
+            case 12:
                 SwitchName(curName);
                 SpriteChange(sIrate_ArmsCrossed);
                 SwitchStyle(FontStyle.Italic);
                 break;
 
-            case 12:
+            case 13:
                 EndTalk();
                 break;
         }
