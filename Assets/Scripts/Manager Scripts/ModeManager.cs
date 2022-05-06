@@ -130,9 +130,9 @@ public class ModeManager : MonoBehaviour
             person.gameObject.GetComponent<BoxCollider2D>().enabled = true;
         }
         // Except for who you just talked to
-        //curPerson.gameObject.GetComponent<BoxCollider2D>().enabled = false;
+        curPerson.gameObject.GetComponent<BoxCollider2D>().enabled = false;
 
-        if (pplTalkedTo == 5 || (pplTalkedTo == 1 && gm.enemyHands.Count == 1)){
+        if (pplTalkedTo == 2 || (pplTalkedTo == 1 && gm.enemyHands.Count == 1)){
             //cat interrupt
             catman.StartTalk();
         }
